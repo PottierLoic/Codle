@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Language } from "@/hooks/useLanguages";
 import { GuessResult } from "../lib/gameLogic";
 import Image from "next/image";
 

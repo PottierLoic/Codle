@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import Header from "../../components/Header";
 import GameGrid from "../../components/GameGrid";
 import useLanguages from "../../hooks/useLanguages";
@@ -22,7 +23,7 @@ export default function LangGame() {
     }
   }, [loading, languages]);
 
-  const handleSubmit = (e?: React.FormEvent) => {
+  const handleSubmit = useCallback((e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (guess && targetLanguage) {
       const result = compareGuess(guess, targetLanguage, languages);
@@ -32,13 +33,13 @@ export default function LangGame() {
         setShowSuggestions(false);
       }
     }
-  };
+  }, [guess, guesses, targetLanguage, languages]);
 
   useEffect(() => {
     if (guess && !showSuggestions) {
       handleSubmit();
     }
-  }, [handleSubmit]);
+  }, [guess, showSuggestions, handleSubmit]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
@@ -85,7 +86,7 @@ export default function LangGame() {
                     className="p-2 hover:bg-gray-700 cursor-pointer text-white flex items-center gap-2"
                     onClick={() => handleSelectSuggestion(lang.name)}
                   >
-                    <img src={lang.icon} alt={lang.name} className="w-6 h-6 rounded-md" />
+                    <Image src={lang.icon} alt={lang.name} width={24} height={24} className="rounded-md" />
                     {lang.name}
                   </li>
                 ))}
