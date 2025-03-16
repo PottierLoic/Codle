@@ -50,7 +50,7 @@ export default function GameGrid({ guesses, targetLanguage }: GameGridProps) {
                 ? "bg-green-800 text-white"
                 : "bg-red-800 text-white"
             }`}>
-            {g.year} {targetLanguage && g.year < targetLanguage.year ? "^" : g.year > targetLanguage.year ? "v" : ""}
+            {g.year} {targetLanguage ? (g.year < targetLanguage.year ? "^" : g.year > targetLanguage.year ? "v" : "") : ""}
           </div>
           <div className={`p-2 border border-black rounded flex items-center justify-center ${
               g.typingMatch ? "bg-green-800 text-white" : "bg-red-800 text-white"
