@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Language } from "@/hooks/useLanguages";
 import { GuessResult } from "../lib/gameLogic";
+import Image from "next/image";
 
 interface GameGridProps {
   guesses: GuessResult[];
   maxGuesses: number;
-  targetLanguage: Language | null;
 }
 
-export default function GameGrid({ guesses, targetLanguage }: GameGridProps) {
+export default function GameGrid({ guesses }: GameGridProps) {
   const [showWinMessage, setShowWinMessage] = useState(false);
   const hasWon = guesses.some((g) => g.nameMatch);
 
@@ -79,8 +79,8 @@ export default function GameGrid({ guesses, targetLanguage }: GameGridProps) {
               animate="visible"
               custom={colIndex}
             >
-              {item.icon && <img src={item.icon} alt={g.name} className="w-6 h-6 rounded-md" />}
-              {item.value}
+              {item.icon && <Image src={item.icon} alt={g.name} width={48} height={48} className="rounded-md" />}
+              {colIndex !== 0 && item.value}
             </motion.div>
           ))}
         </div>

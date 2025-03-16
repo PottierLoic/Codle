@@ -38,7 +38,7 @@ export default function LangGame() {
     if (guess && !showSuggestions) {
       handleSubmit();
     }
-  }, [guess, showSuggestions]);
+  }, [handleSubmit]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
@@ -99,7 +99,7 @@ export default function LangGame() {
             </button>
           </form>
         )}
-        <GameGrid guesses={guesses} maxGuesses={Infinity} targetLanguage={targetLanguage} />
+        <GameGrid guesses={guesses} maxGuesses={Infinity} />
       </main>
     </div>
   );
