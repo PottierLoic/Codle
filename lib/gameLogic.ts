@@ -1,13 +1,4 @@
-export interface Language {
-  name: string;
-  paradigms: string[];
-  year: number;
-  typing: string;
-  execution: string;
-  gc: string;
-  scope: string[];
-  symbol: string;
-}
+import { Language } from "@/hooks/useLanguages";
 
 export interface GuessResult {
   name: string;
@@ -20,12 +11,13 @@ export interface GuessResult {
   typingMatch: boolean;
   execution: string;
   executionMatch: boolean;
-  gc: string;
+  gc: boolean;
   gcMatch: boolean;
   scope: string[];
   scopeMatch: "full" | "partial" | "none";
   symbol: string;
   symbolMatch: boolean;
+  icon: string;
 }
 
 export const compareGuess = (guessName: string, targetLanguage: Language, languages: Language[]): GuessResult | null => {
@@ -66,5 +58,6 @@ export const compareGuess = (guessName: string, targetLanguage: Language, langua
         : "none",
     symbol: guessedLang.symbol,
     symbolMatch: guessedLang.symbol === targetLanguage.symbol,
+    icon: guessedLang.icon,
   };
 };

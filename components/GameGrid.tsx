@@ -34,7 +34,7 @@ export default function GameGrid({ guesses, targetLanguage }: GameGridProps) {
           <div className={`p-2 border border-black rounded font-medium flex items-center justify-center ${
               g.nameMatch ? "bg-green-700 text-white" : "bg-red-800 text-white text-white"
             }`}>
-            {g.name}
+            <img src={g.icon} alt={g.name} className="w-12 h-12 rounded-md" />
           </div>
           <div className={`p-2 border border-black rounded flex items-center justify-center ${
               g.paradigmsMatch === "full"
@@ -63,9 +63,9 @@ export default function GameGrid({ guesses, targetLanguage }: GameGridProps) {
             {g.execution}
           </div>
           <div className={`p-2 border border-black rounded flex items-center justify-center ${
-              g.gcMatch ? "bg-green-800 text-white" : "bg-red-800 text-white"
+              g.gc ? "bg-green-800 text-white" : "bg-red-800 text-white"
             }`}>
-            {g.gc}
+            {g.gc ? "Yes" : "No"}
           </div>
           <div className={`p-2 border border-black rounded flex items-center justify-center ${
               g.scopeMatch === "full"

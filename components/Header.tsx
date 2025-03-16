@@ -1,4 +1,5 @@
 import Link from "next/link";
+import useRouter from "next/navigation"
 
 export default function Header() {
   return (
@@ -12,12 +13,20 @@ export default function Header() {
         <nav>
           <ul className="flex gap-4">
             <li>
-              <Link href="/" className="hover:text-blue-400 transition">
+              <Link href="/lang" className="hover:text-blue-400 transition">
                 Languages
               </Link>
             </li>
-            <li className="text-gray-500 cursor-not-allowed">RATIO1</li>
-            <li className="text-gray-500 cursor-not-allowed">RATIO2</li>
+            <li className="text-gray-500 cursor-not-allowed">
+              <Link href="/todo" className="hover:text-blue-400 transition">
+                Game 2
+              </Link>
+            </li>
+            <li className="text-gray-500 cursor-not-allowed">
+              <Link href="/todo" className="hover:text-blue-400 transition">
+                Game 3
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
