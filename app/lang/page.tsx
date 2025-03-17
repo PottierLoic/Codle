@@ -7,9 +7,11 @@ import GameGrid from "../../components/GameGrid";
 import useLanguages from "../../hooks/useLanguages";
 import { Language } from "../../hooks/useLanguages";
 import { compareGuess, GuessResult } from "../../lib/gameLogic";
+import useGuessCounts from "../../hooks/useGuessCounts";
 
 export default function LangGame() {
   const { languages, loading } = useLanguages();
+  const { incrementGuessCount } = useGuessCounts();
   const [targetLanguage, setTargetLanguage] = useState<Language | null>(null);
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState<GuessResult[]>([]);
@@ -23,7 +25,7 @@ export default function LangGame() {
     }
   }, [loading, languages]);
 
-  const handleSubmit = useCallback((e?: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (guess && targetLanguage) {
       const result = compareGuess(guess, targetLanguage, languages);
@@ -31,9 +33,10 @@ export default function LangGame() {
         setGuesses([...guesses, result]);
         setGuess("");
         setShowSuggestions(false);
+        incrementGuessCount(guess);
       }
     }
-  }, [guess, guesses, targetLanguage, languages]);
+  }, [guess, guesses, targetLanguage, languages, incrementGuessCount]);
 
   useEffect(() => {
     if (guess && !showSuggestions) {

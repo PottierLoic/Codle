@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { GuessResult } from "../lib/gameLogic";
 import Image from "next/image";
+import useGuessCounts from "../hooks/useGuessCounts";
 
 interface GameGridProps {
   guesses: GuessResult[];
@@ -10,6 +11,7 @@ interface GameGridProps {
 
 export default function GameGrid({ guesses }: GameGridProps) {
   const [showWinMessage, setShowWinMessage] = useState(false);
+  const { guessCounts } = useGuessCounts();
   const hasWon = guesses.some((g) => g.nameMatch);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function GameGrid({ guesses }: GameGridProps) {
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: {delay: i * 0.5, duration: 0.5, ease: "easeOut" },
+      transition: { delay: i * 0.5, duration: 0.5, ease: "easeOut" },
     }),
   };
 
@@ -67,6 +69,8 @@ export default function GameGrid({ guesses }: GameGridProps) {
             <motion.div
               key={colIndex}
               className={`p-2 border border-black rounded flex items-center justify-center gap-2 ${
+                colIndex === 0 ? 'relative' : ''
+              } ${
                 item.match === true || item.match === "full"
                   ? "bg-green-800 text-white"
                   : item.match === "partial"
@@ -78,8 +82,18 @@ export default function GameGrid({ guesses }: GameGridProps) {
               animate="visible"
               custom={colIndex}
             >
-              {item.icon && <Image src={item.icon} alt={g.name} width={48} height={48} className="rounded-md" />}
-              {colIndex !== 0 && item.value}
+              {colIndex === 0 ? (
+                <>
+                  {item.icon && (
+                    <Image src={item.icon} alt={g.name} width={48} height={48} className="rounded-md"/>
+                  )}
+                  <span className="absolute bottom-1 right-1 text-xs text-white-400 px-2 py-1 rounded">
+                    {guessCounts[g.name] ?? 0}
+                  </span>
+                </>
+              ) : (
+                item.value
+              )}
             </motion.div>
           ))}
         </div>
