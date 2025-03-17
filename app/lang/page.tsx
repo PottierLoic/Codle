@@ -8,6 +8,7 @@ import useGuessCounts from "../../hooks/useGuessCountsLang";
 import { compareGuess, GuessResult } from "../../lib/gameLogic";
 import GuessForm from "../../components/GuessForm";
 import { getDailyRandomItem } from "../../lib/getDailyRandomItem";
+import { loadProgress, saveProgress } from "@/lib/saveProgress";
 
 export default function LangGame() {
   const { languages, loading } = useLanguages();
@@ -19,16 +20,31 @@ export default function LangGame() {
   const [suggestions, setSuggestions] = useState<Language[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const dayString = new Date().toISOString().slice(0, 10);
+
   useEffect(() => {
     if (!loading && languages.length > 0) {
+      const storedGuesses = loadProgress<GuessResult[]>("langGuesses", dayString);
+      if (storedGuesses) {
+        storedGuesses.forEach(g => {
+          g.isFromStorage = true;
+        });
+        setGuesses(storedGuesses);
+      }
       const dailyPick = getDailyRandomItem(languages);
+      setTodayLanguage(dailyPick);
       const yesterdayDate = new Date();
       yesterdayDate.setDate(yesterdayDate.getDate() - 1);
       const yesterdayPick = getDailyRandomItem(languages, yesterdayDate);
-      setTodayLanguage(dailyPick);
       setYesterdayLanguage(yesterdayPick);
     }
-  }, [loading, languages]);
+  }, [loading, languages, dayString]);
+
+  useEffect(() => {
+    if (guesses.length > 0) {
+      saveProgress<GuessResult[]>("langGuesses", dayString, guesses);
+    }
+  }, [guesses, dayString]);
 
   const handleSubmit = useCallback((e?: React.FormEvent) => {
     if (e) e.preventDefault();

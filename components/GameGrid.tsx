@@ -116,7 +116,7 @@ export default function GameGrid({ guesses }: GameGridProps) {
                   : "bg-red-800 text-white"
               }`}
               variants={revealVariants}
-              initial="hidden"
+              initial={g.isFromStorage ? "visible" : "hidden"}
               animate="visible"
               custom={colIndex}
             >

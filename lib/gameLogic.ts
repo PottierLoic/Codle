@@ -18,6 +18,7 @@ export interface GuessResult {
   symbol: string;
   symbolMatch: boolean;
   icon: string;
+  isFromStorage?: boolean;
 }
 
 export const compareGuess = (guessName: string, targetLanguage: Language, languages: Language[]): GuessResult | null => {
@@ -59,5 +60,6 @@ export const compareGuess = (guessName: string, targetLanguage: Language, langua
     symbol: guessedLang.symbol,
     symbolMatch: guessedLang.symbol === targetLanguage.symbol,
     icon: guessedLang.icon,
+    isFromStorage: false,
   };
 };
