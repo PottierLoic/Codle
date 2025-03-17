@@ -7,6 +7,7 @@ import useLanguages, { Language } from "../../hooks/useLanguages";
 import useGuessCounts from "../../hooks/useGuessCountsLang";
 import { compareGuess, GuessResult } from "../../lib/gameLogic";
 import GuessForm from "../../components/GuessForm";
+import { getDailyRandomItem } from "../../lib/getDailyRandomItem";
 
 export default function LangGame() {
   const { languages, loading } = useLanguages();
@@ -19,8 +20,8 @@ export default function LangGame() {
 
   useEffect(() => {
     if (!loading && languages.length > 0) {
-      const randomIndex = Math.floor(Math.random() * languages.length);
-      setTargetLanguage(languages[randomIndex]);
+      const dailyPick = getDailyRandomItem(languages)
+      setTargetLanguage(dailyPick)
     }
   }, [loading, languages]);
 
