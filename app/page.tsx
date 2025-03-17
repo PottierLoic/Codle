@@ -17,10 +17,10 @@ export default function Home() {
           Guess the Programming Language
         </button>
         <button
-          onClick={() => router.push("/todo")}
+          onClick={() => router.push("/code-guess")}
           className="bg-green-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-green-600 transition"
         >
-          Guess game 2
+          Guess the language based on code snippet
         </button>
         <button
           onClick={() => router.push("/todo")}

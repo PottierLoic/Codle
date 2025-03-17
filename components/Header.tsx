@@ -17,8 +17,8 @@ export default function Header() {
               </Link>
             </li>
             <li className="text-gray-500 cursor-not-allowed">
-              <Link href="/todo" className="hover:text-blue-400 transition">
-                Game 2
+              <Link href="/code-guess" className="hover:text-blue-400 transition">
+                Code Snippets
               </Link>
             </li>
             <li className="text-gray-500 cursor-not-allowed">
