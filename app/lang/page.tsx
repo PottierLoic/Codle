@@ -106,9 +106,25 @@ export default function LangGame() {
           />
         )}
         <GameGrid guesses={guesses} maxGuesses={Infinity} />
+        {hasWon && todayLanguage && (
+          <div className="mt-4 p-2 bg-gray-800 rounded">
+            <h2 className="text-xl font-semibold mb-2">Congratulations, today&apos;s language was <strong>{todayLanguage.name}</strong> !</h2>
+            <p className="mb-2">{todayLanguage.description}</p>
+            {todayLanguage.link && (
+              <a
+                href={todayLanguage.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 underline"
+              >
+                Learn more about {todayLanguage.name}
+              </a>
+            )}
+          </div>
+        )}
         {yesterdayLanguage && (
           <p>
-            Yesterday&apos;s Language Was <strong>{yesterdayLanguage.name}</strong>
+            Yesterday&apos;s language was <strong>{yesterdayLanguage.name}.</strong>
           </p>
         )}
       </main>

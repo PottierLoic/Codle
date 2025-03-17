@@ -12,6 +12,8 @@ export interface Language {
   scope: string[];
   symbol: string;
   icon: string;
+  description?: string;
+  link?: string;
 }
 
 export default function useLanguages() {

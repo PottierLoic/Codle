@@ -8,7 +8,9 @@
     "gc": true,
     "scope": ["Application", "Script/Web", "Analysis", "Mathematics", "AI"],
     "symbol": "Tab",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    "description": "A versatile, high-level language known for its readability and extensive libraries, widely used in web development, data science, and AI.",
+    "link": "https://www.python.org/"
   },
   {
     "name": "C",
@@ -19,7 +21,9 @@
     "gc": false,
     "scope": ["System", "Embedded", "Application", "Games"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+    "description": "A foundational, low-level language offering fine-grained control over hardware, commonly used in operating systems and embedded systems.",
+    "link": "https://en.wikipedia.org/wiki/C_(programming_language)"
   },
   {
     "name": "Java",
@@ -30,7 +34,9 @@
     "gc": true,
     "scope": ["Application", "Enterprise", "Network", "Script/Web"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    "description": "A robust, platform-independent language with a strong emphasis on object-oriented programming, popular in enterprise applications.",
+    "link": "https://www.java.com/"
   },
   {
     "name": "JavaScript",
@@ -41,7 +47,9 @@
     "gc": true,
     "scope": ["Script/Web", "Application", "Games"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    "description": "A dynamic scripting language primarily used for client-side web development, now also popular in server-side applications.",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
   },
   {
     "name": "Rust",
@@ -52,7 +60,9 @@
     "gc": false,
     "scope": ["System", "Network", "Application", "Games"],
     "symbol": "=>",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg",
+    "description": "A systems programming language focused on safety and performance, especially memory safety without a garbage collector.",
+    "link": "https://www.rust-lang.org/"
   },
   {
     "name": "R",
@@ -63,7 +73,9 @@
     "gc": true,
     "scope": ["Analysis", "Mathematics", "AI"],
     "symbol": "->",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg",
+    "description": "A language designed for statistical computing and graphics, widely used in data analysis and research.",
+    "link": "https://www.r-project.org/"
   },
   {
     "name": "PHP",
@@ -74,7 +86,9 @@
     "gc": true,
     "scope": ["Script/Web", "Application"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+    "description": "A server-side scripting language tailored for web development, known for its simplicity and wide adoption.",
+    "link": "https://www.php.net/"
   },
   {
     "name": "Go",
@@ -85,7 +99,9 @@
     "gc": true,
     "scope": ["System", "Network", "Application"],
     "symbol": ":=",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
+    "description": "A statically typed, compiled language designed for simplicity, concurrency, and performance, created by Google.",
+    "link": "https://go.dev/"
   },
   {
     "name": "Swift",
@@ -96,7 +112,9 @@
     "gc": true,
     "scope": ["Application", "Mobile"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
+    "description": "A powerful, intuitive language developed by Apple for iOS and macOS apps, emphasizing safety and performance.",
+    "link": "https://www.swift.org/"
   },
   {
     "name": "Kotlin",
@@ -107,7 +125,9 @@
     "gc": true,
     "scope": ["Application", "Mobile", "Script/Web"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+    "description": "A modern, concise language interoperable with Java, widely used for Android development and beyond.",
+    "link": "https://kotlinlang.org/"
   },
   {
     "name": "C++",
@@ -118,7 +138,9 @@
     "gc": false,
     "scope": ["System", "Application", "Games", "Embedded"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+    "description": "An extension of C with object-oriented features, known for high performance in systems programming and game development.",
+    "link": "https://isocpp.org/"
   },
   {
     "name": "Ruby",
@@ -129,7 +151,9 @@
     "gc": true,
     "scope": ["Script/Web", "Application"],
     "symbol": "end",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg",
+    "description": "A dynamic, object-oriented language focused on simplicity and productivity, popular in web frameworks like Ruby on Rails.",
+    "link": "https://www.ruby-lang.org/"
   },
   {
     "name": "Perl",
@@ -140,7 +164,9 @@
     "gc": true,
     "scope": ["Script/Web", "System", "Text Processing"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/perl/perl-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/perl/perl-original.svg",
+    "description": "A flexible, text-processing language known for its powerful regular expressions and scripting capabilities.",
+    "link": "https://www.perl.org/"
   },
   {
     "name": "Haskell",
@@ -151,7 +177,9 @@
     "gc": true,
     "scope": ["Analysis", "Mathematics", "Application"],
     "symbol": "->",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/haskell/haskell-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/haskell/haskell-original.svg",
+    "description": "A purely functional language with strong static typing, favored for its mathematical precision and academic use.",
+    "link": "https://www.haskell.org/"
   },
   {
     "name": "Lua",
@@ -162,7 +190,9 @@
     "gc": true,
     "scope": ["Embedded", "Games", "Script/Web"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lua/lua-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lua/lua-original.svg",
+    "description": "A lightweight, embeddable scripting language designed for simplicity and performance in games and applications.",
+    "link": "https://www.lua.org/"
   },
   {
     "name": "Scala",
@@ -173,7 +203,9 @@
     "gc": true,
     "scope": ["Application", "Enterprise", "Analysis"],
     "symbol": "=>",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg",
+    "description": "A hybrid language combining object-oriented and functional programming, built on the JVM for enterprise use.",
+    "link": "https://www.scala-lang.org/"
   },
   {
     "name": "TypeScript",
@@ -184,7 +216,9 @@
     "gc": true,
     "scope": ["Script/Web", "Application"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    "description": "A superset of JavaScript adding static types, enhancing scalability and maintainability in web development.",
+    "link": "https://www.typescriptlang.org/"
   },
   {
     "name": "Dart",
@@ -195,7 +229,9 @@
     "gc": true,
     "scope": ["Application", "Mobile", "Script/Web"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
+    "description": "A client-optimized language by Google, used primarily for building mobile and web apps with Flutter.",
+    "link": "https://dart.dev/"
   },
   {
     "name": "Elixir",
@@ -206,7 +242,9 @@
     "gc": true,
     "scope": ["Script/Web", "Application", "Network"],
     "symbol": "do",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elixir/elixir-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elixir/elixir-original.svg",
+    "description": "A dynamic, functional language built on the Erlang VM, designed for scalable and fault-tolerant applications.",
+    "link": "https://elixir-lang.org/"
   },
   {
     "name": "MATLAB",
@@ -217,7 +255,9 @@
     "gc": true,
     "scope": ["Analysis", "Mathematics", "Engineering"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg",
+    "description": "A numerical computing environment and language used extensively in engineering, science, and mathematics.",
+    "link": "https://www.mathworks.com/products/matlab.html"
   },
   {
     "name": "C#",
@@ -228,7 +268,9 @@
     "gc": true,
     "scope": ["Application", "Games", "Enterprise"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+    "description": "A modern, object-oriented language by Microsoft, widely used in game development (Unity) and enterprise software.",
+    "link": "https://docs.microsoft.com/en-us/dotnet/csharp/"
   },
   {
     "name": "Objective-C",
@@ -239,7 +281,9 @@
     "gc": true,
     "scope": ["Application", "Mobile"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/objectivec/objectivec-plain.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/objectivec/objectivec-plain.svg",
+    "description": "An object-oriented extension of C, foundational for early iOS and macOS development before Swift.",
+    "link": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/"
   },
   {
     "name": "Pascal",
@@ -250,7 +294,9 @@
     "gc": false,
     "scope": ["Application", "Education"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pascal/pascal-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pascal/pascal-original.svg",
+    "description": "A structured, educational language designed for teaching programming concepts and clarity.",
+    "link": "https://www.freepascal.org/"
   },
   {
     "name": "Fortran",
@@ -261,7 +307,9 @@
     "gc": false,
     "scope": ["Mathematics", "Engineering", "Analysis"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fortran/fortran-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fortran/fortran-original.svg",
+    "description": "One of the oldest languages, optimized for numerical and scientific computing, still used in high-performance applications.",
+    "link": "https://fortran-lang.org/"
   },
   {
     "name": "Ada",
@@ -272,7 +320,9 @@
     "gc": false,
     "scope": ["System", "Embedded", "Application"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ada/ada-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ada/ada-original.svg",
+    "description": "A structured, statically typed language designed for safety and reliability in critical systems like aerospace.",
+    "link": "https://www.adaic.org/"
   },
   {
     "name": "Groovy",
@@ -283,7 +333,9 @@
     "gc": true,
     "scope": ["Script/Web", "Application", "Enterprise"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/groovy/groovy-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/groovy/groovy-original.svg",
+    "description": "A dynamic language for the JVM, enhancing Java with scripting capabilities and concise syntax.",
+    "link": "https://groovy-lang.org/"
   },
   {
     "name": "Erlang",
@@ -294,7 +346,9 @@
     "gc": true,
     "scope": ["Network", "Application", "Telecom"],
     "symbol": ".",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/erlang/erlang-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/erlang/erlang-original.svg",
+    "description": "A language optimized for concurrency, reliability, and telecom systems, powering scalable applications.",
+    "link": "https://www.erlang.org/"
   },
   {
     "name": "Clojure",
@@ -305,7 +359,9 @@
     "gc": true,
     "scope": ["Application", "Script/Web", "Analysis"],
     "symbol": "()",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/clojure/clojure-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/clojure/clojure-original.svg",
+    "description": "A modern Lisp dialect for the JVM, emphasizing functional programming and immutable data.",
+    "link": "https://clojure.org/"
   },
   {
     "name": "F#",
@@ -316,7 +372,9 @@
     "gc": true,
     "scope": ["Application", "Analysis"],
     "symbol": ";;",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fsharp/fsharp-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fsharp/fsharp-original.svg",
+    "description": "A functional-first language on .NET, blending static typing with concise syntax for data-driven applications.",
+    "link": "https://fsharp.org/"
   },
   {
     "name": "Scheme",
@@ -327,7 +385,9 @@
     "gc": true,
     "scope": ["Education", "Application"],
     "symbol": "()",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scheme/scheme-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scheme/scheme-original.svg",
+    "description": "A minimalist Lisp dialect used in education to teach functional programming concepts.",
+    "link": "https://www.scheme.org/"
   },
   {
     "name": "V",
@@ -338,7 +398,9 @@
     "gc": true,
     "scope": ["System", "Application", "Games"],
     "symbol": ":=",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vlang/vlang-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vlang/vlang-original.svg",
+    "description": "A simple, fast, and safe language designed for maintainable software with minimal abstraction.",
+    "link": "https://vlang.io/"
   },
   {
     "name": "D",
@@ -349,7 +411,9 @@
     "gc": true,
     "scope": ["System", "Application", "Games"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d/d-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d/d-original.svg",
+    "description": "A multi-paradigm language aiming to improve on C++ with better safety and productivity features.",
+    "link": "https://dlang.org/"
   },
   {
     "name": "Crystal",
@@ -360,7 +424,9 @@
     "gc": true,
     "scope": ["Application", "Script/Web"],
     "symbol": "end",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/crystal/crystal-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/crystal/crystal-original.svg",
+    "description": "A Ruby-inspired language with static typing and native compilation for performance.",
+    "link": "https://crystal-lang.org/"
   },
   {
     "name": "Julia",
@@ -371,7 +437,9 @@
     "gc": true,
     "scope": ["Analysis", "Mathematics", "AI"],
     "symbol": "end",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/julia/julia-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/julia/julia-original.svg",
+    "description": "A high-performance language for technical computing, blending dynamic typing with speed.",
+    "link": "https://julialang.org/"
   },
   {
     "name": "Nim",
@@ -382,7 +450,9 @@
     "gc": true,
     "scope": ["System", "Application", "Games"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nim/nim-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nim/nim-original.svg",
+    "description": "A statically typed, compiled language with Python-like syntax, targeting performance and flexibility.",
+    "link": "https://nim-lang.org/"
   },
   {
     "name": "Zig",
@@ -393,7 +463,9 @@
     "gc": false,
     "scope": ["System", "Embedded", "Application"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/zig/zig-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/zig/zig-original.svg",
+    "description": "A simple, low-level language focused on safety and control, competing with C without a garbage collector.",
+    "link": "https://ziglang.org/"
   },
   {
     "name": "OCaml",
@@ -404,7 +476,9 @@
     "gc": true,
     "scope": ["Application", "Analysis"],
     "symbol": ";;",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ocaml/ocaml-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ocaml/ocaml-original.svg",
+    "description": "A functional language with strong static typing, used in academia and high-performance applications.",
+    "link": "https://ocaml.org/"
   },
   {
     "name": "Racket",
@@ -415,7 +489,9 @@
     "gc": true,
     "scope": ["Education", "Application"],
     "symbol": "()",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/racket/racket-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/racket/racket-original.svg",
+    "description": "A Lisp dialect designed for education and scripting, with a focus on language experimentation.",
+    "link": "https://racket-lang.org/"
   },
   {
     "name": "Elm",
@@ -426,7 +502,9 @@
     "gc": true,
     "scope": ["Script/Web"],
     "symbol": "->",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elm/elm-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elm/elm-original.svg",
+    "description": "A functional language for reliable web frontends, compiling to JavaScript with a focus on simplicity.",
+    "link": "https://elm-lang.org/"
   },
   {
     "name": "COBOL",
@@ -437,117 +515,9 @@
     "gc": false,
     "scope": ["Enterprise", "Application"],
     "symbol": ".",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cobol/cobol-original.svg"
-  },
-  {
-    "name": "V",
-    "paradigms": ["Imperative", "Procedural"],
-    "year": 2019,
-    "typing": "Static",
-    "execution": "Compiled",
-    "gc": true,
-    "scope": ["System", "Application", "Games"],
-    "symbol": ":=",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vlang/vlang-original.svg"
-  },
-  {
-    "name": "D",
-    "paradigms": ["Imperative", "Object-oriented", "Procedural"],
-    "year": 2001,
-    "typing": "Static",
-    "execution": "Compiled",
-    "gc": true,
-    "scope": ["System", "Application", "Games"],
-    "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d/d-original.svg"
-  },
-  {
-    "name": "Crystal",
-    "paradigms": ["Object-oriented", "Imperative"],
-    "year": 2014,
-    "typing": "Static",
-    "execution": "Compiled",
-    "gc": true,
-    "scope": ["Application", "Script/Web"],
-    "symbol": "end",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/crystal/crystal-original.svg"
-  },
-  {
-    "name": "Julia",
-    "paradigms": ["Imperative", "Functional"],
-    "year": 2012,
-    "typing": "Dynamic",
-    "execution": "Hybrid",
-    "gc": true,
-    "scope": ["Analysis", "Mathematics", "AI"],
-    "symbol": "end",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/julia/julia-original.svg"
-  },
-  {
-    "name": "Nim",
-    "paradigms": ["Imperative", "Object-oriented", "Functional"],
-    "year": 2008,
-    "typing": "Static",
-    "execution": "Compiled",
-    "gc": true,
-    "scope": ["System", "Application", "Games"],
-    "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nim/nim-original.svg"
-  },
-  {
-    "name": "Zig",
-    "paradigms": ["Imperative", "Procedural"],
-    "year": 2016,
-    "typing": "Static",
-    "execution": "Compiled",
-    "gc": false,
-    "scope": ["System", "Embedded", "Application"],
-    "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/zig/zig-original.svg"
-  },
-  {
-    "name": "OCaml",
-    "paradigms": ["Functional", "Object-oriented", "Imperative"],
-    "year": 1996,
-    "typing": "Static",
-    "execution": "Hybrid",
-    "gc": true,
-    "scope": ["Application", "Analysis"],
-    "symbol": ";;",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ocaml/ocaml-original.svg"
-  },
-  {
-    "name": "Racket",
-    "paradigms": ["Functional"],
-    "year": 1995,
-    "typing": "Dynamic",
-    "execution": "Interpreted",
-    "gc": true,
-    "scope": ["Education", "Application"],
-    "symbol": "()",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/racket/racket-original.svg"
-  },
-  {
-    "name": "Elm",
-    "paradigms": ["Functional"],
-    "year": 2012,
-    "typing": "Static",
-    "execution": "Compiled",
-    "gc": true,
-    "scope": ["Script/Web"],
-    "symbol": "->",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elm/elm-original.svg"
-  },
-  {
-    "name": "COBOL",
-    "paradigms": ["Imperative", "Procedural"],
-    "year": 1959,
-    "typing": "Static",
-    "execution": "Compiled",
-    "gc": false,
-    "scope": ["Enterprise", "Application"],
-    "symbol": ".",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cobol/cobol-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cobol/cobol-original.svg",
+    "description": "A verbose, business-oriented language still used in legacy financial and enterprise systems.",
+    "link": "https://en.wikipedia.org/wiki/COBOL"
   },
   {
     "name": "Prolog",
@@ -558,7 +528,9 @@
     "gc": true,
     "scope": ["AI", "Analysis"],
     "symbol": ":-",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prolog/prolog-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prolog/prolog-original.svg",
+    "description": "A logic programming language used in AI and computational linguistics, based on formal reasoning.",
+    "link": "https://www.swi-prolog.org/"
   },
   {
     "name": "Smalltalk",
@@ -569,7 +541,9 @@
     "gc": true,
     "scope": ["Application", "Education"],
     "symbol": ":=",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/smalltalk/smalltalk-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/smalltalk/smalltalk-original.svg",
+    "description": "A pioneering object-oriented language that influenced modern programming paradigms.",
+    "link": "http://smalltalk.org/"
   },
   {
     "name": "Lisp",
@@ -580,7 +554,9 @@
     "gc": true,
     "scope": ["AI", "Application"],
     "symbol": "()",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lisp/lisp-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lisp/lisp-original.svg",
+    "description": "One of the oldest languages, foundational for AI research with its focus on symbolic computation.",
+    "link": "http://www.lispworks.com/"
   },
   {
     "name": "Bash",
@@ -591,7 +567,9 @@
     "gc": true,
     "scope": ["System", "Script/Web"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
+    "description": "A Unix shell scripting language for automating tasks and system administration.",
+    "link": "https://www.gnu.org/software/bash/"
   },
   {
     "name": "PowerShell",
@@ -602,7 +580,9 @@
     "gc": true,
     "scope": ["System", "Script/Web"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg",
+    "description": "A task automation and configuration management framework from Microsoft, built on .NET.",
+    "link": "https://docs.microsoft.com/en-us/powershell/"
   },
   {
     "name": "Assembly",
@@ -613,7 +593,9 @@
     "gc": false,
     "scope": ["System", "Embedded"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/assembly/assembly-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/assembly/assembly-original.svg",
+    "description": "A low-level language specific to hardware architectures, offering maximum control and efficiency.",
+    "link": "https://en.wikipedia.org/wiki/Assembly_language"
   },
   {
     "name": "Tcl",
@@ -624,7 +606,9 @@
     "gc": true,
     "scope": ["Script/Web", "Application"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tcl/tcl-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tcl/tcl-original.svg",
+    "description": "A simple, embeddable scripting language known for its use in GUIs and automation.",
+    "link": "https://www.tcl.tk/"
   },
   {
     "name": "Haxe",
@@ -635,7 +619,9 @@
     "gc": true,
     "scope": ["Games", "Application", "Script/Web"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/haxe/haxe-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/haxe/haxe-original.svg",
+    "description": "A cross-platform language that compiles to multiple targets, popular in game development.",
+    "link": "https://haxe.org/"
   },
   {
     "name": "Forth",
@@ -646,7 +632,9 @@
     "gc": false,
     "scope": ["Embedded", "System"],
     "symbol": ".",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/forth/forth-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/forth/forth-original.svg",
+    "description": "A stack-based language known for its simplicity and use in embedded systems.",
+    "link": "https://www.forth.com/"
   },
   {
     "name": "APL",
@@ -657,6 +645,8 @@
     "gc": true,
     "scope": ["Mathematics", "Analysis"],
     "symbol": "←",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apl/apl-original.svg"
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apl/apl-original.svg",
+    "description": "A concise, array-oriented language for mathematical and data analysis tasks.",
+    "link": "https://www.dyalog.com/"
   }
 ]
