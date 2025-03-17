@@ -6,7 +6,7 @@ export interface GuessResult {
   paradigms: string[];
   paradigmsMatch: "full" | "partial" | "none";
   year: number;
-  yearMatch: "full" | "partial" | "none";
+  yearMatch: "higher" | "lower" | "full";
   typing: string;
   typingMatch: boolean;
   execution: string;
@@ -40,9 +40,9 @@ export const compareGuess = (guessName: string, targetLanguage: Language, langua
     yearMatch:
       guessedLang.year === targetLanguage.year
         ? "full"
-        : Math.abs(guessedLang.year - targetLanguage.year) <= 5
-        ? "partial"
-        : "none",
+        : guessedLang.year > targetLanguage.year
+        ? "lower"
+        : "higher",
     typing: guessedLang.typing,
     typingMatch: guessedLang.typing === targetLanguage.typing,
     execution: guessedLang.execution,
