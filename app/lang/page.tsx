@@ -12,7 +12,8 @@ import { getDailyRandomItem } from "../../lib/getDailyRandomItem";
 export default function LangGame() {
   const { languages, loading } = useLanguages();
   const { incrementGuessCount } = useGuessCounts();
-  const [targetLanguage, setTargetLanguage] = useState<Language | null>(null);
+  const [todayLanguage, setTodayLanguage] = useState<Language | null>(null);
+  const [yesterdayLanguage, setYesterdayLanguage] = useState<Language | null>(null);
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState<GuessResult[]>([]);
   const [suggestions, setSuggestions] = useState<Language[]>([]);
@@ -20,15 +21,19 @@ export default function LangGame() {
 
   useEffect(() => {
     if (!loading && languages.length > 0) {
-      const dailyPick = getDailyRandomItem(languages)
-      setTargetLanguage(dailyPick)
+      const dailyPick = getDailyRandomItem(languages);
+      const yesterdayDate = new Date();
+      yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+      const yesterdayPick = getDailyRandomItem(languages, yesterdayDate);
+      setTodayLanguage(dailyPick);
+      setYesterdayLanguage(yesterdayPick);
     }
   }, [loading, languages]);
 
   const handleSubmit = useCallback((e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    if (guess && targetLanguage) {
-      const result = compareGuess(guess, targetLanguage, languages);
+    if (guess && todayLanguage) {
+      const result = compareGuess(guess, todayLanguage, languages);
       if (result) {
         setGuesses((prev) => [...prev, result]);
         incrementGuessCount(guess);
@@ -36,7 +41,7 @@ export default function LangGame() {
         setShowSuggestions(false);
       }
     }
-  },[guess, targetLanguage, languages, incrementGuessCount]);
+  },[guess, todayLanguage, languages, incrementGuessCount]);
 
   const handleGuessChange = (value: string) => {
     setGuess(value);
@@ -85,6 +90,11 @@ export default function LangGame() {
           />
         )}
         <GameGrid guesses={guesses} maxGuesses={Infinity} />
+        {yesterdayLanguage && (
+          <p>
+            Yesterday&apos;s Language Was <strong>{yesterdayLanguage.name}</strong>
+          </p>
+        )}
       </main>
     </div>
   );
