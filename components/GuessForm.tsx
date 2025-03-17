@@ -24,7 +24,7 @@ export default function GuessForm({
   placeholder = "Enter your guess",
 }: GuessFormProps) {
   return (
-    <form onSubmit={onSubmit} className="mb-6 flex flex-col gap-2 relative">
+    <form onSubmit={onSubmit} className="mb-6 flex flex-row gap-2 relative">
       <input
         type="text"
         value={guess}
