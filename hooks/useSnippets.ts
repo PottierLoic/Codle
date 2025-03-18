@@ -16,7 +16,7 @@ export default function useSnippets() {
     const fetchSnippets = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "snippets"));
-        const snippetsData: Snippet[] = querySnapshot.docs.map(doc => doc.data() as CodeSnippet);
+        const snippetsData: Snippet[] = querySnapshot.docs.map(doc => doc.data() as Snippet);
         setSnippets(snippetsData);
       } catch (error) {
         console.error("Error fetching snippets: ", error);
