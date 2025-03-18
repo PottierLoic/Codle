@@ -1223,7 +1223,7 @@
     "link": "https://webassembly.org/"
   },
   {
-    "name": "Wolfram Language",
+    "name": "Wolfram",
     "paradigms": ["Functional", "Procedural"],
     "year": 1988,
     "typing": "Dynamic",
@@ -1366,7 +1366,7 @@
     "link": "https://odin-lang.org/"
   },
   {
-    "name": "Why3",
+    "name": "WhyML",
     "paradigms": ["Imperative", "Logic"],
     "year": 2010,
     "typing": "Static",

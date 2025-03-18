@@ -1,6 +1,7 @@
 import { Language } from "@/hooks/useLanguages";
 
 export interface GuessResult {
+  id?: string;
   name: string;
   nameMatch: boolean;
   paradigms: string[];

@@ -49,6 +49,7 @@ export default function LangGame() {
     if (guess && todayLanguage) {
       const result = compareGuess(guess, todayLanguage, languages);
       if (result) {
+        result.id = Date.now().toString()
         setGuesses((prev) => [...prev, result]);
         incrementGuessCount(guess);
         setGuess("");
@@ -103,7 +104,6 @@ export default function LangGame() {
             placeholder="Enter a language"
           />
         )}
-        <GameGrid guesses={guesses} maxGuesses={Infinity} />
         {hasWon && todayLanguage && (
           <div className="mt-4 p-2 bg-gray-800 rounded">
             <h2 className="text-xl font-semibold mb-2">Congratulations, today&apos;s language is <strong>{todayLanguage.name}</strong> !</h2>
@@ -120,6 +120,7 @@ export default function LangGame() {
             )}
           </div>
         )}
+        <GameGrid guesses={guesses} maxGuesses={Infinity} />
         {yesterdayLanguage && (
           <p>
             Yesterday&apos;s language was <strong>{yesterdayLanguage.name}.</strong>

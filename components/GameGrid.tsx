@@ -10,18 +10,11 @@ interface GameGridProps {
 }
 
 export default function GameGrid({ guesses }: GameGridProps) {
-  const [showWinMessage, setShowWinMessage] = useState(false);
   const { guessCounts } = useGuessCounts();
   const hasWon = guesses.some((g) => g.nameMatch);
 
   const [hoveredCol, setHoveredCol] = useState<string | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    if (hasWon) {
-      setTimeout(() => setShowWinMessage(true), 3500);
-    }
-  }, [hasWon, guesses.length]);
 
   const revealVariants = {
     hidden: { opacity: 0, y: -10 },
@@ -45,18 +38,6 @@ export default function GameGrid({ guesses }: GameGridProps) {
 
   return (
     <div className="w-full max-w-5xl bg-gray-900 text-white p-4 rounded-lg shadow-lg">
-      {showWinMessage && (
-        <p className="text-2xl text-green-400 font-semibold mb-4 text-center">
-          You won! 🎉
-        </p>
-      )}
-
-      {!showWinMessage && guesses.length > 0 && (
-        <p className="text-lg text-gray-400 mb-4 text-center">
-          Keep guessing!
-        </p>
-      )}
-
       <div className="grid grid-cols-8 gap-1 text-center font-semibold text-gray-300 bg-gray-800 p-2 rounded-t-lg">
         {columns.map((col) => (
           <div
@@ -83,8 +64,8 @@ export default function GameGrid({ guesses }: GameGridProps) {
         </div>
       )}
 
-      {guesses.map((g, rowIndex) => (
-        <div key={rowIndex} className="grid grid-cols-8 gap-1 text-center text-white bg-gray-700 p-1 rounded-md">
+      {[...guesses].reverse().map((g, rowIndex) => (
+        <div key={g.id} className="grid grid-cols-8 gap-1 text-center text-white bg-gray-700 p-1 rounded-md">
           {[
             { value: g.name, match: g.nameMatch, icon: g.icon },
             { value: g.paradigms.join(", "), match: g.paradigmsMatch },
@@ -100,7 +81,7 @@ export default function GameGrid({ guesses }: GameGridProps) {
             },
             { value: g.typing, match: g.typingMatch },
             { value: g.execution, match: g.executionMatch },
-            { value: g.gc ? "✅" : "❌", match: g.gcMatch },
+            { value: g.gc ? "Yes" : "No", match: g.gcMatch },
             { value: g.scope.join(", "), match: g.scopeMatch },
             { value: g.symbol, match: g.symbolMatch },
           ].map((item, colIndex) => (
