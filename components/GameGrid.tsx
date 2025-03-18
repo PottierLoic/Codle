@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { GuessResult } from "../lib/gameLogic";
 import Image from "next/image";
 import useGuessCounts from "../hooks/useGuessCountsLang";
@@ -11,7 +11,6 @@ interface GameGridProps {
 
 export default function GameGrid({ guesses }: GameGridProps) {
   const { guessCounts } = useGuessCounts();
-  const hasWon = guesses.some((g) => g.nameMatch);
 
   const [hoveredCol, setHoveredCol] = useState<string | null>(null)
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
@@ -64,7 +63,7 @@ export default function GameGrid({ guesses }: GameGridProps) {
         </div>
       )}
 
-      {[...guesses].reverse().map((g, rowIndex) => (
+      {[...guesses].reverse().map((g) => (
         <div key={g.id} className="grid grid-cols-8 gap-1 text-center text-white bg-gray-700 p-1 rounded-md">
           {[
             { value: g.name, match: g.nameMatch, icon: g.icon },
