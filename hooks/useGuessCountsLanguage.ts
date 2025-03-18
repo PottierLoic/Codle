@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, doc, getDocs, setDoc, increment, updateDoc } from "firebase/firestore";
 import { db } from "../lib/firebaseConfig";
 
-export default function useGuessCountsLang() {
+export default function useGuessCountsLanguage() {
   const [guessCounts, setGuessCounts] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {

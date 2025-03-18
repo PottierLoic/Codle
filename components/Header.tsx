@@ -12,18 +12,18 @@ export default function Header() {
         <nav>
           <ul className="flex gap-4">
             <li>
-              <Link href="/lang" className="hover:text-blue-400 transition">
-                Languages
+              <Link href="/language" className="hover:text-blue-400 transition">
+                Language
               </Link>
             </li>
             <li className="text-gray-500 cursor-not-allowed">
-              <Link href="/code-guess" className="hover:text-blue-400 transition">
-                Code Snippets
+              <Link href="/snippet" className="hover:text-blue-400 transition">
+                Code Snippet
               </Link>
             </li>
             <li className="text-gray-500 cursor-not-allowed">
-              <Link href="/todo" className="hover:text-blue-400 transition">
-                Game 3
+              <Link href="/logo" className="hover:text-blue-400 transition">
+                Logo
               </Link>
             </li>
           </ul>

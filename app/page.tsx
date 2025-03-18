@@ -11,22 +11,22 @@ export default function Home() {
       <p className="text-lg text-gray-300 mb-8">Choose a game mode:</p>
       <div className="flex flex-col gap-4">
         <button
-          onClick={() => router.push("/lang")}
+          onClick={() => router.push("/language")}
           className="bg-blue-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-600 transition"
         >
-          Guess the Programming Language
+          Guess the programming language
         </button>
         <button
-          onClick={() => router.push("/code-guess")}
+          onClick={() => router.push("/snippet")}
           className="bg-green-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-green-600 transition"
         >
-          Guess the language based on code snippet
+          Guess the language based on a code snippet
         </button>
         <button
-          onClick={() => router.push("/todo")}
+          onClick={() => router.push("/logo")}
           className="bg-purple-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-purple-600 transition"
         >
-          Guess game 3
+          Guess the logo
         </button>
       </div>
     </div>

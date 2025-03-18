@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { GuessResult } from "../lib/gameLogic";
 import Image from "next/image";
-import useGuessCounts from "../hooks/useGuessCountsLang";
+import useGuessCounts from "../hooks/useGuessCountsLanguage";
 
 interface GameGridProps {
   guesses: GuessResult[];

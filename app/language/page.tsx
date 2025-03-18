@@ -5,13 +5,13 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import GameGrid from "../../components/GameGrid";
 import useLanguages, { Language } from "../../hooks/useLanguages";
-import useGuessCounts from "../../hooks/useGuessCountsLang";
+import useGuessCounts from "../../hooks/useGuessCountsLanguage";
 import { compareGuess, GuessResult } from "../../lib/gameLogic";
 import GuessForm from "../../components/GuessForm";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import useDailyLanguage from "@/hooks/useDailyLanguage";
 
-export default function LangGame() {
+export default function LanguageGame() {
   const { languages, loading } = useLanguages();
   const { incrementGuessCount } = useGuessCounts();
 
