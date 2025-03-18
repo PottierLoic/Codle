@@ -566,5 +566,217 @@
   {
       "snippet": "let sum_array (a:array int) : int\n    requires { a <> null }\n    ensures { result = Array.sum a 0 (Array.length a) } =\n  let s = ref 0 in\n  for i = 0 to Array.length a - 1 do\n    s := !s + a[i]\n  done;\n  !s",
       "language": "WhyML"
+  },
+  {
+    "snippet": "void bubble_sort(int arr[], int n) {\n    int i, j, temp;\n    for (i = 0; i < n - 1; i++) {\n        for (j = 0; j < n - i - 1; j++) {\n            if (arr[j] > arr[j + 1]) {\n                temp = arr[j];\n                arr[j] = arr[j + 1];\n                arr[j + 1] = temp;\n            }\n        }\n    }\n}",
+    "language": "C"
+  },
+  {
+      "snippet": "public class Queue {\n    private List<int> items = new List<int>();\n    public void Enqueue(int item) {\n        items.Add(item);\n    }\n    public int Dequeue() {\n        if (items.Count > 0) {\n            int item = items[0];\n            items.RemoveAt(0);\n            return item;\n        }\n        throw new InvalidOperationException();\n    }\n}",
+      "language": "C#"
+  },
+  {
+      "snippet": "function factorial(n: number): number {\n    if (n <= 1) return 1;\n    return n * factorial(n - 1);\n}\nconst compute = (x: number): number => {\n    return factorial(x);\n};\nconsole.log(compute(5));",
+      "language": "TypeScript"
+  },
+  {
+      "snippet": "String reverseString(String input) {\n  var chars = input.split('');\n  var reversed = chars.reversed.toList();\n  return reversed.join('');\n}\nvoid main() {\n  print(reverseString('Dart'));\n}",
+      "language": "Dart"
+  },
+  {
+      "snippet": "class Stack[T] {\n  private var items = List[T]()\n  def push(item: T): Unit = items = item :: items\n  def pop(): Option[T] = items match {\n    case Nil => None\n    case head :: tail => items = tail; Some(head)\n  }\n}",
+      "language": "Scala"
+  },
+  {
+      "snippet": "function gcd(a, b)\n    while b > 0 do\n        a, b = b, a % b\n    end\n    return a\nend\nprint(gcd(48, 18))",
+      "language": "Lua"
+  },
+  {
+      "snippet": "sub transpose_matrix {\n    my ($matrix) = @_;\n    my @result;\n    for my $i (0..$#$matrix) {\n        for my $j (0..$#{$matrix->[$i]}) {\n            $result[$j][$i] = $matrix->[$i][$j];\n        }\n    }\n    return \\@result;\n}",
+      "language": "Perl"
+  },
+  {
+      "snippet": "def fibonacci(n)\n  return [0, 1] if n <= 2\n  seq = [0, 1]\n  (n - 2).times { seq << seq[-1] + seq[-2] }\n  seq\nend\nputs fibonacci(6).join(', ')",
+      "language": "Ruby"
+  },
+  {
+      "snippet": "class CircularQueue {\n    def queue = new int[5]\n    def front = 0, rear = -1, size = 0\n    def enqueue(int value) {\n        if (size < 5) {\n            rear = (rear + 1) % 5\n            queue[rear] = value\n            size++\n        }\n    }\n}",
+      "language": "Groovy"
+  },
+  {
+      "snippet": "with Ada.Calendar; use Ada.Calendar;\nprocedure LogTime is\n    Now : Time := Clock;\n    Year_Now : Year_Number := Year(Now);\nbegin\n    Put_Line(\"Current year: \" & Year_Number'Image(Year_Now));\nend LogTime;",
+      "language": "Ada"
+  },
+  {
+      "snippet": "SUBROUTINE matrix_transpose(a, n, m, at)\n    INTEGER, INTENT(IN) :: n, m\n    REAL, INTENT(IN) :: a(n,m)\n    REAL, INTENT(OUT) :: at(m,n)\n    INTEGER :: i, j\n    DO i = 1, n\n        DO j = 1, m\n            at(j,i) = a(i,j)\n        END DO\n    END DO\nEND SUBROUTINE",
+      "language": "Fortran"
+  },
+  {
+      "snippet": "program CountDown;\nvar\n  i : Integer;\nbegin\n    for i := 5 downto 1 do\n        writeln('Countdown: ', i);\n    writeln('Blast off!');\nend.",
+      "language": "Pascal"
+  },
+  {
+      "snippet": "@interface Counter : NSObject\n@property NSInteger count;\n- (void)increment;\n@end\n@implementation Counter\n- (id)init {\n    self = [super init];\n    self.count = 0;\n    return self;\n}\n- (void)increment {\n    self.count += 1;\n}\n@end",
+      "language": "Objective-C"
+  },
+  {
+      "snippet": "function A = generate_spiral(n)\n    A = zeros(n);\n    r = 1; c = 1; val = 1;\n    while val <= n*n\n        A(r,c) = val;\n        val = val + 1;\n        if r == 1 && c < n && A(r,c+1) == 0\n            c = c + 1;\n        elseif c == n && r < n && A(r+1,c) == 0\n            r = r + 1;\n        end\n    end\nend",
+      "language": "MATLAB"
+  },
+  {
+      "snippet": "-module(timer).\n-export([start/1, tick/1]).\nstart(Duration) -> spawn(fun() -> loop(Duration) end).\nloop(Duration) ->\n    receive\n        tick -> io:format(\"Tick~n\"), loop(Duration - 1)\n    after Duration * 1000 -> io:format(\"Time's up!~n\")\n    end.\ntick(Pid) -> Pid ! tick.",
+      "language": "Erlang"
+  },
+  {
+      "snippet": "(ns math.utils)\n(defn gcd [a b]\n  (if (zero? b)\n    a\n    (recur b (mod a b))))\n(defn -main []\n  (println \"GCD of 48 and 18:\" (gcd 48 18)))",
+      "language": "Clojure"
+  },
+  {
+      "snippet": "let rec fibonacci n =\n    match n with\n    | 0 | 1 -> n\n    | _ -> fibonacci (n - 1) + fibonacci (n - 2)\nlet main () =\n    printfn \"Fibonacci 6: %d\" (fibonacci 6)\nlet _ = main ()",
+      "language": "F#"
+  },
+  {
+      "snippet": "(define (reverse-string str)\n  (list->string (reverse (string->list str))))\n(define (main)\n  (display (reverse-string \"Hello\"))\n  (newline))\n(main)",
+      "language": "Scheme"
+  },
+  {
+      "snippet": "fn max_array(arr: []int) int {\n    mut max := arr[0]\n    for i in 1 .. arr.len {\n        if arr[i] > max {\n            max = arr[i]\n        }\n    }\n    return max\n}\narr := [3, 1, 4, 1, 5]\nprintln(max_array(arr))",
+      "language": "V"
+  },
+  {
+      "snippet": "bool isPalindrome(string s) {\n    int left = 0, right = cast(int)s.length - 1;\n    while (left < right) {\n        if (s[left] != s[right]) return false;\n        left++;\n        right--;\n    }\n    return true;\n}",
+      "language": "D"
+  },
+  {
+      "snippet": "def fizzbuzz(n : Int32) : Array(String)\n  (1..n).map do |i|\n    case {i % 3 == 0, i % 5 == 0}\n    when {true, true} then \"FizzBuzz\"\n    when {true, false} then \"Fizz\"\n    when {false, true} then \"Buzz\"\n    else i.to_s\n    end\n  end.to_a\nend",
+      "language": "Crystal"
+  },
+  {
+      "snippet": "function sum_squares(n)\n    total = 0\n    for i = 1:n\n        total += i^2\n    end\n    return total\nend\nprintln(sum_squares(5))",
+      "language": "Julia"
+  },
+  {
+      "snippet": "proc transpose[T](m: seq[seq[T]]): seq[seq[T]] =\n  result = newSeq[seq[T]](m[0].len)\n  for i in 0..<m[0].len:\n    result[i] = newSeq[T](m.len)\n    for j in 0..<m.len:\n      result[i][j] = m[j][i]\n  return result",
+      "language": "Nim"
+  },
+  {
+      "snippet": "fn matrix_multiply(a: []i32, b: []i32, rows_a: i32, cols_a: i32, cols_b: i32) []i32 {\n    var result = []i32{len: rows_a * cols_b, init: 0}\n    for i := 0; i < rows_a; i += 1 {\n        for j := 0; j < cols_b; j += 1 {\n            for k := 0; k < cols_a; k += 1 {\n                result[i * cols_b + j] += a[i * cols_a + k] * b[k * cols_b + j]\n            }\n        }\n    }\n    return result\n}",
+      "language": "Zig"
+  },
+  {
+      "snippet": "(define (flatten lst)\n  (cond ((null? lst) '())\n        ((pair? lst) (append (flatten (car lst)) (flatten (cdr lst))))\n        (else (list lst))))\n(define nested '(1 (2 3) 4))\n(printf \"Flattened: ~a\\n\" (flatten nested))",
+      "language": "Racket"
+  },
+  {
+      "snippet": "type Model = { text : String }\ntype Msg = UpdateText String\nupdate : Msg -> Model -> Model\nupdate msg model =\n    case msg of\n        UpdateText newText -> { model | text = newText }\ninit : Model\ninit = { text = \"Hello\" }",
+      "language": "Elm"
+  },
+  {
+      "snippet": "IDENTIFICATION DIVISION.\nPROGRAM-ID. Factorial.\nDATA DIVISION.\nWORKING-STORAGE SECTION.\n01 NUM PIC 9(2) VALUE 5.\n01 FACT PIC 9(10).\nPROCEDURE DIVISION.\n    MOVE 1 TO FACT\n    PERFORM VARYING I FROM 1 BY 1 UNTIL I > NUM\n        COMPUTE FACT = FACT * I\n    END-PERFORM\n    DISPLAY 'Factorial: ' FACT\n    STOP RUN.",
+      "language": "COBOL"
+  },
+  {
+      "snippet": "factorial(N, F) :- N > 1, N1 is N - 1, factorial(N1, F1), F is N * F1.\nfactorial(1, 1).\nfactorial(0, 1).\n?- factorial(5, F), write('Factorial: '), write(F), nl.",
+      "language": "Prolog"
+  },
+  {
+      "snippet": "Object subclass: Queue [\n    | items |\n    <init> [^self init]\n    init [items := OrderedCollection new]\n    enqueue: item [items add: item]\n    dequeue [items isEmpty ifTrue: [^nil] ifFalse: [^items removeFirst]]\n]\n| q |\nq := Queue new.",
+      "language": "Smalltalk"
+  },
+  {
+      "snippet": "reverse_string() {\n    read -p \"Enter string: \" str\n    echo \"$str\" | rev\n    if [ ${#str} -gt 10 ]; then\n        echo \"Long string!\"\n    fi\n}",
+      "language": "Bash"
+  },
+  {
+      "snippet": "function Test-Prime {\n    param ([int]$n)\n    if ($n -lt 2) { return $false }\n    for ($i = 2; $i * $i -le $n; $i++) {\n        if ($n % $i -eq 0) { return $false }\n    }\n    return $true\n}\nWrite-Host (Test-Prime 17)",
+      "language": "PowerShell"
+  },
+  {
+      "snippet": "section .text\n    global _start\n_start:\n    mov ecx, 5\nloop_start:\n    dec ecx\n    mov eax, 1\n    mov ebx, 1\n    mov edx, 1\n    int 0x80\n    cmp ecx, 0\n    jne loop_start\n    mov eax, 60\n    xor edi, edi\n    syscall",
+      "language": "Assembly"
+  },
+  {
+      "snippet": "proc factorial {n} {\n    if {$n <= 1} {\n        return 1\n    }\n    return [expr {$n * [factorial [expr {$n - 1}]]}]\n}\nputs \"Factorial of 5: [factorial 5]\"",
+      "language": "Tcl"
+  },
+  {
+      "snippet": "class Matrix {\n    public var data:Array<Array<Float>>;\n    public function new(rows:Int, cols:Int) {\n        data = [for (i in 0...rows) [for (j in 0...cols) 0.0]];\n    }\n    public function set(i:Int, j:Int, val:Float):Void {\n        data[i][j] = val;\n    }\n}",
+      "language": "Haxe"
+  },
+  {
+      "snippet": ": factorial ( n -- n! )\n    dup 1 <= if drop 1 else\n    dup 1 - recurse * then ;\n5 factorial\n. cr",
+      "language": "Forth"
+  },
+  {
+      "snippet": "∇Z←fibonacci N\n    Z←⎕IO+⍳N\n    :For i :In 3↓⍳N\n        Z[i]←Z[i-1]+Z[i-2]\n    :EndFor\n    Z←N↑Z\n∇\nfibonacci 6",
+      "language": "APL"
+  },
+  {
+      "snippet": "REPORT zcounter.\nDATA: lv_number TYPE i.\nSTART-OF-SELECTION.\n    lv_number = 0.\n    DO 5 TIMES.\n        lv_number = lv_number + 1.\n        WRITE: / lv_number.\n    ENDDO.",
+      "language": "ABAP"
+  },
+  {
+      "snippet": "class Sprite {\n    var x:Number;\n    var y:Number;\n    function Sprite(x:Number, y:Number) {\n        this.x = x;\n        this.y = y;\n    }\n    function move(dx:Number, dy:Number):Void {\n        x += dx; y += dy;\n    }\n}",
+      "language": "ActionScript"
+  },
+  {
+      "snippet": "BEGIN\n    INT sum := 0;\n    FOR i := 1 TO 5 DO\n        sum := sum + i;\n    OD;\n    PRINT sum;\n    EXIT;\nEND",
+      "language": "ALGOL 68"
+  },
+  {
+      "snippet": "public class AccountController {\n    public static Decimal getTotal(Account acc) {\n        Decimal total = 0;\n        for (Opportunity opp : [SELECT Amount FROM Opportunity WHERE AccountId = :acc.Id]) {\n            total += opp.Amount != null ? opp.Amount : 0;\n        }\n        return total;\n    }\n}",
+      "language": "Apex"
+  },
+  {
+      "snippet": "BEGIN { count = 0 }\nNF > 0 { count++ }\nEND {\n    print \"Number of non-empty lines:\", count\n    if (count > 5) print \"Many lines!\"\n}",
+      "language": "Awk"
+  },
+  {
+      "snippet": "import ballerina/io;\npublic function factorial(int n) returns int {\n    if n <= 1 {\n        return 1;\n    }\n    return n * factorial(n - 1);\n}\npublic function main() {\n    io:println(factorial(5));\n}",
+      "language": "Ballerina"
+  },
+  {
+      "snippet": "int gcd(int a, int b) {\n    while (b != 0) {\n        int t = b;\n        b = a % b;\n        a = t;\n    }\n    return a;\n}\nmain() {\n    printf(\"%d\\n\", gcd(48, 18));\n}",
+      "language": "BCPL"
+  },
+  {
+      "snippet": "<cfscript>\nfunction fibonacci(n) {\n    if (n <= 1) return n;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\nfor (i = 1; i <= 6; i++) {\n    writeOutput(fibonacci(i) & \" \");\n}\n</cfscript>",
+      "language": "ColdFusion"
+  },
+  {
+      "snippet": "program Fibonacci;\nuses SysUtils;\nfunction Fib(n: Integer): Integer;\nbegin\n    if n <= 1 then Fib := n\n    else Fib := Fib(n - 1) + Fib(n - 2);\nend;\nbegin\n    Writeln(Fib(6));\nend.",
+      "language": "Delphi"
+  },
+  {
+      "snippet": "class Queue\n    private items: ARRAY OF INTEGER\n    private front, rear: INTEGER\n    feature\n        make(n: INTEGER)\n            do\n                create items.make(0, n-1)\n                front := 0\n                rear := -1\n            end\n        enqueue(x: INTEGER)\n            do\n                rear := rear + 1\n                items[rear] := x\n            end\nend",
+      "language": "Eiffel"
+  },
+  {
+      "snippet": "USING: math sequences ;\nIN: example\n: cumulative-sum ( seq -- new-seq )\n    0 [ + ] accumulate ;\n{ 1 2 3 4 } cumulative-sum\n[ . ] each",
+      "language": "Factor"
+  },
+  {
+      "snippet": "> import falcon.math\nmath\n  function gcd(a, b)\n    while b > 0\n      a, b = b, a % b\n    end\n    return a\n  end\nprint math.gcd(48, 18)",
+      "language": "Falcon"
+  },
+  {
+      "snippet": "<?hh\nfunction fibonacci(int $n): int {\n    if ($n <= 1) {\n        return $n;\n    }\n    return fibonacci($n - 1) + fibonacci($n - 2);\n}\necho fibonacci(6);",
+      "language": "Hack"
+  },
+  {
+      "snippet": "procedure count(n; value result)\n    integer i;\n    result := 0;\n    for i := 1 to n do\n        result := result + i;\n    endfor;\nend;\ninteger total;\ncount(5, total);\nprint total;",
+      "language": "Icon"
+  },
+  {
+      "snippet": "Point := Object clone\nPoint x := 0\nPoint y := 0\nPoint distance := method(other,\n    ((self x - other x)^2 + (self y - other y)^2) sqrt)\np1 := Point clone\np2 := Point clone setX(3) setY(4)\np1 distance(p2)",
+      "language": "Io"
+  },
+  {
+      "snippet": "reverse =: |. NB. Reverse function\necho reverse i. 5 NB. Reverse 0 1 2 3 4\nsum =: +/ NB. Sum function\necho sum i. 6 NB. Sum 0 to 5",
+      "language": "J"
+  },
+  {
+      "snippet": "//STEP1 EXEC PGM=IEBGENER\n//SYSPRINT DD SYSOUT=*\n//SYSUT1 DD *\nCount: 1\nCount: 2\nCount: 3\n/*\n//SYSUT2 DD DSN=OUTPUT.DATA, DISP=(NEW,CATLG)",
+      "language": "JCL"
   }
 ]
