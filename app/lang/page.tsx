@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import GameGrid from "../../components/GameGrid";
 import useLanguages, { Language } from "../../hooks/useLanguages";
 import useGuessCounts from "../../hooks/useGuessCountsLang";
@@ -143,6 +144,7 @@ export default function LangGame() {
           </p>
         )}
       </main>
+      <Footer />
     </div>
   );
 }
