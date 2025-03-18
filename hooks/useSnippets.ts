@@ -15,7 +15,7 @@ export default function useSnippets() {
   useEffect(() => {
     const fetchSnippets = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "codeSnippetsGame"));
+        const querySnapshot = await getDocs(collection(db, "snippets"));
         const snippetsData: Snippet[] = querySnapshot.docs.map(doc => doc.data() as CodeSnippet);
         setSnippets(snippetsData);
       } catch (error) {

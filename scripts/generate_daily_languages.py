@@ -12,7 +12,7 @@ with open("data/languages.json", "r", encoding="utf-8") as f:
   languages = json.load(f)
 
 today = datetime.date.today()
-daily_lang_ref = db.collection("dailyLang")
+daily_lang_ref = db.collection("dailyLanguage")
 docs = daily_lang_ref.stream()
 for doc in docs:
   doc_id = doc.id

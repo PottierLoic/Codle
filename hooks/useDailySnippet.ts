@@ -12,7 +12,7 @@ export default function useDailySnippet(inputDate?: Date) {
       try {
         let dateObj = inputDate || new Date()
         const dateKey = dateObj.toISOString().slice(0, 10)
-        const docRef = doc(db, "dailyLang", dateKey)
+        const docRef = doc(db, "dailySnippet", dateKey)
         const snapshot = await getDoc(docRef)
         if (snapshot.exists()) {
           setDailySnippet(snapshot.data() as Snippet)

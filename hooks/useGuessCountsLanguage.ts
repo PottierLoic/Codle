@@ -9,7 +9,7 @@ export default function useGuessCountsLanguage() {
     const fetchGuessCounts = async () => {
       try {
         const today = new Date().toISOString().split("T")[0];
-        const querySnapshot = await getDocs(collection(db, "dailyGuessesLangGame"));
+        const querySnapshot = await getDocs(collection(db, "guessCountsLanguage"));
         const counts: { [key: string]: number } = {};
         querySnapshot.forEach((doc) => {
           if (doc.id.startsWith(today)) {
@@ -27,7 +27,7 @@ export default function useGuessCountsLanguage() {
 
   const incrementGuessCount = async (languageName: string) => {
     const today = new Date().toISOString().split("T")[0];
-    const languageRef = doc(db, "dailyGuessesLangGame", `${today}_${languageName}`);
+    const languageRef = doc(db, "guessCountsLanguage", `${today}_${languageName}`);
 
     setGuessCounts((prevCounts) => ({
       ...prevCounts,

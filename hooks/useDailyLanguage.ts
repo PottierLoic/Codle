@@ -12,7 +12,7 @@ export default function useDailyLanguage(inputDate?: Date) {
       try {
         let dateObj = inputDate || new Date()
         const dateKey = dateObj.toISOString().slice(0, 10)
-        const docRef = doc(db, "dailyLang", dateKey)
+        const docRef = doc(db, "dailyLanguage", dateKey)
         const snapshot = await getDoc(docRef)
         if (snapshot.exists()) {
           setDailyLanguage(snapshot.data() as Language)
