@@ -125,7 +125,7 @@ export default function GameGrid({ guesses }: GameGridProps) {
                   {item.icon && (
                     <Image src={item.icon} alt={g.name} width={96} height={96} className="rounded-md"/>
                   )}
-                  <span className="absolute bottom-1 right-1 text-xs text-white-400 px-2 py-1 rounded">
+                  <span className="absolute bottom-1 right-1 border border-gray-500 bg-gray-800 text-xs text-white-400 px-2 py-1 rounded">
                     {guessCounts[g.name] ?? 0}
                   </span>
                 </>
