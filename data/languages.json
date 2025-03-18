@@ -892,9 +892,9 @@
     "gc": true,
     "scope": ["Script/Web"],
     "symbol": ";",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/e/e8/Jscript_icon.gif",
     "description": "Microsoft’s dialect of ECMAScript, used in Internet Explorer for web scripting.",
-    "link": "https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/scripting-articles/hh801961(v=vs.85)"
+    "link": "https://en.wikipedia.org/wiki/JScript"
   },
   {
     "name": "LabVIEW",
@@ -1376,6 +1376,6 @@
     "symbol": ";",
     "icon": "https://www.why3.org/img/logo_why3.png",
     "description": "A deductive verification platform with a language for specifying and proving program correctness, integrated with external provers like Z3 and Coq.",
-    "link": "https://why3.lri.fr/"
+    "link": "https://www.why3.org/"
   }
 ]
