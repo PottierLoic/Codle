@@ -7,14 +7,18 @@ import useLanguages, { Language } from "../../hooks/useLanguages";
 import useGuessCounts from "../../hooks/useGuessCountsLang";
 import { compareGuess, GuessResult } from "../../lib/gameLogic";
 import GuessForm from "../../components/GuessForm";
-import { getDailyRandomItem } from "../../lib/getDailyRandomItem";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
+import useDailyLanguage from "@/hooks/useDailyLanguage";
 
 export default function LangGame() {
   const { languages, loading } = useLanguages();
   const { incrementGuessCount } = useGuessCounts();
-  const [todayLanguage, setTodayLanguage] = useState<Language | null>(null);
-  const [yesterdayLanguage, setYesterdayLanguage] = useState<Language | null>(null);
+
+  const { dailyLanguage: todayLanguage } = useDailyLanguage();
+  const yesterdayDate = new Date();
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  const { dailyLanguage: yesterdayLanguage } = useDailyLanguage(yesterdayDate);
+
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState<GuessResult[]>([]);
   const [suggestions, setSuggestions] = useState<Language[]>([]);
@@ -31,12 +35,6 @@ export default function LangGame() {
         });
         setGuesses(storedGuesses);
       }
-      const dailyPick = getDailyRandomItem(languages);
-      setTodayLanguage(dailyPick);
-      const yesterdayDate = new Date();
-      yesterdayDate.setDate(yesterdayDate.getDate() - 1);
-      const yesterdayPick = getDailyRandomItem(languages, yesterdayDate);
-      setYesterdayLanguage(yesterdayPick);
     }
   }, [loading, languages, dayString]);
 
