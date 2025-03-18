@@ -20,6 +20,7 @@ export default function Home() {
           onClick={() => router.push("/snippet")}
           className="bg-green-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-green-600 transition"
         >
+          <span><big> 🥳 New : </big></span>
           Guess the language based on a code snippet
         </button>
         <button
