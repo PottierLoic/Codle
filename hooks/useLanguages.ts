@@ -14,6 +14,7 @@ export interface Language {
   icon: string;
   description?: string;
   link?: string;
+  syntaxName: string;
 }
 
 export default function useLanguages() {

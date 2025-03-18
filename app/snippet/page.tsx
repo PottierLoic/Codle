@@ -134,7 +134,7 @@ export default function SnippetGame() {
                 placeholder="Enter a language"
               />
             )}
-            {todaySnippet && <SnippetDisplay snippet={todaySnippet} />}
+            {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntaxName} />}
             {showWinMessage && todaySnippet && snippetLanguage && (
               <div className="mt-4 p-2 bg-gray-800 rounded">
                 <h2 className="text-xl font-semibold mb-2">Congratulations, today&apos;s snippet is written in <strong>{todaySnippet.language}</strong> !</h2>
