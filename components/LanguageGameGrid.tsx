@@ -1,15 +1,14 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { GuessResult } from "../lib/gameLogic";
+import { GuessResult } from "../lib/languageLogic";
 import Image from "next/image";
 import useGuessCounts from "../hooks/useGuessCountsLanguage";
 
-interface GameGridProps {
+interface LanguageGameGridProps {
   guesses: GuessResult[];
-  maxGuesses: number;
 }
 
-export default function GameGrid({ guesses }: GameGridProps) {
+export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
   const { guessCounts } = useGuessCounts();
 
   const [hoveredCol, setHoveredCol] = useState<string | null>(null)

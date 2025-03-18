@@ -3,10 +3,10 @@
 import { useState, useEffect, useCallback } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import GameGrid from "../../components/GameGrid";
+import LanguageGameGrid from "../../components/LanguageGameGrid";
 import useLanguages, { Language } from "../../hooks/useLanguages";
 import useGuessCounts from "../../hooks/useGuessCountsLanguage";
-import { compareGuess, GuessResult } from "../../lib/gameLogic";
+import { compareGuess, GuessResult } from "../../lib/languageLogic";
 import GuessForm from "../../components/GuessForm";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import useDailyLanguage from "@/hooks/useDailyLanguage";
@@ -32,7 +32,7 @@ export default function LanguageGame() {
 
   useEffect(() => {
     if (!loading && languages.length > 0) {
-      const storedGuesses = loadProgress<GuessResult[]>("langGuesses", dayString);
+      const storedGuesses = loadProgress<GuessResult[]>("languageGuesses", dayString);
       if (storedGuesses) {
         storedGuesses.forEach(g => {
           g.isFromStorage = true;
@@ -47,7 +47,7 @@ export default function LanguageGame() {
 
   useEffect(() => {
     if (guesses.length > 0) {
-      saveProgress<GuessResult[]>("langGuesses", dayString, guesses);
+      saveProgress<GuessResult[]>("languageGuesses", dayString, guesses);
     }
   }, [guesses, dayString]);
 
@@ -63,7 +63,7 @@ export default function LanguageGame() {
         setShowSuggestions(false);
       }
     }
-  },[guess, todayLanguage, languages, incrementGuessCount]);
+  }, [guess, todayLanguage, languages, incrementGuessCount]);
 
   const handleGuessChange = (value: string) => {
     setGuess(value);
@@ -137,7 +137,7 @@ export default function LanguageGame() {
             )}
           </div>
         )}
-        <GameGrid guesses={guesses} maxGuesses={Infinity} />
+        <LanguageGameGrid guesses={guesses} />
         {yesterdayLanguage && (
           <p>
             Yesterday&apos;s language was <strong>{yesterdayLanguage.name}.</strong>
