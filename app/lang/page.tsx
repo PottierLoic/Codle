@@ -122,7 +122,7 @@ export default function LangGame() {
         )}
         {yesterdayLanguage && (
           <p>
-            Yesterday&apos;s language was <strong>{yesterdayLanguage.name}.</strong>
+            Yesterday&apos;s language is <strong>{yesterdayLanguage.name}.</strong>
           </p>
         )}
       </main>
