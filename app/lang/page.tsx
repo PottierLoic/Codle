@@ -26,6 +26,9 @@ export default function LangGame() {
 
   const dayString = new Date().toISOString().slice(0, 10);
 
+  const hasWon = guesses.some((g) => g.nameMatch);
+  const [showWinMessage, setShowWinMessage] = useState(false);
+
   useEffect(() => {
     if (!loading && languages.length > 0) {
       const storedGuesses = loadProgress<GuessResult[]>("langGuesses", dayString);
@@ -34,6 +37,9 @@ export default function LangGame() {
           g.isFromStorage = true;
         });
         setGuesses(storedGuesses);
+        if (storedGuesses.some((g) => g.nameMatch)) {
+          setShowWinMessage(true);
+        }
       }
     }
   }, [loading, languages, dayString]);
@@ -87,13 +93,23 @@ export default function LangGame() {
     setShowSuggestions(false);
   };
 
-  const hasWon = guesses.some((g) => g.nameMatch);
+  useEffect(() => {
+    if (hasWon) {
+      const timer = setTimeout(() => {
+        setShowWinMessage(true);
+      }, 3500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowWinMessage(false);
+    }
+  }, [hasWon]);
+
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col">
       <Header />
       <main className="flex-1 flex flex-col items-center p-4">
-        {!hasWon && (
+        {!showWinMessage && (
           <GuessForm
             guess={guess}
             onGuessChange={handleGuessChange}
@@ -104,7 +120,7 @@ export default function LangGame() {
             placeholder="Enter a language"
           />
         )}
-        {hasWon && todayLanguage && (
+        {showWinMessage && todayLanguage && (
           <div className="mt-4 p-2 bg-gray-800 rounded">
             <h2 className="text-xl font-semibold mb-2">Congratulations, today&apos;s language is <strong>{todayLanguage.name}</strong> !</h2>
             <p className="mb-2">{todayLanguage.description}</p>
