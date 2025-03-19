@@ -1,4 +1,4 @@
-import { Snippet } from "@/hooks/useSnippets";
+import { Snippet } from "@/hooks/useDailySnippet";
 import { Language } from "@/hooks/useLanguages";
 
 export interface GuessResult {
