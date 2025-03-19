@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../lib/firebaseConfig";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export interface Language {
   name: string;
@@ -12,8 +16,8 @@ export interface Language {
   scope: string[];
   symbol: string;
   icon: string;
-  description?: string;
-  link?: string;
+  description: string;
+  link: string;
   syntaxName: string;
 }
 
@@ -24,9 +28,25 @@ export default function useLanguages() {
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "languages"));
-        const langData = querySnapshot.docs.map(doc => doc.data() as Language);
-        setLanguages(langData);
+        const { data, error } = await supabase.from("language").select("*");
+        if (error) {
+          throw error;
+        }
+        const formattedData: Language[] = data.map((lang) => ({
+          name: lang.name,
+          paradigms: lang.paradigms,
+          year: lang.year,
+          typing: lang.typing,
+          execution: lang.execution,
+          gc: lang.gc,
+          scope: lang.scope,
+          symbol: lang.symbol,
+          icon: lang.icon,
+          description: lang.description,
+          link: lang.link,
+          syntaxName: lang.syntaxName,
+        }));
+        setLanguages(formattedData);
       } catch (error) {
         console.error("Error fetching languages: ", error);
       } finally {

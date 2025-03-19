@@ -21,7 +21,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
     "description": "A versatile, high-level language known for its readability and extensive libraries, widely used in web development, data science, and AI.",
     "link": "https://www.python.org/",
-    "syntaxName": "python"
+    "syntax_name": "python"
   },
   {
     "name": "C",
@@ -43,7 +43,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
     "description": "A foundational, low-level language offering fine-grained control over hardware, commonly used in operating systems and embedded systems.",
     "link": "https://en.wikipedia.org/wiki/C_(programming_language)",
-    "syntaxName": "c"
+    "syntax_name": "c"
   },
   {
     "name": "Java",
@@ -65,7 +65,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
     "description": "A robust, platform-independent language with a strong emphasis on object-oriented programming, popular in enterprise applications.",
     "link": "https://www.java.com/",
-    "syntaxName": "java"
+    "syntax_name": "java"
   },
   {
     "name": "JavaScript",
@@ -87,7 +87,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
     "description": "A dynamic scripting language primarily used for client-side web development, now also popular in server-side applications.",
     "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-    "syntaxName": "javascript"
+    "syntax_name": "javascript"
   },
   {
     "name": "Rust",
@@ -109,7 +109,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rust/rust-original.svg",
     "description": "A systems programming language focused on safety and performance, especially memory safety without a garbage collector.",
     "link": "https://www.rust-lang.org/",
-    "syntaxName": "rust"
+    "syntax_name": "rust"
   },
   {
     "name": "R",
@@ -130,7 +130,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg",
     "description": "A language designed for statistical computing and graphics, widely used in data analysis and research.",
     "link": "https://www.r-project.org/",
-    "syntaxName": "r"
+    "syntax_name": "r"
   },
   {
     "name": "PHP",
@@ -150,7 +150,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
     "description": "A server-side scripting language tailored for web development, known for its simplicity and wide adoption.",
     "link": "https://www.php.net/",
-    "syntaxName": "php"
+    "syntax_name": "php"
   },
   {
     "name": "Go",
@@ -171,7 +171,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
     "description": "A statically typed, compiled language designed for simplicity, concurrency, and performance, created by Google.",
     "link": "https://go.dev/",
-    "syntaxName": "go"
+    "syntax_name": "go"
   },
   {
     "name": "Swift",
@@ -192,7 +192,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
     "description": "A powerful, intuitive language developed by Apple for iOS and macOS apps, emphasizing safety and performance.",
     "link": "https://www.swift.org/",
-    "syntaxName": "swift"
+    "syntax_name": "swift"
   },
   {
     "name": "Kotlin",
@@ -214,7 +214,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
     "description": "A modern, concise language interoperable with Java, widely used for Android development and beyond.",
     "link": "https://kotlinlang.org/",
-    "syntaxName": "kotlin"
+    "syntax_name": "kotlin"
   },
   {
     "name": "C++",
@@ -237,7 +237,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
     "description": "An extension of C with object-oriented features, known for high performance in systems programming and game development.",
     "link": "https://isocpp.org/",
-    "syntaxName": "cpp"
+    "syntax_name": "cpp"
   },
   {
     "name": "Ruby",
@@ -258,7 +258,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg",
     "description": "A dynamic, object-oriented language focused on simplicity and productivity, popular in web frameworks like Ruby on Rails.",
     "link": "https://www.ruby-lang.org/",
-    "syntaxName": "ruby"
+    "syntax_name": "ruby"
   },
   {
     "name": "Perl",
@@ -280,7 +280,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/perl/perl-original.svg",
     "description": "A flexible, text-processing language known for its powerful regular expressions and scripting capabilities.",
     "link": "https://www.perl.org/",
-    "syntaxName": "perl"
+    "syntax_name": "perl"
   },
   {
     "name": "Haskell",
@@ -300,7 +300,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/haskell/haskell-original.svg",
     "description": "A purely functional language with strong static typing, favored for its mathematical precision and academic use.",
     "link": "https://www.haskell.org/",
-    "syntaxName": "haskell"
+    "syntax_name": "haskell"
   },
   {
     "name": "Lua",
@@ -321,7 +321,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lua/lua-original.svg",
     "description": "A lightweight, embeddable scripting language designed for simplicity and performance in games and applications.",
     "link": "https://www.lua.org/",
-    "syntaxName": "lua"
+    "syntax_name": "lua"
   },
   {
     "name": "Scala",
@@ -342,7 +342,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg",
     "description": "A hybrid language combining object-oriented and functional programming, built on the JVM for enterprise use.",
     "link": "https://www.scala-lang.org/",
-    "syntaxName": "scala"
+    "syntax_name": "scala"
   },
   {
     "name": "TypeScript",
@@ -363,7 +363,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
     "description": "A superset of JavaScript adding static types, enhancing scalability and maintainability in web development.",
     "link": "https://www.typescriptlang.org/",
-    "syntaxName": "typescript"
+    "syntax_name": "typescript"
   },
   {
     "name": "Dart",
@@ -384,7 +384,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
     "description": "A client-optimized language by Google, used primarily for building mobile and web apps with Flutter.",
     "link": "https://dart.dev/",
-    "syntaxName": "dart"
+    "syntax_name": "dart"
   },
   {
     "name": "Elixir",
@@ -405,7 +405,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elixir/elixir-original.svg",
     "description": "A dynamic, functional language built on the Erlang VM, designed for scalable and fault-tolerant applications.",
     "link": "https://elixir-lang.org/",
-    "syntaxName": "elixir"
+    "syntax_name": "elixir"
   },
   {
     "name": "MATLAB",
@@ -426,7 +426,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg",
     "description": "A numerical computing environment and language used extensively in engineering, science, and mathematics.",
     "link": "https://www.mathworks.com/products/matlab.html",
-    "syntaxName": "matlab"
+    "syntax_name": "matlab"
   },
   {
     "name": "C#",
@@ -448,7 +448,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
     "description": "A modern, object-oriented language by Microsoft, widely used in game development (Unity) and enterprise software.",
     "link": "https://docs.microsoft.com/en-us/dotnet/csharp/",
-    "syntaxName": "csharp"
+    "syntax_name": "csharp"
   },
   {
     "name": "Objective-C",
@@ -468,7 +468,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/objectivec/objectivec-plain.svg",
     "description": "An object-oriented extension of C, foundational for early iOS and macOS development before Swift.",
     "link": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/",
-    "syntaxName": "objectivec"
+    "syntax_name": "objectivec"
   },
   {
     "name": "Pascal",
@@ -488,7 +488,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A structured, educational language designed for teaching programming concepts and clarity.",
     "link": "https://www.freepascal.org/",
-    "syntaxName": "pascal"
+    "syntax_name": "pascal"
   },
   {
     "name": "Fortran",
@@ -509,7 +509,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fortran/fortran-original.svg",
     "description": "One of the oldest languages, optimized for numerical and scientific computing, still used in high-performance applications.",
     "link": "https://fortran-lang.org/",
-    "syntaxName": "fortran"
+    "syntax_name": "fortran"
   },
   {
     "name": "Ada",
@@ -531,7 +531,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ada_horizon_green_logo_with_slogan.svg/512px-Ada_horizon_green_logo_with_slogan.svg.png",
     "description": "A structured, statically typed language designed for safety and reliability in critical systems like aerospace.",
     "link": "https://www.adaic.org/",
-    "syntaxName": "ada"
+    "syntax_name": "ada"
   },
   {
     "name": "Groovy",
@@ -552,7 +552,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/groovy/groovy-original.svg",
     "description": "A dynamic language for the JVM, enhancing Java with scripting capabilities and concise syntax.",
     "link": "https://groovy-lang.org/",
-    "syntaxName": "groovy"
+    "syntax_name": "groovy"
   },
   {
     "name": "Erlang",
@@ -573,7 +573,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/erlang/erlang-original.svg",
     "description": "A language optimized for concurrency, reliability, and telecom systems, powering scalable applications.",
     "link": "https://www.erlang.org/",
-    "syntaxName": "erlang"
+    "syntax_name": "erlang"
   },
   {
     "name": "Clojure",
@@ -593,7 +593,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/clojure/clojure-original.svg",
     "description": "A modern Lisp dialect for the JVM, emphasizing functional programming and immutable data.",
     "link": "https://clojure.org/",
-    "syntaxName": "clojure"
+    "syntax_name": "clojure"
   },
   {
     "name": "F#",
@@ -614,7 +614,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fsharp/fsharp-original.svg",
     "description": "A functional-first language on .NET, blending static typing with concise syntax for data-driven applications.",
     "link": "https://fsharp.org/",
-    "syntaxName": "fsharp"
+    "syntax_name": "fsharp"
   },
   {
     "name": "Scheme",
@@ -633,7 +633,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Lambda_lc.svg/1024px-Lambda_lc.svg.png",
     "description": "A minimalist Lisp dialect used in education to teach functional programming concepts.",
     "link": "https://www.scheme.org/",
-    "syntaxName": "scheme"
+    "syntax_name": "scheme"
   },
   {
     "name": "V",
@@ -654,7 +654,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/V_Logo_SVG.svg/1024px-V_Logo_SVG.svg.png",
     "description": "A simple, fast, and safe language designed for maintainable software with minimal abstraction.",
     "link": "https://vlang.io/",
-    "syntaxName": "v"
+    "syntax_name": "v"
   },
   {
     "name": "D",
@@ -676,7 +676,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/2/24/D_Programming_Language_logo.svg",
     "description": "A multi-paradigm language aiming to improve on C++ with better safety and productivity features.",
     "link": "https://dlang.org/",
-    "syntaxName": "d"
+    "syntax_name": "d"
   },
   {
     "name": "Crystal",
@@ -696,7 +696,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/crystal/crystal-original.svg",
     "description": "A Ruby-inspired language with static typing and native compilation for performance.",
     "link": "https://crystal-lang.org/",
-    "syntaxName": "crystal"
+    "syntax_name": "crystal"
   },
   {
     "name": "Julia",
@@ -717,7 +717,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/julia/julia-original.svg",
     "description": "A high-performance language for technical computing, blending dynamic typing with speed.",
     "link": "https://julialang.org/",
-    "syntaxName": "julia"
+    "syntax_name": "julia"
   },
   {
     "name": "Nim",
@@ -739,7 +739,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nim/nim-original.svg",
     "description": "A statically typed, compiled language with Python-like syntax, targeting performance and flexibility.",
     "link": "https://nim-lang.org/",
-    "syntaxName": "nim"
+    "syntax_name": "nim"
   },
   {
     "name": "Zig",
@@ -760,7 +760,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/zig/zig-original.svg",
     "description": "A simple, low-level language focused on safety and control, competing with C without a garbage collector.",
     "link": "https://ziglang.org/",
-    "syntaxName": "zig"
+    "syntax_name": "zig"
   },
   {
     "name": "OCaml",
@@ -781,7 +781,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ocaml/ocaml-original.svg",
     "description": "A functional language with strong static typing, used in academia and high-performance applications.",
     "link": "https://ocaml.org/",
-    "syntaxName": "ocaml"
+    "syntax_name": "ocaml"
   },
   {
     "name": "Racket",
@@ -800,25 +800,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Racket-logo.svg/1024px-Racket-logo.svg.png",
     "description": "A Lisp dialect designed for education and scripting, with a focus on language experimentation.",
     "link": "https://racket-lang.org/",
-    "syntaxName": "racket"
-  },
-  {
-    "name": "Elm",
-    "paradigms": [
-      "Functional"
-    ],
-    "year": 2012,
-    "typing": "Static",
-    "execution": "Compiled",
-    "gc": true,
-    "scope": [
-      "Script/Web"
-    ],
-    "symbol": "->",
-    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elm/elm-original.svg",
-    "description": "A functional language for reliable web frontends, compiling to JavaScript with a focus on simplicity.",
-    "link": "https://elm-lang.org/",
-    "syntaxName": "elm"
+    "syntax_name": "racket"
   },
   {
     "name": "COBOL",
@@ -838,7 +820,7 @@
     "icon": "https://www.svgrepo.com/show/508904/cobol.svg",
     "description": "A verbose, business-oriented language still used in legacy financial and enterprise systems.",
     "link": "https://en.wikipedia.org/wiki/COBOL",
-    "syntaxName": "cobol"
+    "syntax_name": "cobol"
   },
   {
     "name": "Prolog",
@@ -857,7 +839,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prolog/prolog-original.svg",
     "description": "A logic programming language used in AI and computational linguistics, based on formal reasoning.",
     "link": "https://www.swi-prolog.org/",
-    "syntaxName": "prolog"
+    "syntax_name": "prolog"
   },
   {
     "name": "Smalltalk",
@@ -876,7 +858,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Smalltalk_Balloon.svg/1920px-Smalltalk_Balloon.svg.png",
     "description": "A pioneering object-oriented language that influenced modern programming paradigms.",
     "link": "http://smalltalk.org/",
-    "syntaxName": "smalltalk"
+    "syntax_name": "smalltalk"
   },
   {
     "name": "Lisp",
@@ -895,7 +877,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Lisp_logo.svg/1024px-Lisp_logo.svg.png",
     "description": "One of the oldest languages, foundational for AI research with its focus on symbolic computation.",
     "link": "http://www.lispworks.com/",
-    "syntaxName": "lisp"
+    "syntax_name": "lisp"
   },
   {
     "name": "Bash",
@@ -915,7 +897,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
     "description": "A Unix shell scripting language for automating tasks and system administration.",
     "link": "https://www.gnu.org/software/bash/",
-    "syntaxName": "bash"
+    "syntax_name": "bash"
   },
   {
     "name": "PowerShell",
@@ -935,7 +917,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg",
     "description": "A task automation and configuration management framework from Microsoft, built on .NET.",
     "link": "https://docs.microsoft.com/en-us/powershell/",
-    "syntaxName": "powershell"
+    "syntax_name": "powershell"
   },
   {
     "name": "Assembly",
@@ -954,7 +936,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A low-level language specific to hardware architectures, offering maximum control and efficiency.",
     "link": "https://en.wikipedia.org/wiki/Assembly_language",
-    "syntaxName": "asm"
+    "syntax_name": "asm"
   },
   {
     "name": "Tcl",
@@ -974,7 +956,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Tcl.svg/800px-Tcl.svg.png",
     "description": "A simple, embeddable scripting language known for its use in GUIs and automation.",
     "link": "https://www.tcl.tk/",
-    "syntaxName": "tcl"
+    "syntax_name": "tcl"
   },
   {
     "name": "Haxe",
@@ -995,7 +977,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/haxe/haxe-original.svg",
     "description": "A cross-platform language that compiles to multiple targets, popular in game development.",
     "link": "https://haxe.org/",
-    "syntaxName": "haxe"
+    "syntax_name": "haxe"
   },
   {
     "name": "Forth",
@@ -1015,7 +997,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A stack-based language known for its simplicity and use in embedded systems.",
     "link": "https://www.forth.com/",
-    "syntaxName": "forth"
+    "syntax_name": "forth"
   },
   {
     "name": "APL",
@@ -1035,7 +1017,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apl/apl-original.svg",
     "description": "A concise, array-oriented language for mathematical and data analysis tasks.",
     "link": "https://www.dyalog.com/",
-    "syntaxName": "apl"
+    "syntax_name": "apl"
   },
   {
     "name": "ABAP",
@@ -1056,7 +1038,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A language developed by SAP for building business applications, tightly integrated with SAP systems.",
     "link": "https://www.sap.com/abap",
-    "syntaxName": "abap"
+    "syntax_name": "abap"
   },
   {
     "name": "ActionScript",
@@ -1076,7 +1058,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/en/0/0f/ActionScript_icon.png",
     "description": "A scripting language for Adobe Flash, used for rich internet applications and animations.",
     "link": "https://www.adobe.com/devnet/actionscript.html",
-    "syntaxName": "actionscript"
+    "syntax_name": "actionscript"
   },
   {
     "name": "ALGOL 68",
@@ -1096,7 +1078,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "An influential successor to ALGOL 60, known for its structured programming features.",
     "link": "https://en.wikipedia.org/wiki/ALGOL_68",
-    "syntaxName": "algol"
+    "syntax_name": "algol"
   },
   {
     "name": "Apex",
@@ -1116,7 +1098,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/salesforce/salesforce-original.svg",
     "description": "A Java-like language for Salesforce, used for custom business logic in the cloud.",
     "link": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/",
-    "syntaxName": "apex"
+    "syntax_name": "apex"
   },
   {
     "name": "Awk",
@@ -1135,7 +1117,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
     "description": "A text-processing language designed for data extraction and reporting, common in Unix.",
     "link": "https://www.gnu.org/software/gawk/",
-    "syntaxName": "awk"
+    "syntax_name": "awk"
   },
   {
     "name": "Ballerina",
@@ -1155,7 +1137,7 @@
     "icon": "https://ballerina.io/img/ballerina-logo.svg",
     "description": "A cloud-native language for microservices and networked applications with built-in concurrency.",
     "link": "https://ballerina.io/",
-    "syntaxName": "ballerina"
+    "syntax_name": "ballerina"
   },
   {
     "name": "BCPL",
@@ -1174,7 +1156,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A precursor to C, influential in early systems programming and language design.",
     "link": "https://en.wikipedia.org/wiki/BCPL",
-    "syntaxName": "bcpl"
+    "syntax_name": "bcpl"
   },
   {
     "name": "ColdFusion",
@@ -1194,7 +1176,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Adobe_Coldfusion_21_logo.png",
     "description": "A scripting language for rapid web application development, now owned by Adobe.",
     "link": "https://www.adobe.com/products/coldfusion-family.html",
-    "syntaxName": "coldfusion"
+    "syntax_name": "coldfusion"
   },
   {
     "name": "Delphi",
@@ -1214,7 +1196,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/en/b/b2/Embarcadero_Delphi_10.4_Sydney_Product_Logo_and_Icon.svg",
     "description": "An evolution of Pascal for rapid application development, popular for Windows software.",
     "link": "https://www.embarcadero.com/products/delphi",
-    "syntaxName": "delphi"
+    "syntax_name": "delphi"
   },
   {
     "name": "Eiffel",
@@ -1232,7 +1214,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Eiffel_logo.svg",
     "description": "A language emphasizing design-by-contract and reliability in object-oriented systems.",
     "link": "https://www.eiffel.org/",
-    "syntaxName": "eiffel"
+    "syntax_name": "eiffel"
   },
   {
     "name": "Elm",
@@ -1250,7 +1232,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elm/elm-original.svg",
     "description": "A functional language for reliable web frontends, compiling to JavaScript.",
     "link": "https://elm-lang.org/",
-    "syntaxName": "elm"
+    "syntax_name": "elm"
   },
   {
     "name": "Factor",
@@ -1269,7 +1251,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/en/f/ff/NewFactorLogo.png",
     "description": "A stack-oriented language inspired by Forth, with modern features and libraries.",
     "link": "https://factorcode.org/",
-    "syntaxName": "factor"
+    "syntax_name": "factor"
   },
   {
     "name": "Falcon",
@@ -1290,7 +1272,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A multi-paradigm scripting language designed for flexibility and embedding.",
     "link": "https://falconpl.org/",
-    "syntaxName": "falcon"
+    "syntax_name": "falcon"
   },
   {
     "name": "Hack",
@@ -1310,7 +1292,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Hack_%28programming_language%29_logo.svg",
     "description": "A PHP dialect by Facebook with static typing for large-scale web applications.",
     "link": "https://hacklang.org/",
-    "syntaxName": "hack"
+    "syntax_name": "hack"
   },
   {
     "name": "Icon",
@@ -1330,7 +1312,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Panorama_Icon_logo_Mondadori.png",
     "description": "A language with goal-directed execution, influential in string processing.",
     "link": "https://www.cs.arizona.edu/icon/",
-    "syntaxName": "icon"
+    "syntax_name": "icon"
   },
   {
     "name": "Io",
@@ -1349,7 +1331,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Io-logo.svg/1024px-Io-logo.svg.png",
     "description": "A minimalist, prototype-based language inspired by Smalltalk and Lua.",
     "link": "https://iolanguage.org/",
-    "syntaxName": "io"
+    "syntax_name": "io"
   },
   {
     "name": "J",
@@ -1369,7 +1351,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/65/J_%28programming_language%29_icon.png",
     "description": "A successor to APL, focused on array programming and concise syntax.",
     "link": "https://www.jsoftware.com/",
-    "syntaxName": "j"
+    "syntax_name": "j"
   },
   {
     "name": "JCL",
@@ -1387,7 +1369,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A scripting language for IBM mainframes to control job execution.",
     "link": "https://en.wikipedia.org/wiki/Job_Control_Language",
-    "syntaxName": "jcl"
+    "syntax_name": "jcl"
   },
   {
     "name": "JScript",
@@ -1406,7 +1388,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/en/e/e8/Jscript_icon.gif",
     "description": "Microsoft’s dialect of ECMAScript, used in Internet Explorer for web scripting.",
     "link": "https://en.wikipedia.org/wiki/JScript",
-    "syntaxName": "jscript"
+    "syntax_name": "jscript"
   },
   {
     "name": "LabVIEW",
@@ -1426,7 +1408,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/labview/labview-original.svg",
     "description": "A graphical language for engineering and data acquisition systems.",
     "link": "https://www.ni.com/en-us/shop/labview.html",
-    "syntaxName": "labview"
+    "syntax_name": "labview"
   },
   {
     "name": "Ladder Logic",
@@ -1446,7 +1428,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A graphical language for programming PLCs in industrial automation.",
     "link": "https://en.wikipedia.org/wiki/Ladder_logic",
-    "syntaxName": "ladder"
+    "syntax_name": "ladder"
   },
   {
     "name": "Logo",
@@ -1465,7 +1447,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "An educational language for teaching programming via turtle graphics.",
     "link": "https://el.media.mit.edu/logo-foundation/",
-    "syntaxName": "logo"
+    "syntax_name": "logo"
   },
   {
     "name": "Modula-2",
@@ -1485,7 +1467,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A structured language by Niklaus Wirth, improving on Pascal for systems programming.",
     "link": "https://en.wikipedia.org/wiki/Modula-2",
-    "syntaxName": "modula2"
+    "syntax_name": "modula2"
   },
   {
     "name": "MQL4",
@@ -1505,7 +1487,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A language for programming trading strategies in MetaTrader 4.",
     "link": "https://www.mql5.com/en/docs",
-    "syntaxName": "mql4"
+    "syntax_name": "mql4"
   },
   {
     "name": "Oberon",
@@ -1525,7 +1507,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/9/97/Oberon_programming_language_logo.svg",
     "description": "A minimalist language by Niklaus Wirth for system programming and education.",
     "link": "https://www.projectoberon.com/",
-    "syntaxName": "oberon"
+    "syntax_name": "oberon"
   },
   {
     "name": "OpenCL",
@@ -1544,7 +1526,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencl/opencl-original.svg",
     "description": "A framework and language for parallel computing across CPUs and GPUs.",
     "link": "https://www.khronos.org/opencl/",
-    "syntaxName": "opencl"
+    "syntax_name": "opencl"
   },
   {
     "name": "PostScript",
@@ -1564,7 +1546,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Adobe_PostScript_3_logo.svg/1920px-Adobe_PostScript_3_logo.svg.png",
     "description": "A page description language by Adobe, foundational for printing and graphics.",
     "link": "https://www.adobe.com/products/postscript.html",
-    "syntaxName": "postscript"
+    "syntax_name": "postscript"
   },
   {
     "name": "PureScript",
@@ -1582,7 +1564,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/purescript/purescript-original.svg",
     "description": "A strongly-typed functional language compiling to JavaScript for web development.",
     "link": "https://www.purescript.org/",
-    "syntaxName": "purescript"
+    "syntax_name": "purescript"
   },
   {
     "name": "QBasic",
@@ -1602,7 +1584,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A beginner-friendly BASIC dialect by Microsoft for early programming education.",
     "link": "https://en.wikipedia.org/wiki/QBasic",
-    "syntaxName": "qbasic"
+    "syntax_name": "qbasic"
   },
   {
     "name": "Raku",
@@ -1623,7 +1605,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Camelia.svg/1920px-Camelia.svg.png",
     "description": "A successor to Perl 6, blending multiple paradigms with a focus on expressiveness.",
     "link": "https://raku.org/",
-    "syntaxName": "raku"
+    "syntax_name": "raku"
   },
   {
     "name": "Reason",
@@ -1643,7 +1625,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Reason-logo.svg/1920px-Reason-logo.svg.png",
     "description": "A syntax-friendly variant of OCaml for JavaScript and native development.",
     "link": "https://reasonml.github.io/",
-    "syntaxName": "reason"
+    "syntax_name": "reason"
   },
   {
     "name": "Rexx",
@@ -1663,7 +1645,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/en/f/f7/Rexx-img-lg.png",
     "description": "A human-readable scripting language for IBM mainframes and automation.",
     "link": "https://www.rexxla.org/",
-    "syntaxName": "rexx"
+    "syntax_name": "rexx"
   },
   {
     "name": "SAS",
@@ -1683,7 +1665,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A language for statistical analysis and data mining, widely used in business.",
     "link": "https://www.sas.com/",
-    "syntaxName": "sas"
+    "syntax_name": "sas"
   },
   {
     "name": "Simula",
@@ -1703,7 +1685,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Simula_-_logo.svg/1920px-Simula_-_logo.svg.png",
     "description": "The first object-oriented language, influential in simulation and education.",
     "link": "https://en.wikipedia.org/wiki/Simula",
-    "syntaxName": "simula"
+    "syntax_name": "simula"
   },
   {
     "name": "Solidity",
@@ -1723,7 +1705,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg",
     "description": "A language for smart contracts on Ethereum, focused on blockchain development.",
     "link": "https://soliditylang.org/",
-    "syntaxName": "solidity"
+    "syntax_name": "solidity"
   },
   {
     "name": "SQL",
@@ -1742,7 +1724,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Sql_data_base_with_logo.svg",
     "description": "A standard language for managing and querying relational databases.",
     "link": "https://en.wikipedia.org/wiki/SQL",
-    "syntaxName": "sql"
+    "syntax_name": "sql"
   },
   {
     "name": "Squirrel",
@@ -1762,7 +1744,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A lightweight scripting language for games and embedded systems.",
     "link": "http://squirrel-lang.org/",
-    "syntaxName": "squirrel"
+    "syntax_name": "squirrel"
   },
   {
     "name": "Standard ML",
@@ -1782,7 +1764,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A functional language with strong typing, influential in academia and compilers.",
     "link": "https://smlfamily.github.io/",
-    "syntaxName": "sml"
+    "syntax_name": "sml"
   },
   {
     "name": "Turing",
@@ -1801,7 +1783,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/en/1/10/Turing_logo.gif",
     "description": "A Pascal-like language designed for teaching programming concepts.",
     "link": "https://en.wikipedia.org/wiki/Turing_(programming_language)",
-    "syntaxName": "turing"
+    "syntax_name": "turing"
   },
   {
     "name": "Vala",
@@ -1820,7 +1802,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vala/vala-original.svg",
     "description": "A language for GNOME applications, compiling to C with modern syntax.",
     "link": "https://vala.dev/",
-    "syntaxName": "vala"
+    "syntax_name": "vala"
   },
   {
     "name": "Verilog",
@@ -1839,7 +1821,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A hardware description language for designing and simulating digital circuits.",
     "link": "https://en.wikipedia.org/wiki/Verilog",
-    "syntaxName": "verilog"
+    "syntax_name": "verilog"
   },
   {
     "name": "VHDL",
@@ -1858,7 +1840,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Octicons-terminal.svg",
     "description": "A language for describing and simulating electronic systems and hardware.",
     "link": "https://en.wikipedia.org/wiki/VHDL",
-    "syntaxName": "vhdl"
+    "syntax_name": "vhdl"
   },
   {
     "name": "Visual Basic",
@@ -1877,7 +1859,7 @@
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualbasic/visualbasic-original.svg",
     "description": "A beginner-friendly language by Microsoft for rapid Windows application development.",
     "link": "https://docs.microsoft.com/en-us/dotnet/visual-basic/",
-    "syntaxName": "vbnet"
+    "syntax_name": "vbnet"
   },
   {
     "name": "WebAssembly",
@@ -1896,7 +1878,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/WebAssembly_Logo.svg/1024px-WebAssembly_Logo.svg.png",
     "description": "A low-level language for high-performance web applications in browsers.",
     "link": "https://webassembly.org/",
-    "syntaxName": "wasm"
+    "syntax_name": "wasm"
   },
   {
     "name": "Wolfram",
@@ -1917,7 +1899,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Wolfram_Language_Logo_2016.svg/1024px-Wolfram_Language_Logo_2016.svg.png",
     "description": "The language of Mathematica, used for symbolic computation and data analysis.",
     "link": "https://www.wolfram.com/language/",
-    "syntaxName": "wolfram"
+    "syntax_name": "wolfram"
   },
   {
     "name": "Xtend",
@@ -1936,7 +1918,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Xtend-logo-c.png",
     "description": "A modern JVM language with concise syntax, interoperable with Java.",
     "link": "https://www.eclipse.org/xtend/",
-    "syntaxName": "xtend"
+    "syntax_name": "xtend"
   },
   {
     "name": "Lobster",
@@ -1958,7 +1940,7 @@
     "icon": "https://strlen.com/img/lobster/lobster.svg",
     "description": "A statically typed language with Python-esque syntax, designed for games and graphics, featuring compile-time reference counting and a terse, refactor-friendly design.",
     "link": "http://strlen.com/lobster/",
-    "syntaxName": "lobster"
+    "syntax_name": "lobster"
   },
   {
     "name": "Agda",
@@ -1978,7 +1960,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Agda%27s_official_logo.svg/1920px-Agda%27s_official_logo.svg.png",
     "description": "A dependently typed functional language used for theorem proving and formal verification, with a focus on mathematical precision and research.",
     "link": "https://wiki.portal.chalmers.se/agda/",
-    "syntaxName": "agda"
+    "syntax_name": "agda"
   },
   {
     "name": "Rocq",
@@ -2000,7 +1982,7 @@
     "icon": "https://rocq-prover.org/_/ZWJmMWQyNWZhYzE0NWZjYzFiNzBmY2NmM2Q5MGU3MjQ/logos/logo-rocq-orange_white.svg",
     "description": "An interactive theorem prover and dependently typed functional language for formal verification, mathematical proofs, and certified programming, based on the Calculus of Inductive Constructions.",
     "link": "https://rocq-prover.org/",
-    "syntaxName": "rocq"
+    "syntax_name": "rocq"
   },
   {
     "name": "Dafny",
@@ -2021,7 +2003,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/4/44/Dafny_logo.jpg",
     "description": "A language with built-in specification constructs for formal verification, enabling proofs of program correctness using an SMT solver.",
     "link": "https://dafny.org/",
-    "syntaxName": "dafny"
+    "syntax_name": "dafny"
   },
   {
     "name": "Frama-C",
@@ -2042,7 +2024,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Frama-C_logo%2C_full.png",
     "description": "A framework for analyzing C code with ACSL, a specification language for formal verification, used in safety-critical systems and research.",
     "link": "https://frama-c.com/",
-    "syntaxName": "frama-c"
+    "syntax_name": "frama-c"
   },
   {
     "name": "Gambas",
@@ -2063,7 +2045,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/2/21/Gambas_3_logo.svg",
     "description": "An object-oriented BASIC dialect with an IDE, designed for Linux, offering a Visual Basic-like experience with support for GUI development, databases, and scripting.",
     "link": "https://gambas.sourceforge.net/",
-    "syntaxName": "gambas"
+    "syntax_name": "gambas"
   },
   {
     "name": "Lean",
@@ -2084,7 +2066,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Lean_logo2.svg",
     "description": "An interactive theorem prover and dependently typed functional language for formalizing mathematics and verifying software correctness.",
     "link": "https://leanprover.github.io/",
-    "syntaxName": "lean"
+    "syntax_name": "lean"
   },
   {
     "name": "Maple",
@@ -2105,7 +2087,7 @@
     "icon": "https://upload.wikimedia.org/wikipedia/commons/3/30/Maple_2015_logo.svg",
     "description": "A symbolic and numeric computation language within the Maple CAS, designed for advanced mathematics, engineering, and educational applications.",
     "link": "https://www.maplesoft.com/products/maple/",
-    "syntaxName": "maple"
+    "syntax_name": "maple"
   },
   {
     "name": "Odin",
@@ -2126,7 +2108,7 @@
     "icon": "https://raw.githubusercontent.com/odin-lang/Odin/refs/heads/master/misc/logo-slim.png",
     "description": "A modern, statically typed language designed as a C alternative, emphasizing simplicity, performance, and explicit memory control for systems and game development.",
     "link": "https://odin-lang.org/",
-    "syntaxName": "odin"
+    "syntax_name": "odin"
   },
   {
     "name": "WhyML",
@@ -2147,6 +2129,6 @@
     "icon": "https://www.why3.org/img/logo_why3.png",
     "description": "A deductive verification platform with a language for specifying and proving program correctness, integrated with external provers like Z3 and Coq.",
     "link": "https://www.why3.org/",
-    "syntaxName": "whyml"
+    "syntax_name": "whyml"
   }
 ]

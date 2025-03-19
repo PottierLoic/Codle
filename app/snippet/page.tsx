@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from "react";
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
-import useSnippets from "@/hooks/useSnippets";
 import useLanguages from "@/hooks/useLanguages";
 import useGuessCounts from "../../hooks/useGuessCountsSnippet";
 import useDailySnippet from "@/hooks/useDailySnippet";
@@ -15,14 +14,15 @@ import SnippetGameGrid from "@/components/SnippetGameGrid";
 import SnippetDisplay from "@/components/SnippetDisplay";
 
 export default function SnippetGame() {
-  const { snippets, loading: snippetsLoading } = useSnippets();
-  const { languages, loading: languagesLoading } = useLanguages();
-  const isLoading = snippetsLoading || languagesLoading;
+  const { languages, loading } = useLanguages();
   const { incrementGuessCount } = useGuessCounts();
 
   const { dailySnippet: todaySnippet } = useDailySnippet();
-  const yesterdayDate = new Date();
-  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  const [yesterdayDate] = useState(() => {
+    const date = new Date();
+    date.setDate(date.getDate() - 1);
+    return date;
+  });
   const { dailySnippet: yesterdaySnippet } = useDailySnippet(yesterdayDate);
 
   const [snippetLanguage, setSnippetLanguage] = useState<Language | null>(null);
@@ -38,7 +38,7 @@ export default function SnippetGame() {
   const [showWinMessage, setShowWinMessage] = useState(false);
 
   useEffect(() => {
-    if (!isLoading && snippets.length > 0) {
+    if (!loading) {
       const storedGuesses = loadProgress<GuessResult[]>("snippetGuesses", dayString);
       if (storedGuesses) {
         storedGuesses.forEach(g => {
@@ -50,7 +50,7 @@ export default function SnippetGame() {
         }
       }
     }
-  }, [isLoading, snippets, dayString]);
+  }, [loading, dayString]);
 
   useEffect(() => {
     if (guesses.length > 0) {
@@ -134,7 +134,6 @@ export default function SnippetGame() {
                 placeholder="Enter a language"
               />
             )}
-            {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntaxName} />}
             {showWinMessage && todaySnippet && snippetLanguage && (
               <div className="mt-4 p-2 bg-gray-800 rounded">
                 <h2 className="text-xl font-semibold mb-2">Congratulations, today&apos;s snippet is written in <strong>{todaySnippet.language}</strong> !</h2>
@@ -151,6 +150,7 @@ export default function SnippetGame() {
                 )}
               </div>
             )}
+            {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntaxName} />}
             <SnippetGameGrid guesses={guesses} />
             {yesterdaySnippet && (
               <p>
