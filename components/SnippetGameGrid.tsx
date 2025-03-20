@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { GuessResult } from "../lib/snippetLogic";
-import useGuessCounts from "../hooks/useGuessCountsSnippet";
+import { GuessResult } from "@/lib/snippetLogic";
+import useGuessCounts from "@/hooks/useGuessCountsSnippet";
 
 interface SnippetGameGridProps {
   guesses: GuessResult[];

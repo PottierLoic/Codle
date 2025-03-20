@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import LanguageGameGrid from "../../components/LanguageGameGrid";
-import useLanguages, { Language } from "../../hooks/useLanguages";
-import useGuessCounts from "../../hooks/useGuessCountsLanguage";
-import { compareGuess, GuessResult } from "../../lib/languageLogic";
-import GuessForm from "../../components/GuessForm";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import LanguageGameGrid from "@/components/LanguageGameGrid";
+import useLanguages, { Language } from "@/hooks/useLanguages";
+import useGuessCounts from "@/hooks/useGuessCountsLanguage";
+import { compareGuess, GuessResult } from "@/lib/languageLogic";
+import GuessForm from "@/components/GuessForm";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import useDailyLanguage from "@/hooks/useDailyLanguage";
 import Timer from "@/components/Timer";

@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Header from "../../components/Header"
-import Footer from "../../components/Footer"
+import Header from "@/components/Header"
+import Footer from "@/components/Footer"
 import useLanguages from "@/hooks/useLanguages";
-import useGuessCounts from "../../hooks/useGuessCountsSnippet";
+import useGuessCounts from "@/hooks/useGuessCountsSnippet";
 import useDailySnippet from "@/hooks/useDailySnippet";
-import { Language } from "../../hooks/useLanguages";
+import { Language } from "@/hooks/useLanguages";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
-import { compareGuess, GuessResult } from "../../lib/snippetLogic";
+import { compareGuess, GuessResult } from "@/lib/snippetLogic";
 import GuessForm from "@/components/GuessForm";
 import SnippetGameGrid from "@/components/SnippetGameGrid";
 import SnippetDisplay from "@/components/SnippetDisplay";

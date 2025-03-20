@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { GuessResult } from "../lib/languageLogic";
+import { GuessResult } from "@/lib/languageLogic";
 import Image from "next/image";
-import useGuessCounts from "../hooks/useGuessCountsLanguage";
+import useGuessCounts from "@/hooks/useGuessCountsLanguage";
 
 interface LanguageGameGridProps {
   guesses: GuessResult[];
