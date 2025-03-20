@@ -11,6 +11,7 @@ import GuessForm from "@/components/GuessForm";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import useDailyLanguage from "@/hooks/useDailyLanguage";
 import Timer from "@/components/Timer";
+import HintSection from "@/components/HintSectionLanguage";
 
 export default function LanguageGame() {
   const { languages, loading } = useLanguages();
@@ -114,6 +115,12 @@ export default function LanguageGame() {
         {guesses.length == 0 && !showWinMessage && (
           <p className="text-lg font-semibold p-2">Type any language to begin !</p>
         )}
+        <HintSection
+          incorrectGuesses={guesses.length}
+          letters={todayLanguage ? todayLanguage.name.length : 0}
+          creators={todayLanguage ? ["Raymond", "Gérald", "Léonardo"] : []}
+          snippet={todayLanguage ? "print('hello world!')" : ""}
+        />
         {!showWinMessage && (
           <GuessForm
             guess={guess}
