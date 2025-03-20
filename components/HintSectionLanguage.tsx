@@ -27,6 +27,9 @@ export default function HintSection({ incorrectGuesses, letters, creators, snipp
     }
   };
 
+  const nextUnlock = unlockThresholds.find((threshold) => incorrectGuesses < threshold);
+  const guessesRemaining = nextUnlock ? nextUnlock - incorrectGuesses : 0;
+
   return (
     <div className="m-3 w-full max-w-lg bg-gray-800 p-4 rounded-lg shadow-md text-center">
       <h3 className="text-lg font-semibold text-white mb-3">Hints</h3>
@@ -66,6 +69,11 @@ export default function HintSection({ incorrectGuesses, letters, creators, snipp
           </motion.div>
         )}
       </AnimatePresence>
+      <p className="mt-4 text-sm text-gray-400">
+        {nextUnlock
+          ? `${guessesRemaining} more incorrect guess${guessesRemaining > 1 ? "es" : ""} needed to unlock the next hint.`
+          : "All hints are unlocked!"}
+      </p>
     </div>
   );
 }
