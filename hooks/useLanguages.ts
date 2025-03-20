@@ -47,7 +47,7 @@ export default function useLanguages() {
           icon: lang.icon,
           description: lang.description,
           link: lang.link,
-          syntaxName: lang.syntaxName,
+          syntaxName: lang.syntax_name,
           creators: lang.creators,
         }));
         setLanguages(formattedData);

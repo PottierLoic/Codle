@@ -13,6 +13,7 @@ import GuessForm from "@/components/GuessForm";
 import SnippetGameGrid from "@/components/SnippetGameGrid";
 import SnippetDisplay from "@/components/SnippetDisplay";
 import Timer from "@/components/Timer";
+import ChallengeSection from "@/components/ChallengeSection";
 
 export default function SnippetGame() {
   const { languages, loading } = useLanguages();
@@ -29,6 +30,7 @@ export default function SnippetGame() {
   const [snippetLanguage, setSnippetLanguage] = useState<Language | null>(null);
   const [yesterdaySnippetLanguage, setYesterdaySnippetLanguage] = useState<Language | null>(null);
 
+  const [enableSyntaxHighlighting, setEnableSyntaxHighlighting] = useState(false);
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState<GuessResult[]>([]);
   const [suggestions, setSuggestions] = useState<Language[]>([]);
@@ -132,6 +134,7 @@ export default function SnippetGame() {
      <div className="min-h-screen bg-gray-900 text-white flex flex-col">
           <Header />
           <main className="flex-1 flex flex-col items-center p-4">
+            <ChallengeSection enableSyntaxHighlighting={enableSyntaxHighlighting} setEnableSyntaxHighlighting={setEnableSyntaxHighlighting} />
             {!showWinMessage && (
               <GuessForm
                 guess={guess}
@@ -160,7 +163,7 @@ export default function SnippetGame() {
                 <Timer />
               </div>
             )}
-            {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntaxName} />}
+            {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntaxName} enableSyntaxHighlighting={enableSyntaxHighlighting} />}
             <SnippetGameGrid guesses={guesses} />
             {yesterdaySnippetLanguage && (
               <p className="p-4">
