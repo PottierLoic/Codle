@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import SnippetDisplay from "@/components/SnippetDisplay";
+import { Snippet } from "@/hooks/useSnippet";
 
 interface HintSectionProps {
   incorrectGuesses: number;
   letters: number;
   creators: string[];
-  snippet: string;
+  snippet?: Snippet | null;
+  syntaxName: string;
 }
 
-export default function HintSection({ incorrectGuesses, letters, creators, snippet }: HintSectionProps) {
+export default function HintSection({ incorrectGuesses, letters, creators, snippet, syntaxName }: HintSectionProps) {
   const [revealedHintIndex, setRevealedHintIndex] = useState<number | null>(null);
   const unlockThresholds = [3, 6, 9];
 
   const hints = [
     `This language name has ${letters} letters.`,
     `This language was created by ${creators.join(", ")}.`,
-    `Example snippet:\n\n${snippet}`,
   ];
   const hintLabels = ["Letters", "Creator(s)", "Snippet"];
 
@@ -26,7 +28,7 @@ export default function HintSection({ incorrectGuesses, letters, creators, snipp
   };
 
   return (
-    <div className="mt-6 w-full max-w-md bg-gray-800 p-4 rounded-lg shadow-md text-center">
+    <div className="m-3 w-full max-w-lg bg-gray-800 p-4 rounded-lg shadow-md text-center">
       <h3 className="text-lg font-semibold text-white mb-3">Hints</h3>
 
       <div className="flex justify-center gap-4 mb-3">
@@ -50,13 +52,17 @@ export default function HintSection({ incorrectGuesses, letters, creators, snipp
         {revealedHintIndex !== null && (
           <motion.div
             key={revealedHintIndex}
-            className="mt-2 bg-gray-700 p-3 rounded-md text-white whitespace-pre-line"
+            className="mt-2 rounded-md text-white whitespace-pre-line"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
           >
-            {hints[revealedHintIndex]}
+            {revealedHintIndex === 2 ? (
+              snippet ? <SnippetDisplay snippet={snippet} syntaxName={syntaxName} /> : "Loading..."
+            ) : (
+              hints[revealedHintIndex]
+            )}
           </motion.div>
         )}
       </AnimatePresence>

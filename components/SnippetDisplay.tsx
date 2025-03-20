@@ -1,4 +1,4 @@
-import { Snippet } from "@/hooks/useDailySnippet";
+import { Snippet } from "@/hooks/useSnippet";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -9,14 +9,14 @@ interface SnippetDisplayProps {
 
 export default function SnippetDisplay({ snippet, syntaxName }: SnippetDisplayProps) {
   return (
-    <div className="w-full max-w-screen-lg bg-gray-800 text-white p-4 rounded-lg shadow-lg mt-4">
+    <div className="w-full max-w-screen-lg bg-gray-800 text-white p-4 rounded-lg shadow-lg m-3">
       <SyntaxHighlighter
         language={syntaxName || "javascript"}
         style={tomorrow}
         className="rounded overflow-x-auto !bg-gray-700"
         wrapLongLines={true}
       >
-        {snippet.snippet}
+        {snippet.code}
       </SyntaxHighlighter>
     </div>
   );

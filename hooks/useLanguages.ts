@@ -7,6 +7,7 @@ const supabase = createClient(
 );
 
 export interface Language {
+  id: number;
   name: string;
   paradigms: string[];
   year: number;
@@ -19,6 +20,7 @@ export interface Language {
   description: string;
   link: string;
   syntaxName: string;
+  creators: string[];
 }
 
 export default function useLanguages() {
@@ -33,6 +35,7 @@ export default function useLanguages() {
           throw error;
         }
         const formattedData: Language[] = data.map((lang) => ({
+          id: lang.id,
           name: lang.name,
           paradigms: lang.paradigms,
           year: lang.year,
@@ -45,6 +48,7 @@ export default function useLanguages() {
           description: lang.description,
           link: lang.link,
           syntaxName: lang.syntaxName,
+          creators: lang.creators,
         }));
         setLanguages(formattedData);
       } catch (error) {
@@ -55,5 +59,20 @@ export default function useLanguages() {
     };
     fetchLanguages();
   }, []);
-  return { languages, loading };
+  const fetchById = async (languageId: number): Promise<Language | null> => {
+    try {
+      const { data, error } = await supabase
+        .from("language")
+        .select("*")
+        .eq("id", languageId)
+        .single();
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error("Error fetching language by ID:", error);
+      return null;
+    }
+  };
+
+  return { languages, loading, fetchById };
 }
