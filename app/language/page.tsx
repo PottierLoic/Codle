@@ -111,6 +111,9 @@ export default function LanguageGame() {
     <div className="min-h-screen bg-gray-900 text-white flex flex-col">
       <Header />
       <main className="flex-1 flex flex-col items-center p-4">
+        {guesses.length == 0 && !showWinMessage && (
+          <p className="text-lg font-semibold p-2">Type any language to begin !</p>
+        )}
         {!showWinMessage && (
           <GuessForm
             guess={guess}
@@ -141,7 +144,7 @@ export default function LanguageGame() {
         )}
         <LanguageGameGrid guesses={guesses} />
         {yesterdayLanguage && (
-          <p>
+          <p className="p-4">
             Yesterday&apos;s language was <strong>{yesterdayLanguage.name}.</strong>
           </p>
         )}

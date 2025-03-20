@@ -155,7 +155,7 @@ export default function SnippetGame() {
             {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntaxName} />}
             <SnippetGameGrid guesses={guesses} />
             {yesterdaySnippet && (
-              <p>
+              <p className="p-4">
                 Yesterday&apos;s snippet was written in <strong>{yesterdaySnippet.language}.</strong>
               </p>
             )}
