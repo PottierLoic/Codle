@@ -163,7 +163,7 @@ export default function SnippetGame() {
                 <Timer />
               </div>
             )}
-            {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntaxName} enableSyntaxHighlighting={enableSyntaxHighlighting} />}
+            {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntax_name} enableSyntaxHighlighting={enableSyntaxHighlighting} />}
             <SnippetGameGrid guesses={guesses} />
             {yesterdaySnippetLanguage && (
               <p className="p-4">

@@ -19,7 +19,7 @@ export interface Language {
   icon: string;
   description: string;
   link: string;
-  syntaxName: string;
+  syntax_name: string;
   creators: string[];
 }
 
@@ -47,7 +47,7 @@ export default function useLanguages() {
           icon: lang.icon,
           description: lang.description,
           link: lang.link,
-          syntaxName: lang.syntax_name,
+          syntax_name: lang.syntax_name,
           creators: lang.creators,
         }));
         setLanguages(formattedData);

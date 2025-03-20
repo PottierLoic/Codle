@@ -110,7 +110,6 @@ export default function LanguageGame() {
     }
   }, [hasWon]);
 
-
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col">
       <Header />
@@ -118,13 +117,15 @@ export default function LanguageGame() {
         {guesses.length == 0 && !showWinMessage && (
           <p className="text-lg font-semibold p-2">Type any language to begin !</p>
         )}
-        <HintSection
-          incorrectGuesses={guesses.length}
-          letters={todayLanguage ? todayLanguage.name.length : 0}
-          creators={todayLanguage ? todayLanguage.creators : []}
-          snippet={snippet ? snippet : null}
-          syntaxName={todayLanguage ? todayLanguage?.syntaxName : ""}
-        />
+        {todayLanguage && (
+          <HintSection
+            incorrectGuesses={guesses.length}
+            letters={todayLanguage ? todayLanguage.name.length : 0}
+            creators={todayLanguage ? todayLanguage.creators : []}
+            snippet={snippet ? snippet : null}
+            syntaxName={todayLanguage ? todayLanguage?.syntax_name : ""}
+          />
+        )}
         {!showWinMessage && (
           <GuessForm
             guess={guess}

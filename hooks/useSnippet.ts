@@ -32,7 +32,6 @@ export default function useSnippet(languageId: number | null) {
         .limit(1)
         .single();
 
-      console.log(data);
       if (error) {
         setError("Error fetching snippet");
         setSnippet(null);
