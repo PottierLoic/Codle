@@ -102,7 +102,9 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
               {colIndex === 0 ? (
                 <>
                   {item.icon && (
-                    <Image src={item.icon} alt={g.name} width={96} height={96} className="rounded-md"/>
+                    <div className="w-[96px] h-[96px] flex items-center justify-center">
+                      <Image src={item.icon} alt={g.name} width={96} height={96} className="rounded-md object-contain w-full h-full"/>
+                    </div>
                   )}
                   <span className="absolute bottom-1 right-1 border border-gray-500 bg-gray-800 text-xs text-white-400 px-2 py-1 rounded">
                     {guessCounts[g.name] ?? 0}

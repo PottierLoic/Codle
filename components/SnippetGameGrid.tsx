@@ -37,7 +37,15 @@ export default function SnippetGameGrid({ guesses }: SnippetGameGridProps) {
           custom={index}
         >
           {g.icon ? (
-            <Image src={g.icon} alt={g.language} width={96} height={96} className="rounded-md" />
+            <div className="w-[96px] h-[96px] flex items-center justify-center">
+              <Image 
+                src={g.icon} 
+                alt={g.language} 
+                width={96} 
+                height={96} 
+                className="rounded-md object-contain w-full h-full"
+              />
+            </div>
           ) : (
             <span className="text-white text-lg">{g.language}</span>
           )}
