@@ -10,6 +10,7 @@ import { compareGuess, GuessResult } from "../../lib/languageLogic";
 import GuessForm from "../../components/GuessForm";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import useDailyLanguage from "@/hooks/useDailyLanguage";
+import Timer from "@/components/Timer";
 
 export default function LanguageGame() {
   const { languages, loading } = useLanguages();
@@ -135,6 +136,7 @@ export default function LanguageGame() {
                 Learn more about {todayLanguage.name}
               </a>
             )}
+            <Timer />
           </div>
         )}
         <LanguageGameGrid guesses={guesses} />

@@ -12,6 +12,7 @@ import { compareGuess, GuessResult } from "../../lib/snippetLogic";
 import GuessForm from "@/components/GuessForm";
 import SnippetGameGrid from "@/components/SnippetGameGrid";
 import SnippetDisplay from "@/components/SnippetDisplay";
+import Timer from "@/components/Timer";
 
 export default function SnippetGame() {
   const { languages, loading } = useLanguages();
@@ -148,6 +149,7 @@ export default function SnippetGame() {
                     Learn more about {snippetLanguage.name}
                   </a>
                 )}
+                <Timer />
               </div>
             )}
             {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntaxName} />}
