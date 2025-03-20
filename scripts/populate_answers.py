@@ -16,11 +16,11 @@ def fetch_language_ids():
     return []
   return response.data
 
-def fetch_snippet_ids():
-  """Fetch all snippet IDs from Supabase."""
-  response = supabase_client.table("snippet").select("id, code").execute()
+def fetch_snippets_by_language(language_id):
+  """Fetch all snippets for a given language ID."""
+  response = supabase_client.table("snippet").select("id, code").eq("language_id", language_id).execute()
   if hasattr(response, "error") and response.error is not None:
-    print(f"❌ Failed to fetch snippets: {response.error}")
+    print(f"❌ Failed to fetch snippets for language {language_id}: {response.error}")
     return []
   return response.data
 
@@ -36,20 +36,21 @@ def delete_future_entries():
 def populate_future_answers():
   """Populates `answer` table with random languages and snippets for the next 30 days."""
   languages = fetch_language_ids()
-  snippets = fetch_snippet_ids()
-
-  if not languages or not snippets:
-    print("❌ Cannot populate. No languages or snippets found in Supabase.")
+  if not languages:
+    print("❌ Cannot populate. No languages found in Supabase.")
     return
-
   today = datetime.date.today()
   new_entries = []
-
   N_DAYS = 30
   for i in range(1, N_DAYS + 1):
     date_obj = today + datetime.timedelta(days=i)
     date_str = date_obj.strftime("%Y-%m-%d")
     chosen_lang = random.choice(languages)
+    chosen_lang_snippet = random.choice(languages)
+    snippets = fetch_snippets_by_language(chosen_lang_snippet["id"])
+    if not snippets:
+      print(f"⚠️ No snippets found for language {chosen_lang['name']}, skipping.")
+      continue
     chosen_snippet = random.choice(snippets)
     print(f"📅 Assigning {date_str} => Language: {chosen_lang['name']} | Snippet ID: {chosen_snippet['id']}")
     new_entries.append({

@@ -27,6 +27,7 @@ export default function SnippetGame() {
   const { dailySnippet: yesterdaySnippet } = useDailySnippet(yesterdayDate);
 
   const [snippetLanguage, setSnippetLanguage] = useState<Language | null>(null);
+  const [yesterdaySnippetLanguage, setYesterdaySnippetLanguage] = useState<Language | null>(null);
 
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState<GuessResult[]>([]);
@@ -115,10 +116,17 @@ export default function SnippetGame() {
 
   useEffect(() => {
     if (todaySnippet && languages.length > 0) {
-      const foundLanguage = languages.find(lang => lang.name === todaySnippet.language);
+      const foundLanguage = languages.find(lang => lang.id === todaySnippet.language_id);
       setSnippetLanguage(foundLanguage || null);
     }
   }, [todaySnippet, languages]);
+  
+  useEffect(() => {
+    if (yesterdaySnippet && languages.length > 0) {
+      const foundLanguage = languages.find(lang => lang.id === yesterdaySnippet.language_id);
+      setYesterdaySnippetLanguage(foundLanguage || null);
+    }
+  }, [yesterdaySnippet, languages]);
 
   return (
      <div className="min-h-screen bg-gray-900 text-white flex flex-col">
@@ -137,8 +145,8 @@ export default function SnippetGame() {
             )}
             {showWinMessage && todaySnippet && snippetLanguage && (
               <div className="mt-4 p-2 bg-gray-800 rounded">
-                <h2 className="text-xl font-semibold mb-2">Congratulations, today&apos;s snippet is written in <strong>{todaySnippet.language}</strong> !</h2>
                 <p className="mb-2">{snippetLanguage.description}</p>
+                <h2 className="text-xl font-semibold mb-2">Congratulations, today&apos;s snippet is written in <strong>{snippetLanguage.name}</strong> !</h2>
                 {snippetLanguage.link && (
                   <a
                     href={snippetLanguage.link}
@@ -154,9 +162,9 @@ export default function SnippetGame() {
             )}
             {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntaxName} />}
             <SnippetGameGrid guesses={guesses} />
-            {yesterdaySnippet && (
+            {yesterdaySnippetLanguage && (
               <p className="p-4">
-                Yesterday&apos;s snippet was written in <strong>{yesterdaySnippet.language}.</strong>
+                Yesterday&apos;s snippet was written in <strong>{yesterdaySnippetLanguage.name}.</strong>
               </p>
             )}
           </main>
