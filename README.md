@@ -9,10 +9,11 @@ serviceAccountKey.json at root should contain firebase api keys to be able to us
 
 
 # TODO
-- [ ] fix icon size in snippet
+- [x] fix icon size in snippet
 - [x] add hints for language game (amount of letters, creator(s) name(s), and snippet for 3, 6 , and 9 failed guesses)
-- [ ] add deactivable challenge mode in snippet (no syntax highlighting)
+- [x] add deactivable challenge mode in snippet (no syntax highlighting)
 - [ ] add statistics
-- [ ] add language (whitespace, brainfuck, etc)
+- [x] add language (whitespace, brainfuck)
 - [ ] responsive on mobile
 - [ ] add time's game connection-like where you have to group languages together (in 4 groups).
+- [ ] add explanation for each snippet, so player can discover algorithms ? 
