@@ -22,7 +22,7 @@ export default function LanguageGame() {
   const { incrementGuessCount } = useGuessCounts();
 
   const { dailyLanguage: todayLanguage } = useDailyLanguage();
-  const yesterdayDate = new Date(getYesterdayString());
+  const [yesterdayDate] = useState(() => new Date(getYesterdayString()));
   const { dailyLanguage: yesterdayLanguage } = useDailyLanguage(yesterdayDate);
 
   const { snippet } = useSnippet(todayLanguage?.id ?? null);

@@ -32,11 +32,8 @@ export default function useDailySnippet(inputDate?: Date) {
           setDailySnippet(null);
           return;
         }
-        setDailySnippet({
-          id: snippetData.id,
-          code: snippetData.code,
-          language_id: snippetData.language_id,
-        });
+        const formatedData = snippetData as Snippet;
+        setDailySnippet(formatedData);
       } catch (error) {
         console.error("[ERROR] Unexpected error:", error);
         setDailySnippet(null);

@@ -3,6 +3,8 @@ export interface Snippet {
   code: string;
   language_id: number;
   languageName?: string;
+  description: string;
+  link: string;
 }
 
 export interface SnippetGuessResult {

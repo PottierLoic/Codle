@@ -23,7 +23,7 @@ export default function SnippetGame() {
   const { incrementGuessCount } = useGuessCounts();
 
   const { dailySnippet: todaySnippet } = useDailySnippet();
-  const yesterdayDate = new Date(getYesterdayString());
+  const [yesterdayDate] = useState(() => new Date(getYesterdayString()));
   const { dailySnippet: yesterdaySnippet } = useDailySnippet(yesterdayDate);
 
   const [snippetLanguage, setSnippetLanguage] = useState<Language | null>(null);
