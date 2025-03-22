@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Language } from "@/hooks/useLanguages";
+import { Language } from "@/entities/Language";
 
 type GuessFormProps = {
   guess: string;
