@@ -148,12 +148,8 @@ export default function SnippetGame() {
           placeholder="Enter a language"
         />
       )}
-      {showWinMessage && snippetLanguage && (
-        <WinMessage
-          name={snippetLanguage.name}
-          description={snippetLanguage.description}
-          link={snippetLanguage.link}
-        />
+      {showWinMessage && snippetLanguage && todaySnippet && (
+        <WinMessage language={snippetLanguage} snippet={todaySnippet} />
       )}
       {todaySnippet && (
         <SnippetDisplay 

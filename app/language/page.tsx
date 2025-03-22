@@ -141,9 +141,7 @@ export default function LanguageGame() {
       )}
       {showWinMessage && todayLanguage && (
         <WinMessage
-          name={todayLanguage.name}
-          description={todayLanguage.description}
-          link={todayLanguage.link}
+          language={todayLanguage}
         />
       )}
       <LanguageGameGrid guesses={guesses} />
