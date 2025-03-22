@@ -1,43 +1,45 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import LanguageGameGrid from "@/components/LanguageGameGrid";
-import useLanguages, { Language } from "@/hooks/useLanguages";
+import GameLayout from "@/components/common/layout/GameLayout";
+import WinMessage from "@/components/common/ui/WinMessage";
+import { STORAGE_KEYS } from "@/constants";
+import LanguageGameGrid from "@/components/language/LanguageGameGrid";
+import useLanguages from "@/hooks/useLanguages";
+import { Language, LanguageGuessResult } from "@/entities/Language";
 import useGuessCounts from "@/hooks/useGuessCountsLanguage";
-import { compareGuess, GuessResult } from "@/lib/languageLogic";
-import GuessForm from "@/components/GuessForm";
+import { compareGuess } from "@/lib/languageLogic";
+import GuessForm from "@/components/forms/GuessForm";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import useDailyLanguage from "@/hooks/useDailyLanguage";
-import Timer from "@/components/Timer";
-import HintSection from "@/components/HintSectionLanguage";
+import HintSection from "@/components/language/HintSection";
 import useSnippet from "@/hooks/useSnippet";
+import LoadingScreen from "@/components/common/feedback/LoadingScreen";
+import { getTodayString, getYesterdayString } from "@/lib/utils";
 
 export default function LanguageGame() {
   const { languages, loading } = useLanguages();
   const { incrementGuessCount } = useGuessCounts();
 
   const { dailyLanguage: todayLanguage } = useDailyLanguage();
-  const yesterdayDate = new Date();
-  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  const yesterdayDate = new Date(getYesterdayString());
   const { dailyLanguage: yesterdayLanguage } = useDailyLanguage(yesterdayDate);
 
   const { snippet } = useSnippet(todayLanguage?.id ?? null);
 
   const [guess, setGuess] = useState("");
-  const [guesses, setGuesses] = useState<GuessResult[]>([]);
+  const [guesses, setGuesses] = useState<LanguageGuessResult[]>([]);
   const [suggestions, setSuggestions] = useState<Language[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const dayString = new Date().toISOString().slice(0, 10);
+  const dayString = getTodayString();
 
   const hasWon = guesses.some((g) => g.nameMatch);
   const [showWinMessage, setShowWinMessage] = useState(false);
 
   useEffect(() => {
     if (!loading && languages.length > 0) {
-      const storedGuesses = loadProgress<GuessResult[]>("languageGuesses", dayString);
+      const storedGuesses = loadProgress<LanguageGuessResult[]>(STORAGE_KEYS.LANGUAGE_GUESSES, dayString);
       if (storedGuesses) {
         storedGuesses.forEach(g => {
           g.isFromStorage = true;
@@ -52,7 +54,7 @@ export default function LanguageGame() {
 
   useEffect(() => {
     if (guesses.length > 0) {
-      saveProgress<GuessResult[]>("languageGuesses", dayString, guesses);
+      saveProgress<LanguageGuessResult[]>(STORAGE_KEYS.LANGUAGE_GUESSES, dayString, guesses);
     }
   }, [guesses, dayString]);
 
@@ -110,58 +112,46 @@ export default function LanguageGame() {
     }
   }, [hasWon]);
 
+  if (loading) return <LoadingScreen />;
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
-      <Header />
-      <main className="flex-1 flex flex-col items-center p-4">
-        {guesses.length == 0 && !showWinMessage && (
-          <p className="text-lg font-semibold p-2">Type any language to begin !</p>
-        )}
-        {todayLanguage && (
-          <HintSection
-            incorrectGuesses={guesses.length}
-            letters={todayLanguage ? todayLanguage.name.length : 0}
-            creators={todayLanguage ? todayLanguage.creators : []}
-            snippet={snippet ? snippet : null}
-            syntaxName={todayLanguage ? todayLanguage?.syntax_name : ""}
-          />
-        )}
-        {!showWinMessage && (
-          <GuessForm
-            guess={guess}
-            onGuessChange={handleGuessChange}
-            suggestions={suggestions}
-            showSuggestions={showSuggestions}
-            onSubmit={handleSubmit}
-            onSelectSuggestion={handleSelectSuggestion}
-            placeholder="Enter a language"
-          />
-        )}
-        {showWinMessage && todayLanguage && (
-          <div className="mt-4 p-2 bg-gray-800 rounded">
-            <h2 className="text-xl font-semibold mb-2">Congratulations, today&apos;s language is <strong>{todayLanguage.name}</strong> !</h2>
-            <p className="mb-2">{todayLanguage.description}</p>
-            {todayLanguage.link && (
-              <a
-                href={todayLanguage.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 underline"
-              >
-                Learn more about {todayLanguage.name}
-              </a>
-            )}
-            <Timer />
-          </div>
-        )}
-        <LanguageGameGrid guesses={guesses} />
-        {yesterdayLanguage && (
-          <p className="p-4">
-            Yesterday&apos;s language was <strong>{yesterdayLanguage.name}.</strong>
-          </p>
-        )}
-      </main>
-      <Footer />
-    </div>
+    <GameLayout>
+      {guesses.length == 0 && !showWinMessage && (
+        <p className="text-lg font-semibold p-2">Type any language to begin !</p>
+      )}
+      {todayLanguage && (
+        <HintSection
+          incorrectGuesses={guesses.length}
+          letters={todayLanguage.name.length}
+          creators={todayLanguage.creators}
+          snippet={snippet}
+          syntaxName={todayLanguage.syntax_name}
+        />
+      )}
+      {!showWinMessage && (
+        <GuessForm
+          guess={guess}
+          onGuessChange={handleGuessChange}
+          suggestions={suggestions}
+          showSuggestions={showSuggestions}
+          onSubmit={handleSubmit}
+          onSelectSuggestion={handleSelectSuggestion}
+          placeholder="Enter a language"
+        />
+      )}
+      {showWinMessage && todayLanguage && (
+        <WinMessage
+          name={todayLanguage.name}
+          description={todayLanguage.description}
+          link={todayLanguage.link}
+        />
+      )}
+      <LanguageGameGrid guesses={guesses} />
+      {yesterdayLanguage && (
+        <p className="p-4">
+          Yesterday&apos;s language was <strong>{yesterdayLanguage.name}.</strong>
+        </p>
+      )}
+    </GameLayout>
   );
 }

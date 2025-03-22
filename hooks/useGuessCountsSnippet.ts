@@ -1,31 +1,26 @@
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/lib/supabase";
+import { getTodayString } from "@/lib/utils";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-export default function useGuessCountsCode() {
+export default function useGuessCountsSnippet() {
   const [guessCounts, setGuessCounts] = useState<{ [key: string]: number }>({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchGuessCounts = async () => {
       try {
-        const today = new Date().toISOString().split("T")[0];
-        const { data, error } = await supabase
+        const today = getTodayString();
+        const { data, error: countError } = await supabase
           .from("guess_snippet")
           .select("guess_count, language_id")
           .eq("date", today);
-        if (error) {
-          throw error;
-        }
+        if (countError) throw new Error(countError.message);
+
         const { data: languages, error: langError } = await supabase
           .from("language")
           .select("id, name");
-        if (langError) {
-          throw langError;
-        }
+        if (langError) throw new Error(langError.message);
+
         const languageMap = Object.fromEntries(
           languages.map((lang) => [lang.id, lang.name])
         );
@@ -37,15 +32,17 @@ export default function useGuessCountsCode() {
           }
         });
         setGuessCounts(counts);
-      } catch (error) {
-        console.error("Error fetching guess counts:", error);
+      } catch (err) {
+        console.error('Failed to fetch guess counts', err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchGuessCounts();
   }, []);
 
   const incrementGuessCount = async (languageName: string) => {
-    const today = new Date().toISOString().split("T")[0];
+    const today = getTodayString();
     try {
       const { data, error } = await supabase
         .from("language")
@@ -70,5 +67,5 @@ export default function useGuessCountsCode() {
       console.error("Error updating guess count: ", error);
     }
   };
-  return { guessCounts, incrementGuessCount };
+  return { guessCounts, loading, incrementGuessCount };
 }

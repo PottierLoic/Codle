@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import SnippetDisplay from "@/components/SnippetDisplay";
-import { Snippet } from "@/hooks/useSnippet";
+import SnippetDisplay from "@/components/snippet/SnippetDisplay";
+import { Snippet } from "@/entities/Snippet";
+import { GUESS_THRESHOLDS } from "@/constants";
 
 interface HintSectionProps {
   incorrectGuesses: number;
@@ -13,7 +14,6 @@ interface HintSectionProps {
 
 export default function HintSection({ incorrectGuesses, letters, creators, snippet, syntaxName }: HintSectionProps) {
   const [revealedHintIndex, setRevealedHintIndex] = useState<number | null>(null);
-  const unlockThresholds = [3, 6, 9];
 
   const hints = [
     `This language name has ${letters} letters.`,
@@ -22,12 +22,12 @@ export default function HintSection({ incorrectGuesses, letters, creators, snipp
   const hintLabels = ["Letters", "Creator(s)", "Snippet"];
 
   const handleHintClick = (index: number) => {
-    if (incorrectGuesses >= unlockThresholds[index]) {
+    if (incorrectGuesses >= GUESS_THRESHOLDS[index]) {
       setRevealedHintIndex((prev) => (prev === index ? null : index));
     }
   };
 
-  const nextUnlock = unlockThresholds.find((threshold) => incorrectGuesses < threshold);
+  const nextUnlock = GUESS_THRESHOLDS.find((threshold) => incorrectGuesses < threshold);
   const guessesRemaining = nextUnlock ? nextUnlock - incorrectGuesses : 0;
 
   return (
@@ -39,9 +39,9 @@ export default function HintSection({ incorrectGuesses, letters, creators, snipp
           <button
             key={index}
             onClick={() => handleHintClick(index)}
-            disabled={incorrectGuesses < unlockThresholds[index]}
+            disabled={incorrectGuesses < GUESS_THRESHOLDS[index]}
             className={`px-4 py-2 rounded-md font-semibold transition-all ${
-              incorrectGuesses >= unlockThresholds[index]
+              incorrectGuesses >= GUESS_THRESHOLDS[index]
                 ? "bg-blue-500 hover:bg-blue-600 text-white"
                 : "bg-gray-600 text-gray-400 cursor-not-allowed"
             } ${revealedHintIndex === index ? "ring-2 ring-blue-300" : ""}`}

@@ -1,58 +1,35 @@
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-export interface Language {
-  id: number;
-  name: string;
-  paradigms: string[];
-  year: number;
-  typing: string;
-  execution: string;
-  gc: boolean;
-  scope: string[];
-  symbol: string;
-  icon: string;
-  description: string;
-  link: string;
-  syntax_name: string;
-  creators: string[];
-}
+import { Language } from '@/entities/Language';
+import { supabase } from "@/lib/supabase";
 
 export default function useLanguages() {
   const [languages, setLanguages] = useState<Language[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const cachedData = sessionStorage.getItem('languages');
+    if (cachedData) {
+      setLanguages(JSON.parse(cachedData));
+      setLoading(false);
+      return;
+    }
     const fetchLanguages = async () => {
       try {
-        const { data, error } = await supabase.from("language").select("*");
+        const { data, error } = await supabase
+          .from("language")
+          .select("*")
+          .order("name");
+
         if (error) {
-          throw error;
+          console.error("[ERROR] Failed to fetch languages:", error.message);
+          return;
         }
-        const formattedData: Language[] = data.map((lang) => ({
-          id: lang.id,
-          name: lang.name,
-          paradigms: lang.paradigms,
-          year: lang.year,
-          typing: lang.typing,
-          execution: lang.execution,
-          gc: lang.gc,
-          scope: lang.scope,
-          symbol: lang.symbol,
-          icon: lang.icon,
-          description: lang.description,
-          link: lang.link,
-          syntax_name: lang.syntax_name,
-          creators: lang.creators,
-        }));
+
+        const formattedData = data as Language[];
         setLanguages(formattedData);
-      } catch (error) {
-        console.error("Error fetching languages: ", error);
+        sessionStorage.setItem('languages', JSON.stringify(formattedData));
+      } catch (err) {
+        console.error("[ERROR] Unexpected error:", err);
       } finally {
         setLoading(false);
       }

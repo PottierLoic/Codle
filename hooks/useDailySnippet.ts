@@ -1,22 +1,16 @@
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-import { Snippet } from "./useSnippet";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { Snippet } from "@/entities/Snippet";
+import { supabase } from "@/lib/supabase";
+import { getTodayString } from "@/lib/utils";
 
 export default function useDailySnippet(inputDate?: Date) {
   const [dailySnippet, setDailySnippet] = useState<Snippet | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Fetching daily snippet...");
     const fetchDailySnippet = async () => {
       try {
-        let dateObj = inputDate || new Date();
-        const dateKey = dateObj.toISOString().slice(0, 10);
+        const dateKey = inputDate ? inputDate.toISOString().slice(0, 10) : getTodayString();
         const { data: answerData, error: answerError } = await supabase
           .from("answer")
           .select("snippet_id")
@@ -44,7 +38,7 @@ export default function useDailySnippet(inputDate?: Date) {
           language_id: snippetData.language_id,
         });
       } catch (error) {
-        console.error("[ERROR] Unexpected error fetching daily snippet:", error);
+        console.error("[ERROR] Unexpected error:", error);
         setDailySnippet(null);
       } finally {
         setLoading(false);

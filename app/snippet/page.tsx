@@ -1,30 +1,29 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
+import { getTodayString, getYesterdayString } from "@/lib/utils";
+import GameLayout from "@/components/common/layout/GameLayout";
+import WinMessage from "@/components/common/ui/WinMessage";
+import { STORAGE_KEYS } from "@/constants";
 import useLanguages from "@/hooks/useLanguages";
 import useGuessCounts from "@/hooks/useGuessCountsSnippet";
 import useDailySnippet from "@/hooks/useDailySnippet";
-import { Language } from "@/hooks/useLanguages";
+import { Language } from "@/entities/Language";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
-import { compareGuess, GuessResult } from "@/lib/snippetLogic";
-import GuessForm from "@/components/GuessForm";
-import SnippetGameGrid from "@/components/SnippetGameGrid";
-import SnippetDisplay from "@/components/SnippetDisplay";
-import Timer from "@/components/Timer";
-import ChallengeSection from "@/components/ChallengeSection";
+import { compareGuess } from "@/lib/snippetLogic";
+import { SnippetGuessResult } from "@/entities/Snippet";
+import GuessForm from "@/components/forms/GuessForm";
+import SnippetGameGrid from "@/components/snippet/SnippetGameGrid";
+import SnippetDisplay from "@/components/snippet/SnippetDisplay";
+import ChallengeSection from "@/components/snippet/ChallengeSection";
+import LoadingScreen from "@/components/common/feedback/LoadingScreen";
 
 export default function SnippetGame() {
-  const { languages, loading } = useLanguages();
+  const { languages, loading: languagesLoading } = useLanguages();
   const { incrementGuessCount } = useGuessCounts();
 
   const { dailySnippet: todaySnippet } = useDailySnippet();
-  const [yesterdayDate] = useState(() => {
-    const date = new Date();
-    date.setDate(date.getDate() - 1);
-    return date;
-  });
+  const yesterdayDate = new Date(getYesterdayString());
   const { dailySnippet: yesterdaySnippet } = useDailySnippet(yesterdayDate);
 
   const [snippetLanguage, setSnippetLanguage] = useState<Language | null>(null);
@@ -32,18 +31,18 @@ export default function SnippetGame() {
 
   const [enableSyntaxHighlighting, setEnableSyntaxHighlighting] = useState(false);
   const [guess, setGuess] = useState("");
-  const [guesses, setGuesses] = useState<GuessResult[]>([]);
+  const [guesses, setGuesses] = useState<SnippetGuessResult[]>([]);
   const [suggestions, setSuggestions] = useState<Language[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const dayString = new Date().toISOString().slice(0, 10);
+  const dayString = getTodayString();
 
   const hasWon = guesses.some((g) => g.languageMatch);
   const [showWinMessage, setShowWinMessage] = useState(false);
 
   useEffect(() => {
-    if (!loading) {
-      const storedGuesses = loadProgress<GuessResult[]>("snippetGuesses", dayString);
+    if (!languagesLoading) {
+      const storedGuesses = loadProgress<SnippetGuessResult[]>(STORAGE_KEYS.SNIPPET_GUESSES, dayString);
       if (storedGuesses) {
         storedGuesses.forEach(g => {
           g.isFromStorage = true;
@@ -54,11 +53,11 @@ export default function SnippetGame() {
         }
       }
     }
-  }, [loading, dayString]);
+  }, [languagesLoading, dayString]);
 
   useEffect(() => {
     if (guesses.length > 0) {
-      saveProgress<GuessResult[]>("snippetGuesses", dayString, guesses);
+      saveProgress<SnippetGuessResult[]>(STORAGE_KEYS.SNIPPET_GUESSES, dayString, guesses);
     }
   }, [guesses, dayString]);
 
@@ -130,48 +129,45 @@ export default function SnippetGame() {
     }
   }, [yesterdaySnippet, languages]);
 
+  if (languagesLoading) return <LoadingScreen />;
+
   return (
-     <div className="min-h-screen bg-gray-900 text-white flex flex-col">
-          <Header />
-          <main className="flex-1 flex flex-col items-center p-4">
-            <ChallengeSection enableSyntaxHighlighting={enableSyntaxHighlighting} setEnableSyntaxHighlighting={setEnableSyntaxHighlighting} />
-            {!showWinMessage && (
-              <GuessForm
-                guess={guess}
-                onGuessChange={handleGuessChange}
-                suggestions={suggestions}
-                showSuggestions={showSuggestions}
-                onSubmit={handleSubmit}
-                onSelectSuggestion={handleSelectSuggestion}
-                placeholder="Enter a language"
-              />
-            )}
-            {showWinMessage && todaySnippet && snippetLanguage && (
-              <div className="mt-4 p-2 bg-gray-800 rounded">
-                <p className="mb-2">{snippetLanguage.description}</p>
-                <h2 className="text-xl font-semibold mb-2">Congratulations, today&apos;s snippet is written in <strong>{snippetLanguage.name}</strong> !</h2>
-                {snippetLanguage.link && (
-                  <a
-                    href={snippetLanguage.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-400 underline"
-                  >
-                    Learn more about {snippetLanguage.name}
-                  </a>
-                )}
-                <Timer />
-              </div>
-            )}
-            {todaySnippet && <SnippetDisplay snippet={todaySnippet} syntaxName={snippetLanguage?.syntax_name} enableSyntaxHighlighting={enableSyntaxHighlighting} />}
-            <SnippetGameGrid guesses={guesses} />
-            {yesterdaySnippetLanguage && (
-              <p className="p-4">
-                Yesterday&apos;s snippet was written in <strong>{yesterdaySnippetLanguage.name}.</strong>
-              </p>
-            )}
-          </main>
-          <Footer />
-        </div>
-  )
+    <GameLayout>
+      <ChallengeSection 
+        enableSyntaxHighlighting={enableSyntaxHighlighting} 
+        setEnableSyntaxHighlighting={setEnableSyntaxHighlighting} 
+      />
+      {!showWinMessage && (
+        <GuessForm
+          guess={guess}
+          onGuessChange={handleGuessChange}
+          suggestions={suggestions}
+          showSuggestions={showSuggestions}
+          onSubmit={handleSubmit}
+          onSelectSuggestion={handleSelectSuggestion}
+          placeholder="Enter a language"
+        />
+      )}
+      {showWinMessage && snippetLanguage && (
+        <WinMessage
+          name={snippetLanguage.name}
+          description={snippetLanguage.description}
+          link={snippetLanguage.link}
+        />
+      )}
+      {todaySnippet && (
+        <SnippetDisplay 
+          snippet={todaySnippet} 
+          syntaxName={snippetLanguage?.syntax_name}
+          enableSyntaxHighlighting={enableSyntaxHighlighting}
+        />
+      )}
+      <SnippetGameGrid guesses={guesses} />
+      {yesterdaySnippetLanguage && (
+        <p className="p-4">
+          Yesterday&apos;s snippet was written in <strong>{yesterdaySnippetLanguage.name}.</strong>
+        </p>
+      )}
+    </GameLayout>
+  );
 }

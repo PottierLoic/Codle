@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-import { Language } from "./useLanguages";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { Language } from "@/entities/Language";
+import { supabase } from "@/lib/supabase";
 
 export default function useDailyLanguage(inputDate?: Date) {
   const [dailyLanguage, setDailyLanguage] = useState<Language | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchDailyLanguage = async () => {
+    let isMounted = true;
+    const fetchData = async () => {
       try {
         let dateObj = inputDate || new Date();
         const dateKey = dateObj.toISOString().slice(0, 10);
@@ -23,7 +19,8 @@ export default function useDailyLanguage(inputDate?: Date) {
           .single();
 
         if (answerError || !answerData) {
-          throw new Error(`No language found for ${dateKey}`);
+          console.error(`[ERROR] No language found for ${dateKey}:`, answerError?.message);
+          return;
         }
         const languageId = answerData.language_id;
         const { data: langData, error: langError } = await supabase
@@ -32,17 +29,21 @@ export default function useDailyLanguage(inputDate?: Date) {
           .eq("id", languageId)
           .single();
         if (langError || !langData) {
-          throw new Error(`Language ID ${languageId} not found in 'language' table`);
+          console.error(`[ERROR] Language ID ${languageId} not found in 'language' table:`, langError?.message);
+          return;
         }
-        setDailyLanguage(langData as Language);
-      } catch (error) {
-        console.error("Error fetching daily language:", error);
-        setDailyLanguage(null);
+        if (isMounted) setDailyLanguage(langData as Language);
+      } catch (err) {
+        if (isMounted) {
+          console.error("Error fetching daily language:", err);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
-    fetchDailyLanguage();
+    fetchData();
+    return () => { isMounted = false; };
   }, [inputDate]);
+
   return { dailyLanguage, loading };
 }

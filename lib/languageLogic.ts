@@ -1,28 +1,6 @@
-import { Language } from "@/hooks/useLanguages";
+import { Language, LanguageGuessResult } from "@/entities/Language";
 
-export interface GuessResult {
-  id?: string;
-  name: string;
-  nameMatch: boolean;
-  paradigms: string[];
-  paradigmsMatch: "full" | "partial" | "none";
-  year: number;
-  yearMatch: "higher" | "lower" | "full";
-  typing: string;
-  typingMatch: boolean;
-  execution: string;
-  executionMatch: boolean;
-  gc: boolean;
-  gcMatch: boolean;
-  scope: string[];
-  scopeMatch: "full" | "partial" | "none";
-  symbol: string;
-  symbolMatch: boolean;
-  icon: string;
-  isFromStorage?: boolean;
-}
-
-export const compareGuess = (guessName: string, targetLanguage: Language, languages: Language[]): GuessResult | null => {
+export const compareGuess = (guessName: string, targetLanguage: Language, languages: Language[]): LanguageGuessResult | null => {
   const guessedLanguage = languages.find(
     (language) => language.name.toLowerCase() === guessName.toLowerCase()
   );

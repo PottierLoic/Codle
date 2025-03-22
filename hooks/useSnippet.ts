@@ -1,29 +1,16 @@
 import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-export interface Snippet {
-  id: number;
-  code: string;
-  language_id: number;
-  languageName?: string;
-}
+import { Snippet } from '@/entities/Snippet';
+import { supabase } from "@/lib/supabase";
 
 export default function useSnippet(languageId: number | null) {
   const [snippet, setSnippet] = useState<Snippet | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!languageId) return;
 
     const fetchSnippet = async () => {
       setLoading(true);
-      setError(null);
 
       const { data, error } = await supabase
         .from("snippet")
@@ -33,7 +20,7 @@ export default function useSnippet(languageId: number | null) {
         .single();
 
       if (error) {
-        setError("Error fetching snippet");
+        console.error("[ERROR] Failed to fetch snippet:", error.message);
         setSnippet(null);
       } else {
         setSnippet(data);
@@ -45,5 +32,5 @@ export default function useSnippet(languageId: number | null) {
     fetchSnippet();
   }, [languageId]);
 
-  return { snippet, loading, error };
+  return { snippet, loading };
 }
