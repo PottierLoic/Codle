@@ -1,0 +1,2 @@
+DELETE FROM snippet;
+ALTER SEQUENCE snippet_id_seq RESTART WITH 1;

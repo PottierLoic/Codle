@@ -1,0 +1,2 @@
+DELETE FROM language;
+ALTER SEQUENCE language_id_seq RESTART WITH 1;
