@@ -10,7 +10,7 @@ export default function WinMessage({ name, description, link }: WinMessageProps)
   return (
     <div className="mt-4 p-2 bg-gray-800 rounded">
       <h2 className="text-xl font-semibold mb-2">
-        Congratulations, today&apos;s language is <strong>{name}</strong>!
+        Congratulations, the answer is <strong>{name}</strong>!
       </h2>
       <p className="mb-2">{description}</p>
       {link && (
