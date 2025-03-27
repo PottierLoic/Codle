@@ -24,10 +24,10 @@ export default function Home() {
           Guess the language based on a code snippet
         </button>
         <button
-          onClick={() => router.push("/todo")}
+          onClick={() => router.push("/regex")}
           className="bg-purple-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-purple-600 transition"
         >
-          Todo
+          Find a regex pattern for specific instructions
         </button>
       </div>
     </div>

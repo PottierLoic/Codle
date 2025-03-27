@@ -13,7 +13,7 @@ export default function useDailyLanguage(inputDate?: Date) {
         let dateObj = inputDate || new Date();
         const dateKey = dateObj.toISOString().slice(0, 10);
         const { data: answerData, error: answerError } = await supabase
-          .from("answer")
+          .from("daily")
           .select("language_id")
           .eq("date", dateKey)
           .single();

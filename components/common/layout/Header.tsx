@@ -19,7 +19,7 @@ export default function Header() {
             {[
               { name: "Language", path: "/language" },
               { name: "Code Snippet", path: "/snippet" },
-              { name: "Todo", path: "/todo" }
+              { name: "Regex", path: "/regex" }
             ].map(({ name, path }) => (
               <li key={path}>
                 <Link

@@ -12,7 +12,7 @@ export default function useDailySnippet(inputDate?: Date) {
       try {
         const dateKey = inputDate ? inputDate.toISOString().slice(0, 10) : getTodayString();
         const { data: answerData, error: answerError } = await supabase
-          .from("answer")
+          .from("daily")
           .select("snippet_id")
           .eq("date", dateKey)
           .single();
