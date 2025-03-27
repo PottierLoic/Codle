@@ -4,19 +4,23 @@ import { useEffect, useState } from "react";
 import GameLayout from "@/components/common/layout/GameLayout";
 import useDailyRegex from "@/hooks/useDailyRegex";
 import useSubmitRegexSolution from "@/hooks/useSubmitRegexSolution";
+import useRegexSolutions from "@/hooks/useRegexSolutions";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import { getTodayString } from "@/lib/utils";
 import { STORAGE_KEYS } from "@/constants";
 import React from "react";
+import { X } from "lucide-react";
 
 export default function RegexGame() {
   const { dailyRegex, loading } = useDailyRegex();
   const { submitSolution, submitting } = useSubmitRegexSolution();
+  const { solutions, refetch } = useRegexSolutions();
 
   const [regexPattern, setRegexPattern] = useState("");
   const [replacement, setReplacement] = useState("");
   const [debouncedPattern, setDebouncedPattern] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [showSolutions, setShowSolutions] = useState(false);
 
   const dayString = getTodayString();
 
@@ -133,6 +137,7 @@ export default function RegexGame() {
     });
 
     setSubmitted(true);
+    await refetch();
   };
 
   return (
@@ -175,9 +180,15 @@ export default function RegexGame() {
           <div className="mt-6 w-full text-center">
             <p className="text-2xl font-semibold text-green-400 mb-2">🎉 Correct! You&apos;ve solved the challenge.</p>
             <pre className="mt-2 bg-gray-800 text-white text-sm p-3 rounded-md border border-gray-600">
-            <p>{`${regexPattern}`}</p>
-            <p>{`${replacement || "(empty)"}`}</p>
+              <p>{`${regexPattern}`}</p>
+              <p>{`${replacement || "(empty)"}`}</p>
             </pre>
+            <button
+              onClick={() => setShowSolutions(true)}
+              className="mt-4 text-blue-400 hover:underline"
+            >
+              See other solutions
+            </button>
           </div>
         )}
 
@@ -188,6 +199,41 @@ export default function RegexGame() {
           </pre>
         </div>
       </div>
+
+      {showSolutions && (
+        <div className="fixed top-0 left-0 w-full h-full z-50 backdrop-blur-md bg-black/70 animate-fade-in">
+          <div className="max-w-3xl mx-auto mt-10 bg-gray-900 p-6 rounded-md shadow-lg relative border border-gray-700">
+            <button
+              className="absolute top-3 right-3 text-white hover:text-red-400"
+              onClick={() => setShowSolutions(false)}
+            >
+              <X size={24} />
+            </button>
+            <h2 className="text-2xl font-bold mb-4 text-center text-white">All solutions found</h2>
+            {solutions.length === 0 ? (
+              <p className="text-center text-gray-300">No solutions available.</p>
+            ) : (
+              <ul className="space-y-3 text-white">
+                {solutions.map((s, i) => {
+                  const { pattern, replacement: replace } = s;
+                  return (
+                    <li
+                      key={s.id}
+                      className={`p-3 border rounded-md ${
+                        i === 0 ? "border-blue-500 bg-blue-900" : "border-gray-600 bg-gray-800"
+                      }`}
+                    >
+                      <p><span className="font-bold">Pattern:</span> <code>{pattern}</code></p>
+                      <p><span className="font-bold">Replacement:</span> <code>{replace || "(empty)"}</code></p>
+                      {i === 0 && <p className="text-xs text-blue-300 mt-1">Official Solution</p>}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        </div>
+      )}
     </GameLayout>
   );
 }

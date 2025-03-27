@@ -4,3 +4,10 @@ export interface Regex {
   target_text: string;
   instruction: string;
 }
+
+export interface RegexSolution {
+  id: number;
+  regex_id: number;
+  pattern: string;
+  replacement: string | null;
+}
