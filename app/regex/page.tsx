@@ -173,7 +173,7 @@ export default function RegexGame() {
           </>
         ) : (
           <div className="mt-6 w-full text-center">
-            <p className="text-2xl font-semibold text-green-400 mb-2">🎉 Correct! You've solved the challenge.</p>
+            <p className="text-2xl font-semibold text-green-400 mb-2">🎉 Correct! You&apos;ve solved the challenge.</p>
             <pre className="mt-2 bg-gray-800 text-white text-sm p-3 rounded-md border border-gray-600">
             <p>{`${regexPattern}`}</p>
             <p>{`${replacement || "(empty)"}`}</p>
