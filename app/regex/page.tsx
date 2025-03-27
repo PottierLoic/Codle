@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GameLayout from "@/components/common/layout/GameLayout";
 import useDailyRegex from "@/hooks/useDailyRegex";
 
@@ -8,63 +8,79 @@ export default function RegexGame() {
   const { dailyRegex, loading } = useDailyRegex();
   const [regexPattern, setRegexPattern] = useState("");
   const [replacement, setReplacement] = useState("");
+  const [debouncedPattern, setDebouncedPattern] = useState("");
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedPattern(regexPattern);
+    }, 200);
+    return () => clearTimeout(timeout);
+  }, [regexPattern]);
 
   if (loading) return <GameLayout><p>Loading...</p></GameLayout>;
   if (!dailyRegex) return <GameLayout><p>No regex challenge found for today.</p></GameLayout>;
 
   const getHighlightedText = () => {
-    if (!regexPattern) return [<span key="original">{dailyRegex.source_text}</span>];
+    if (!debouncedPattern) {
+      return [<span key="original">{dailyRegex.source_text}</span>];
+    }
 
+    let regex: RegExp;
     try {
-      const regex = new RegExp(regexPattern, "g");
-      const result = [];
-      let lastIndex = 0;
-      let match;
-      let key = 0;
+      regex = new RegExp(debouncedPattern, "g");
+    } catch {
+      return [<span key="error">Invalid regex pattern</span>];
+    }
 
-      while ((match = regex.exec(dailyRegex.source_text)) !== null) {
-        const { index } = match;
+    const result: React.ReactNode[] = [];
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+    let key = 0;
 
-        if (index > lastIndex) {
-          result.push(
-            <span key={key++}>{dailyRegex.source_text.slice(lastIndex, index)}</span>
-          );
-        }
+    while ((match = regex.exec(dailyRegex.source_text)) !== null) {
+      const index = match.index;
 
-        if (replacement === "") {
-          result.push(
-            <span
-              key={key++}
-              className="bg-red-600 text-white px-1 rounded-sm line-through"
-            >
-              {match[0]}
-            </span>
-          );
-        } else {
-          const replacementText = replacement.replace(/\$(\d+)/g, (_, g) => match[+g] ?? "");
-          result.push(
-            <span
-              key={key++}
-              className="bg-green-600 text-black px-1 rounded-sm"
-            >
-              {replacementText}
-            </span>
-          );
-        }
-
-        lastIndex = regex.lastIndex;
-      }
-
-      if (lastIndex < dailyRegex.source_text.length) {
+      if (index > lastIndex) {
         result.push(
-          <span key={key++}>{dailyRegex.source_text.slice(lastIndex)}</span>
+          <span key={key++}>{dailyRegex.source_text.slice(lastIndex, index)}</span>
         );
       }
 
-      return result;
-    } catch (e) {
-      return [<span key="error">Invalid regex pattern</span>];
+      if (replacement === "") {
+        result.push(
+          <span
+            key={key++}
+            className="bg-red-600 text-white px-1 rounded-sm line-through"
+          >
+            {match[0]}
+          </span>
+        );
+      } else {
+        const replacementText = replacement.replace(/\$(\d+)/g, (_, g) => match?.[+g] ?? "");
+        result.push(
+          <span
+            key={key++}
+            className="bg-green-600 text-black px-1 rounded-sm"
+          >
+            {replacementText}
+          </span>
+        );
+      }
+
+      lastIndex = regex.lastIndex;
+
+      if (regex.lastIndex === match.index) {
+        regex.lastIndex++;
+      }
     }
+
+    if (lastIndex < dailyRegex.source_text.length) {
+      result.push(
+        <span key={key++}>{dailyRegex.source_text.slice(lastIndex)}</span>
+      );
+    }
+
+    return result;
   };
 
   return (
