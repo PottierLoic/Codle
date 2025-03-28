@@ -36,22 +36,27 @@ export default function SnippetGameGrid({ guesses }: SnippetGameGridProps) {
           animate="visible"
           custom={index}
         >
-          {g.icon ? (
-            <div className="w-[96px] h-[96px] flex items-center justify-center">
-              <Image 
-                src={g.icon} 
-                alt={g.language} 
-                width={96} 
-                height={96} 
+          <div className="relative w-[96px] h-[96px] flex items-center justify-center">
+            <div className="absolute top-0 inset-x-0 bg-gray-900/80 text-xs text-center py-1 z-10">
+              {g.language}
+            </div>
+            {g.icon ? (
+              <Image
+                src={g.icon}
+                alt={g.language}
+                width={96}
+                height={96}
                 className="rounded-md object-contain w-full h-full"
               />
-            </div>
-          ) : (
-            <span className="text-white text-lg">{g.language}</span>
-          )}
-          <span className="absolute bottom-1 right-1 border border-gray-500 bg-gray-800 text-xs text-white-400 px-2 py-1 rounded">
-            {guessCounts[g.language] ?? 0}
-          </span>
+            ) : (
+              <div className="flex items-center justify-center w-full h-full bg-gray-800 rounded-md">
+                <span className="text-white text-lg">{g.language}</span>
+              </div>
+            )}
+            <span className="absolute bottom-1 right-1 border border-gray-500 bg-gray-800 text-xs px-2 py-1 rounded">
+              {guessCounts[g.language] ?? 0}
+            </span>
+          </div>
         </motion.div>
       ))}
     </div>
