@@ -209,7 +209,7 @@ export default function RegexGame() {
             >
               <X size={24} />
             </button>
-            <h2 className="text-2xl font-bold mb-4 text-center text-white">All solutions found</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center text-white">All solutions submitted</h2>
             {solutions.length === 0 ? (
               <p className="text-center text-gray-300">No solutions available.</p>
             ) : (
