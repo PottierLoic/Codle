@@ -99,17 +99,22 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
               animate="visible"
               custom={colIndex}
             >
-              {colIndex === 0 ? (
-                <>
-                  {item.icon && (
-                    <div className="w-[96px] h-[96px] flex items-center justify-center">
-                      <Image src={item.icon} alt={g.name} width={96} height={96} className="rounded-md object-contain w-full h-full"/>
-                    </div>
-                  )}
-                  <span className="absolute bottom-1 right-1 border border-gray-500 bg-gray-800 text-xs text-white-400 px-2 py-1 rounded">
+              {colIndex === 0 && item.icon ? (
+                <div className="relative w-[96px] h-[96px] flex items-center justify-center">
+                  <div className="absolute top-0 inset-x-0 bg-gray-900/80 text-xs text-center py-1 z-10">
+                    {item.value}
+                  </div>
+                  <Image
+                    src={item.icon}
+                    alt={g.name}
+                    width={96}
+                    height={96}
+                    className="rounded-md object-contain w-full h-full"
+                  />
+                  <span className="absolute bottom-1 right-1 border border-gray-600 bg-gray-900 text-xs px-2 py-1 rounded">
                     {guessCounts[g.name] ?? 0}
                   </span>
-                </>
+                </div>
               ) : (
                 item.value
               )}
