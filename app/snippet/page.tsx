@@ -5,9 +5,9 @@ import { getTodayString, getYesterdayString } from "@/lib/utils";
 import GameLayout from "@/components/common/layout/GameLayout";
 import WinMessage from "@/components/common/ui/WinMessage";
 import { STORAGE_KEYS } from "@/constants";
-import useLanguages from "@/hooks/useLanguages";
-import useGuessCounts from "@/hooks/useGuessCountsSnippet";
-import useDailySnippet from "@/hooks/useDailySnippet";
+import useLanguages from "@/hooks/language/useLanguages";
+import useGuessCounts from "@/hooks/snippet/useGuessCountsSnippet";
+import useDailySnippet from "@/hooks/snippet/useDailySnippet";
 import { Language } from "@/entities/Language";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import { compareGuess } from "@/lib/snippetLogic";
@@ -121,7 +121,7 @@ export default function SnippetGame() {
       setSnippetLanguage(foundLanguage || null);
     }
   }, [todaySnippet, languages]);
-  
+
   useEffect(() => {
     if (yesterdaySnippet && languages.length > 0) {
       const foundLanguage = languages.find(lang => lang.id === yesterdaySnippet.language_id);
@@ -133,9 +133,9 @@ export default function SnippetGame() {
 
   return (
     <GameLayout>
-      <ChallengeSection 
-        enableSyntaxHighlighting={enableSyntaxHighlighting} 
-        setEnableSyntaxHighlighting={setEnableSyntaxHighlighting} 
+      <ChallengeSection
+        enableSyntaxHighlighting={enableSyntaxHighlighting}
+        setEnableSyntaxHighlighting={setEnableSyntaxHighlighting}
       />
       {!showWinMessage && (
         <GuessForm
@@ -152,8 +152,8 @@ export default function SnippetGame() {
         <WinMessage language={snippetLanguage} snippet={todaySnippet} />
       )}
       {todaySnippet && (
-        <SnippetDisplay 
-          snippet={todaySnippet} 
+        <SnippetDisplay
+          snippet={todaySnippet}
           syntaxName={snippetLanguage?.syntax_name}
           enableSyntaxHighlighting={enableSyntaxHighlighting}
         />

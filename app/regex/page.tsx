@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import GameLayout from "@/components/common/layout/GameLayout";
-import useDailyRegex from "@/hooks/useDailyRegex";
-import useSubmitRegexSolution from "@/hooks/useSubmitRegexSolution";
-import useRegexSolutions from "@/hooks/useRegexSolutions";
+import useDailyRegex from "@/hooks/regex/useDailyRegex";
+import useSubmitRegexSolution from "@/hooks/regex/useSubmitRegexSolution";
+import useRegexSolutions from "@/hooks/regex/useRegexSolutions";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import { getTodayString } from "@/lib/utils";
 import { STORAGE_KEYS } from "@/constants";
