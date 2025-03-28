@@ -1,6 +1,7 @@
 "use-client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
@@ -9,7 +10,14 @@ export default function Header() {
   return (
     <header className="w-full bg-gray-800 text-white p-4 shadow-md">
       <div className="max-w-5xl mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-2xl font-bold flex items-center gap-2">
+          <Image
+            src="/codle-icon-512x512.png"
+            alt="Codle Icon"
+            width={48}
+            height={48}
+            className="inline-block"
+          />
           <Link href="/" className="hover:text-blue-400 transition">
             Codle
           </Link>

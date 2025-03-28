@@ -1,12 +1,20 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-6">
+      <Image
+        src="/codle-icon-512x512.png"
+        alt="Codle Icon"
+        width={256}
+        height={256}
+        className="mb-6"
+      />
       <h1 className="text-4xl font-bold mb-6">Welcome to Codle!</h1>
       <p className="text-lg text-gray-300 mb-8">Choose a game mode:</p>
       <div className="flex flex-col gap-4">
