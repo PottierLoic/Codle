@@ -14,6 +14,12 @@ serviceAccountKey.json at root should contain firebase api keys to be able to us
 - [x] add deactivable challenge mode in snippet (no syntax highlighting)
 - [ ] add statistics
 - [x] add language (whitespace, brainfuck)
-- [ ] responsive on mobile
+- [x] responsive on mobile
 - [ ] add time's game connection-like where you have to group languages together (in 4 groups).
-- [ ] add explanation for each snippet, so player can discover algorithms ? 
+- [x] add explanation for each snippet, so player can discover algorithms ?
+
+suggestions
+- [x] Add cursor pointer to the buttons
+- [ ] move the logic to server, and do not expose the data / solutions in the client
+- [ ] animate the cat ???
+- [x] include the cat in the codle link in header

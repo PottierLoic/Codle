@@ -16,6 +16,7 @@ export default function Header() {
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
         <div className="w-full sm:w-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 hover:text-blue-400 transition">
             <Image
               src="/codle-icon-512x512.png"
               alt="Codle Icon"
@@ -23,9 +24,8 @@ export default function Header() {
               height={36}
               className="inline-block"
             />
-            <Link href="/" className="hover:text-blue-400 transition">
-              Codle
-            </Link>
+            Codle
+          </Link>
           </h1>
           <button
             className="sm:hidden text-white focus:outline-none"
