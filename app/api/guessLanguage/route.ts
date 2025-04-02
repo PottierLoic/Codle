@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
-import { LanguageGuessResult } from "@/entities/Language";
+import { LanguageGuessResult, FullLanguage } from "@/entities/Language";
 
-let cachedDailyLanguage: any = null;
+let cachedDailyLanguage: FullLanguage | null = null;
 let cachedDateKey: string | null = null;
 
 async function getDailyLanguage(dateKey: string) {
@@ -53,6 +53,10 @@ export async function POST(request: Request) {
 
     const guessedData = guessedRes.data;
 
+    if (!dailyLanguageData) {
+      throw new Error("Daily language data is null");
+    }
+
     const result: LanguageGuessResult = {
       name: guessedData.name,
       nameMatch: guessedData.name === dailyLanguageData.name,
@@ -90,8 +94,8 @@ export async function POST(request: Request) {
     };
 
     return NextResponse.json(result);
-  } catch (error: any) {
-    console.error("[ERROR] Unexpected error in /api/guessLanguage route:", error.message);
+  } catch (error: unknown) {
+    console.error("[ERROR] Unexpected error in /api/guessLanguage route:", (error as Error).message);
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }

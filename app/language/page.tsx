@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import GameLayout from "@/components/common/layout/GameLayout";
-import WinMessage from "@/components/common/ui/WinMessage";
+//import WinMessage from "@/components/common/ui/WinMessage";
 import { STORAGE_KEYS } from "@/constants";
 import LanguageGameGrid from "@/components/language/LanguageGameGrid";
 import useLanguages from "@/hooks/language/useLanguages";
@@ -77,10 +77,10 @@ export default function LanguageGame() {
     }
   }, [guess, incrementGuessCount])
 
-    const handleSubmit = (e?: React.FormEvent) => {
-    if (e) e.preventDefault()
-    submitGuess()
-  }
+    const handleSubmit = useCallback((e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    submitGuess();
+  }, [submitGuess]);
 
   const handleGuessChange = (value: string) => {
     setGuess(value);

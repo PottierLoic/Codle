@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import SnippetDisplay from "@/components/snippet/SnippetDisplay";
-import { Snippet } from "@/entities/Snippet";
 import { GUESS_THRESHOLDS } from "@/constants";
 
 interface HintSectionProps {
