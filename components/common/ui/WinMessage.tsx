@@ -6,7 +6,7 @@ type WinMessageProps =
   | { language: Language; snippet?: never }
   | { snippet: Snippet; language?: Language };
 
-export default function WinMessage({ language, snippet }: WinMessageProps) {
+export default function WinMessage({ /*language,*/ snippet }: WinMessageProps) {
   //const name = language?.name ?? snippet?.languageName ?? "Unknown";
   return (
     <div className="mt-4 p-2 bg-gray-800 rounded">
