@@ -154,7 +154,7 @@ export default function SnippetGame() {
       {todaySnippet && (
         <SnippetDisplay
           snippet={todaySnippet}
-          syntaxName={snippetLanguage?.syntax_name}
+          syntaxName={"todo"}
           enableSyntaxHighlighting={enableSyntaxHighlighting}
         />
       )}
