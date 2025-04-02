@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { getTodayString } from "@/lib/utils";
+import { getTodayDateString } from "@/lib/utils";
 
 export default function useGuessCountsLanguage() {
   const [guessCounts, setGuessCounts] = useState<{ [key: string]: number }>({});
@@ -9,7 +9,7 @@ export default function useGuessCountsLanguage() {
   useEffect(() => {
     const fetchGuessCounts = async () => {
       try {
-        const today = getTodayString();
+        const today = getTodayDateString();
         const { data, error: countError } = await supabase
           .from("guess_language")
           .select("guess_count, language_id")
@@ -42,7 +42,7 @@ export default function useGuessCountsLanguage() {
   }, []);
 
   const incrementGuessCount = async (languageName: string) => {
-    const today = getTodayString();
+    const today = getTodayDateString();
     try {
       const { data, error } = await supabase
         .from("language")

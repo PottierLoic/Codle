@@ -8,34 +8,33 @@ import LanguageGameGrid from "@/components/language/LanguageGameGrid";
 import useLanguages from "@/hooks/language/useLanguages";
 import { Language, LanguageGuessResult } from "@/entities/Language";
 import useGuessCounts from "@/hooks/language/useGuessCountsLanguage";
-import { compareGuess } from "@/lib/languageLogic";
 import GuessForm from "@/components/forms/GuessForm";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import useDailyLanguage from "@/hooks/language/useDailyLanguage";
 import HintSection from "@/components/language/HintSection";
-import useSnippet from "@/hooks/snippet/useSnippet";
 import LoadingScreen from "@/components/common/feedback/LoadingScreen";
-import { getTodayString, getYesterdayString } from "@/lib/utils";
+import { getTodayDateString, getYesterdayDateString } from "@/lib/utils";
 
 export default function LanguageGame() {
   const { languages, loading } = useLanguages();
   const { incrementGuessCount } = useGuessCounts();
 
-  const { dailyLanguage: todayLanguage } = useDailyLanguage();
-  const [yesterdayDate] = useState(() => new Date(getYesterdayString()));
+  const [yesterdayDate] = useState(() => new Date(getYesterdayDateString()));
   const { dailyLanguage: yesterdayLanguage } = useDailyLanguage(yesterdayDate);
-
-  const { snippet } = useSnippet(todayLanguage?.id ?? null);
 
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState<LanguageGuessResult[]>([]);
   const [suggestions, setSuggestions] = useState<Language[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const dayString = getTodayString();
+  const dayString = getTodayDateString();
 
   const hasWon = guesses.some((g) => g.nameMatch);
   const [showWinMessage, setShowWinMessage] = useState(false);
+
+  const [nameLength, setNameLength] = useState<number | null>(null);
+  const [creators, setCreators] = useState<string[] | null>(null);
+  // Add a 3rd hint and not a snippet or find a way to not expose syntaxName
 
   useEffect(() => {
     if (!loading && languages.length > 0) {
@@ -58,19 +57,30 @@ export default function LanguageGame() {
     }
   }, [guesses, dayString]);
 
-  const handleSubmit = useCallback((e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    if (guess && todayLanguage) {
-      const result = compareGuess(guess, todayLanguage, languages);
-      if (result) {
-        result.id = Date.now().toString()
-        setGuesses((prev) => [...prev, result]);
-        incrementGuessCount(guess);
-        setGuess("");
-        setShowSuggestions(false);
-      }
+  const submitGuess = useCallback(async () => {
+    if (!guess) return
+    try {
+      const res = await fetch("/api/guessLanguage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ guessedLanguage: guess })
+      })
+      if (!res.ok) throw new Error("Failed to guess")
+      const result: LanguageGuessResult = await res.json()
+      result.id = Date.now().toString()
+      setGuesses((prev) => [...prev, result])
+      incrementGuessCount(guess)
+      setGuess("")
+      setShowSuggestions(false)
+    } catch (err) {
+      console.error("Error submitting guess:", err)
     }
-  }, [guess, todayLanguage, languages, incrementGuessCount]);
+  }, [guess, incrementGuessCount])
+
+    const handleSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault()
+    submitGuess()
+  }
 
   const handleGuessChange = (value: string) => {
     setGuess(value);
@@ -112,6 +122,22 @@ export default function LanguageGame() {
     }
   }, [hasWon]);
 
+  useEffect(() => {
+    async function fetchHint(hintType: string) {
+      const res = await fetch(`/api/hint?hintType=${hintType}`);
+      if (!res.ok) return null;
+      return await res.json();
+    }
+
+    if (guesses.length >= 3 && nameLength === null) {
+      fetchHint('nameLength').then(data => setNameLength(data?.nameLength));
+    }
+
+    if (guesses.length >= 6 && creators === null) {
+      fetchHint('creators').then(data => setCreators(data?.creators));
+    }
+  }, [guesses, nameLength, creators]);
+
   if (loading) return <LoadingScreen />;
 
   return (
@@ -119,15 +145,11 @@ export default function LanguageGame() {
       {guesses.length == 0 && !showWinMessage && (
         <p className="text-lg font-semibold p-2">Type any language to begin !</p>
       )}
-      {todayLanguage && (
-        <HintSection
-          incorrectGuesses={guesses.length}
-          letters={todayLanguage.name.length}
-          creators={todayLanguage.creators}
-          snippet={snippet}
-          syntaxName={todayLanguage.syntax_name}
-        />
-      )}
+      <HintSection
+        incorrectGuesses={guesses.length}
+        letters={nameLength ? nameLength : 0}
+        creators={creators ? creators : ["John Smith"]}
+      />
       {!showWinMessage && (
         <GuessForm
           guess={guess}
@@ -139,11 +161,12 @@ export default function LanguageGame() {
           placeholder="Enter a language"
         />
       )}
-      {showWinMessage && todayLanguage && (
+      {/* Need to fetch once hasWon is true only to not reveal in network tab before */}
+      {/* {showWinMessage && todayLanguage && (
         <WinMessage
           language={todayLanguage}
         />
-      )}
+      )} */}
       <LanguageGameGrid guesses={guesses} />
       {yesterdayLanguage && (
         <p className="p-4">

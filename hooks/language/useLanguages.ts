@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Language } from '@/entities/Language';
 import { supabase } from "@/lib/supabase";
 
+// Used to fetch (id, name, icon) for all the languages in the db
 export default function useLanguages() {
   const [languages, setLanguages] = useState<Language[]>([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const cachedData = sessionStorage.getItem('languages');
     if (cachedData) {
@@ -17,7 +17,7 @@ export default function useLanguages() {
       try {
         const { data, error } = await supabase
           .from("language")
-          .select("*")
+          .select("id, name, icon")
           .order("name");
 
         if (error) {
@@ -36,20 +36,5 @@ export default function useLanguages() {
     };
     fetchLanguages();
   }, []);
-  const fetchById = async (languageId: number): Promise<Language | null> => {
-    try {
-      const { data, error } = await supabase
-        .from("language")
-        .select("*")
-        .eq("id", languageId)
-        .single();
-      if (error) throw error;
-      return data;
-    } catch (error) {
-      console.error("Error fetching language by ID:", error);
-      return null;
-    }
-  };
-
-  return { languages, loading, fetchById };
+  return { languages, loading };
 }

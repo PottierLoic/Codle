@@ -1,18 +1,7 @@
 export interface Language {
   id: number;
   name: string;
-  paradigms: string[];
-  year: number;
-  typing: string;
-  execution: string;
-  gc: boolean;
-  scope: string[];
-  symbol: string;
   icon: string;
-  description: string;
-  link: string;
-  syntax_name: string;
-  creators: string[];
 }
 
 export interface LanguageGuessResult {
@@ -35,4 +24,4 @@ export interface LanguageGuessResult {
   symbolMatch: boolean;
   icon: string;
   isFromStorage?: boolean;
-} 
+}

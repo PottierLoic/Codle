@@ -8,16 +8,15 @@ interface HintSectionProps {
   incorrectGuesses: number;
   letters: number;
   creators: string[];
-  snippet?: Snippet | null;
-  syntaxName: string;
 }
 
-export default function HintSection({ incorrectGuesses, letters, creators, snippet, syntaxName }: HintSectionProps) {
+export default function HintSection({ incorrectGuesses, letters, creators }: HintSectionProps) {
   const [revealedHintIndex, setRevealedHintIndex] = useState<number | null>(null);
 
   const hints = [
     `This language name has ${letters} letters.`,
     `This language was created by ${creators.join(", ")}.`,
+    `This hint is not available yet.`,
   ];
   const hintLabels = ["Letters", "Creator(s)", "Snippet"];
 
@@ -61,11 +60,7 @@ export default function HintSection({ incorrectGuesses, letters, creators, snipp
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
           >
-            {revealedHintIndex === 2 ? (
-              snippet ? <SnippetDisplay snippet={snippet} syntaxName={syntaxName} /> : "Loading..."
-            ) : (
-              hints[revealedHintIndex]
-            )}
+            {hints[revealedHintIndex]}
           </motion.div>
         )}
       </AnimatePresence>
