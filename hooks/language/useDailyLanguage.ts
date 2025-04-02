@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import { Language } from "@/entities/Language";
+import { FullLanguage } from "@/entities/Language";
 import { supabase } from "@/lib/supabase";
 
-export default function useDailyLanguage(inputDate?: Date) {
-  const [dailyLanguage, setDailyLanguage] = useState<Language | null>(null);
+export default function useDailyLanguage(inputDate?: Date | null) {
+  const [dailyLanguage, setDailyLanguage] = useState<FullLanguage | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!inputDate) {
+      setLoading(false);
+      return;
+    }
+
     let isMounted = true;
     const fetchData = async () => {
       try {
@@ -32,7 +37,7 @@ export default function useDailyLanguage(inputDate?: Date) {
           console.error(`[ERROR] Language ID ${languageId} not found in 'language' table:`, langError?.message);
           return;
         }
-        if (isMounted) setDailyLanguage(langData as Language);
+        if (isMounted) setDailyLanguage(langData as FullLanguage);
       } catch (err) {
         if (isMounted) {
           console.error("Error fetching daily language:", err);

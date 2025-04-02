@@ -1,19 +1,18 @@
 import Timer from "./Timer";
-import { Language } from "@/entities/Language";
+import { FullLanguage } from "@/entities/Language";
 import { Snippet } from "@/entities/Snippet";
 
 type WinMessageProps =
-  | { language: Language; snippet?: never }
-  | { snippet: Snippet; language?: Language };
+  | { language: FullLanguage; snippet?: never }
+  | { snippet: Snippet; language?: FullLanguage };
 
-export default function WinMessage({ /*language,*/ snippet }: WinMessageProps) {
-  //const name = language?.name ?? snippet?.languageName ?? "Unknown";
+export default function WinMessage({ language, snippet }: WinMessageProps) {
+  const name = language?.name ?? snippet?.languageName ?? "Unknown";
   return (
     <div className="mt-4 p-2 bg-gray-800 rounded">
       <h2 className="text-xl font-semibold mb-2">
         Congratulations, the answer is{" "}
-        {/* TODO */}
-        {/* {language?.link ? (
+        {language?.link ? (
           <a
             href={language.link}
             target="_blank"
@@ -24,13 +23,12 @@ export default function WinMessage({ /*language,*/ snippet }: WinMessageProps) {
           </a>
         ) : (
           <strong>{name}</strong>
-        )} */}
+        )}
         !
       </h2>
-      {/* TODO */}
-      {/* {language?.description && (
+      {language?.description && (
         <p className="mb-2">{language.description}</p>
-      )} */}
+      )}
       {snippet && (
         <div className="mt-4">
           <p className="text-sm font-semibold text-gray-300 mb-1">About the snippet:</p>

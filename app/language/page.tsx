@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import GameLayout from "@/components/common/layout/GameLayout";
-//import WinMessage from "@/components/common/ui/WinMessage";
+import WinMessage from "@/components/common/ui/WinMessage";
 import { STORAGE_KEYS } from "@/constants";
 import LanguageGameGrid from "@/components/language/LanguageGameGrid";
 import useLanguages from "@/hooks/language/useLanguages";
@@ -34,7 +34,10 @@ export default function LanguageGame() {
 
   const [nameLength, setNameLength] = useState<number | null>(null);
   const [creators, setCreators] = useState<string[] | null>(null);
-  // Add a 3rd hint and not a snippet or find a way to not expose syntaxName
+  // TODO Add a 3rd hint and not a snippet or find a way to not expose syntaxName
+
+  const [todayLanguageDate, setTodayLanguageDate] = useState<Date | null>(null);
+  const { dailyLanguage: todayLanguage } = useDailyLanguage(todayLanguageDate);
 
   useEffect(() => {
     if (!loading && languages.length > 0) {
@@ -138,6 +141,12 @@ export default function LanguageGame() {
     }
   }, [guesses, nameLength, creators]);
 
+  useEffect(() => {
+    if (hasWon && !todayLanguage) {
+      setTodayLanguageDate(new Date(getTodayDateString()));
+    }
+  }, [hasWon, todayLanguage]);
+
   if (loading) return <LoadingScreen />;
 
   return (
@@ -161,12 +170,11 @@ export default function LanguageGame() {
           placeholder="Enter a language"
         />
       )}
-      {/* Need to fetch once hasWon is true only to not reveal in network tab before */}
-      {/* {showWinMessage && todayLanguage && (
+      {showWinMessage && todayLanguage && (
         <WinMessage
           language={todayLanguage}
         />
-      )} */}
+      )}
       <LanguageGameGrid guesses={guesses} />
       {yesterdayLanguage && (
         <p className="p-4">
