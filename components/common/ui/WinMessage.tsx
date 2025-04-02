@@ -27,9 +27,10 @@ export default function WinMessage({ language, snippet }: WinMessageProps) {
         )} */}
         !
       </h2>
-      {language?.description && (
+      {/* TODO */}
+      {/* {language?.description && (
         <p className="mb-2">{language.description}</p>
-      )}
+      )} */}
       {snippet && (
         <div className="mt-4">
           <p className="text-sm font-semibold text-gray-300 mb-1">About the snippet:</p>
