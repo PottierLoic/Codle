@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { getTodayString, getYesterdayString } from "@/lib/utils";
+import { getTodayDateString, getYesterdayDateString } from "@/lib/utils";
 import GameLayout from "@/components/common/layout/GameLayout";
 import WinMessage from "@/components/common/ui/WinMessage";
 import { STORAGE_KEYS } from "@/constants";
@@ -23,7 +23,7 @@ export default function SnippetGame() {
   const { incrementGuessCount } = useGuessCounts();
 
   const { dailySnippet: todaySnippet } = useDailySnippet();
-  const [yesterdayDate] = useState(() => new Date(getYesterdayString()));
+  const [yesterdayDate] = useState(() => new Date(getYesterdayDateString()));
   const { dailySnippet: yesterdaySnippet } = useDailySnippet(yesterdayDate);
 
   const [snippetLanguage, setSnippetLanguage] = useState<Language | null>(null);
@@ -35,7 +35,7 @@ export default function SnippetGame() {
   const [suggestions, setSuggestions] = useState<Language[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const dayString = getTodayString();
+  const dayString = getTodayDateString();
 
   const hasWon = guesses.some((g) => g.languageMatch);
   const [showWinMessage, setShowWinMessage] = useState(false);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Snippet } from "@/entities/Snippet";
 import { supabase } from "@/lib/supabase";
-import { getTodayString } from "@/lib/utils";
+import { getTodayDateString } from "@/lib/utils";
 
 export default function useDailySnippet(inputDate?: Date) {
   const [dailySnippet, setDailySnippet] = useState<Snippet | null>(null);
@@ -10,7 +10,7 @@ export default function useDailySnippet(inputDate?: Date) {
   useEffect(() => {
     const fetchDailySnippet = async () => {
       try {
-        const dateKey = inputDate ? inputDate.toISOString().slice(0, 10) : getTodayString();
+        const dateKey = inputDate ? inputDate.toISOString().slice(0, 10) : getTodayDateString();
         const { data: answerData, error: answerError } = await supabase
           .from("daily")
           .select("snippet_id")
