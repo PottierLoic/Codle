@@ -7,12 +7,13 @@ type WinMessageProps =
   | { snippet: Snippet; language?: Language };
 
 export default function WinMessage({ language, snippet }: WinMessageProps) {
-  const name = language?.name ?? snippet?.languageName ?? "Unknown";
+  //const name = language?.name ?? snippet?.languageName ?? "Unknown";
   return (
     <div className="mt-4 p-2 bg-gray-800 rounded">
       <h2 className="text-xl font-semibold mb-2">
         Congratulations, the answer is{" "}
-        {language?.link ? (
+        {/* TODO */}
+        {/* {language?.link ? (
           <a
             href={language.link}
             target="_blank"
@@ -23,7 +24,7 @@ export default function WinMessage({ language, snippet }: WinMessageProps) {
           </a>
         ) : (
           <strong>{name}</strong>
-        )}
+        )} */}
         !
       </h2>
       {language?.description && (
