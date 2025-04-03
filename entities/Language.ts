@@ -41,4 +41,5 @@ export interface LanguageGuessResult {
   symbolMatch: boolean;
   icon: string;
   isFromStorage?: boolean;
+  guessCount?: number;
 }

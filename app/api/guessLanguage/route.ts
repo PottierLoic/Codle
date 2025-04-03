@@ -113,6 +113,7 @@ export async function POST(request: Request) {
       symbolMatch: guessedData.symbol === dailyLanguageData.symbol,
       icon: guessedData.icon,
       isFromStorage: false,
+      guessCount: newGuessCount,
     };
 
     return NextResponse.json(result);
