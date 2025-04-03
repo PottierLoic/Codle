@@ -7,7 +7,6 @@ import { STORAGE_KEYS } from "@/constants";
 import LanguageGameGrid from "@/components/language/LanguageGameGrid";
 import useLanguages from "@/hooks/language/useLanguages";
 import { Language, LanguageGuessResult } from "@/entities/Language";
-import useGuessCounts from "@/hooks/language/useGuessCountsLanguage";
 import GuessForm from "@/components/forms/GuessForm";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import useDailyLanguage from "@/hooks/language/useDailyLanguage";
@@ -17,7 +16,6 @@ import { getTodayDateString, getYesterdayDateString } from "@/lib/utils";
 
 export default function LanguageGame() {
   const { languages, loading } = useLanguages();
-  const { incrementGuessCount } = useGuessCounts();
 
   const [yesterdayDate] = useState(() => new Date(getYesterdayDateString()));
   const { dailyLanguage: yesterdayLanguage } = useDailyLanguage(yesterdayDate);
@@ -72,13 +70,12 @@ export default function LanguageGame() {
       const result: LanguageGuessResult = await res.json()
       result.id = Date.now().toString()
       setGuesses((prev) => [...prev, result])
-      incrementGuessCount(guess)
       setGuess("")
       setShowSuggestions(false)
     } catch (err) {
       console.error("Error submitting guess:", err)
     }
-  }, [guess, incrementGuessCount])
+  }, [guess])
 
     const handleSubmit = useCallback((e?: React.FormEvent) => {
     if (e) e.preventDefault();

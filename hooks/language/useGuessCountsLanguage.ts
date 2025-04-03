@@ -40,32 +40,5 @@ export default function useGuessCountsLanguage() {
     };
     fetchGuessCounts();
   }, []);
-
-  const incrementGuessCount = async (languageName: string) => {
-    const today = getTodayDateString();
-    try {
-      const { data, error } = await supabase
-        .from("language")
-        .select("id")
-        .eq("name", languageName)
-        .single();
-      if (error || !data) {
-        throw new Error(`Language '${languageName}' not found`);
-      }
-      const languageId = data.id;
-      setGuessCounts((prevCounts) => ({
-        ...prevCounts,
-        [languageName]: (prevCounts[languageName] || 0) + 1,
-      }));
-      const { error: upsertError } = await supabase
-        .from("guess_language")
-        .upsert({ date: today, language_id: languageId, guess_count: (guessCounts[languageName] || 0) + 1 });
-      if (upsertError) {
-        throw upsertError;
-      }
-    } catch (error) {
-      console.error("Error updating guess count: ", error);
-    }
-  };
-  return { guessCounts, loading, incrementGuessCount };
+  return { guessCounts, loading };
 }

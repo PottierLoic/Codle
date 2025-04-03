@@ -52,6 +52,28 @@ export async function POST(request: Request) {
     }
 
     const guessedData = guessedRes.data;
+    const { data: guessData, error: fetchError } = await supabase
+      .from("guess_language")
+      .select("guess_count")
+      .eq("language_id", guessedData.id)
+      .eq("date", dateKey)
+      .single();
+
+    if (fetchError && fetchError.code !== "PGRST116") {
+      console.error("[ERROR] Failed to fetch guess count:", fetchError.message);
+      return NextResponse.json({ message: "Failed to fetch guess count" }, { status: 500 });
+    }
+
+    const newGuessCount = (guessData?.guess_count || 0) + 1;
+
+    const { error: incrementError } = await supabase
+      .from("guess_language")
+      .upsert({ language_id: guessedData.id, date: dateKey, guess_count: newGuessCount });
+
+    if (incrementError) {
+      console.error("[ERROR] Failed to increment guess count:", incrementError.message);
+      return NextResponse.json({ message: "Failed to update guess count" }, { status: 500 });
+    }
 
     if (!dailyLanguageData) {
       throw new Error("Daily language data is null");
