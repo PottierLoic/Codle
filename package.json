@@ -12,6 +12,7 @@
     "@headlessui/react": "^2.2.0",
     "@supabase/supabase-js": "^2.49.1",
     "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "framer-motion": "^12.5.0",
     "lucide-react": "^0.484.0",
     "next": "15.2.2",
