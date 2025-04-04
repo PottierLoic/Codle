@@ -41,7 +41,7 @@ export default function SnippetGame() {
   const [todaySnippetDate, setTodaySnippetDate] = useState<Date | null>(null); // TODO fix repetitive fetchs
   const { dailySnippet: fullDailySnippet } = useFullDailySnippet(todaySnippetDate);
   const languageId = fullDailySnippet?.language_id ?? null;
-  const { language: snippetLanguage, loading: languageLoading } = useFullLanguage(languageId);
+  const { language: snippetLanguage } = useFullLanguage(languageId);
 
 
   // Check if the user has won and manage win message visibility
