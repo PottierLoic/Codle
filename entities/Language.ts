@@ -1,6 +1,12 @@
 export interface Language {
   id: number;
   name: string;
+  icon: string;
+}
+
+export interface FullLanguage {
+  id: number;
+  name: string;
   paradigms: string[];
   year: number;
   typing: string;
@@ -35,4 +41,5 @@ export interface LanguageGuessResult {
   symbolMatch: boolean;
   icon: string;
   isFromStorage?: boolean;
-} 
+  guessCount?: number;
+}

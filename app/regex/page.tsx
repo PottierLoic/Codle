@@ -6,7 +6,7 @@ import useDailyRegex from "@/hooks/regex/useDailyRegex";
 import useSubmitRegexSolution from "@/hooks/regex/useSubmitRegexSolution";
 import useRegexSolutions from "@/hooks/regex/useRegexSolutions";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
-import { getTodayString } from "@/lib/utils";
+import { getTodayDateString } from "@/lib/utils";
 import { STORAGE_KEYS } from "@/constants";
 import React from "react";
 import { X } from "lucide-react";
@@ -22,7 +22,7 @@ export default function RegexGame() {
   const [submitted, setSubmitted] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
 
-  const dayString = getTodayString();
+  const dayString = getTodayDateString();
 
   useEffect(() => {
     if (!dailyRegex) return;

@@ -2,15 +2,12 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { LanguageGuessResult } from "@/entities/Language";
 import Image from "next/image";
-import useGuessCounts from "@/hooks/language/useGuessCountsLanguage";
 
 interface LanguageGameGridProps {
   guesses: LanguageGuessResult[];
 }
 
 export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
-  const { guessCounts } = useGuessCounts();
-
   const [hoveredCol, setHoveredCol] = useState<string | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
@@ -105,7 +102,7 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
                         className="rounded-md object-contain w-full h-full"
                       />
                       <span className="absolute bottom-1 right-1 border border-gray-600 bg-gray-900 text-xs px-1 py-0.5 rounded">
-                        {guessCounts[g.name] ?? 0}
+                        {g.guessCount ?? 0}
                       </span>
                     </div>
                   ) : (
