@@ -1,13 +1,13 @@
-import Timer from "./Timer";
+import Timer from "@/components/common/ui/Timer";
 import { FullLanguage } from "@/entities/Language";
-import { Snippet } from "@/entities/Snippet";
+import { FullSnippet } from "@/entities/Snippet";
 
-type WinMessageProps =
-  | { language: FullLanguage; snippet?: never }
-  | { snippet: Snippet; language?: FullLanguage };
+interface WinMessageProps {
+  language: FullLanguage;
+  snippet: FullSnippet;
+}
 
 export default function WinMessage({ language, snippet }: WinMessageProps) {
-  const name = language?.name ?? snippet?.languageName ?? "Unknown";
   return (
     <div className="mt-4 p-2 bg-gray-800 rounded">
       <h2 className="text-xl font-semibold mb-2">
@@ -19,10 +19,10 @@ export default function WinMessage({ language, snippet }: WinMessageProps) {
             rel="noopener noreferrer"
             className="text-blue-400 underline font-bold"
           >
-            {name}
+            {language.name}
           </a>
         ) : (
-          <strong>{name}</strong>
+          <strong>{language.name}</strong>
         )}
         !
       </h2>

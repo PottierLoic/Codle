@@ -1,6 +1,11 @@
 export interface Snippet {
   id: number;
   code: string;
+}
+
+export interface FullSnippet {
+  id: number;
+  code: string;
   language_id: number;
   languageName?: string;
   description: string;
@@ -13,4 +18,5 @@ export interface SnippetGuessResult {
   languageMatch: boolean;
   icon?: string;
   isFromStorage?: boolean;
-} 
+  guessCount?: number;
+}

@@ -1,15 +1,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { SnippetGuessResult } from "@/entities/Snippet";
-import useGuessCounts from "@/hooks/snippet/useGuessCountsSnippet";
 
 interface SnippetGameGridProps {
   guesses: SnippetGuessResult[];
 }
 
 export default function SnippetGameGrid({ guesses }: SnippetGameGridProps) {
-  const { guessCounts } = useGuessCounts();
-
   const revealVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: (i: number) => ({
@@ -54,7 +51,7 @@ export default function SnippetGameGrid({ guesses }: SnippetGameGridProps) {
               </div>
             )}
             <span className="absolute bottom-1 right-1 border border-gray-500 bg-gray-800 text-xs px-2 py-1 rounded">
-              {guessCounts[g.language] ?? 0}
+              {g.guessCount ?? 0}
             </span>
           </div>
         </motion.div>

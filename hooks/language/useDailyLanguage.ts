@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FullLanguage } from "@/entities/Language";
 import { supabase } from "@/lib/supabase";
 
+// Used to fetch full data on the daily language from the db
 export default function useDailyLanguage(inputDate?: Date | null) {
   const [dailyLanguage, setDailyLanguage] = useState<FullLanguage | null>(null);
   const [loading, setLoading] = useState(true);

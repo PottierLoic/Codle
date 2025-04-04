@@ -3,33 +3,30 @@
 import { useState, useEffect, useCallback } from "react";
 import { getTodayDateString, getYesterdayDateString } from "@/lib/utils";
 import GameLayout from "@/components/common/layout/GameLayout";
-import WinMessage from "@/components/common/ui/WinMessage";
+import WinMessage from "@/components/snippet/WinMessage";
 import { STORAGE_KEYS } from "@/constants";
 import useLanguages from "@/hooks/language/useLanguages";
-import useGuessCounts from "@/hooks/snippet/useGuessCountsSnippet";
-import useDailySnippet from "@/hooks/snippet/useDailySnippet";
+import usePartialDailySnippet from "@/hooks/snippet/usePartialDailySnippet";
+import useFullDailySnippet from "@/hooks/snippet/useFullDailySnippet";
 import { Language } from "@/entities/Language";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
-import { compareGuess } from "@/lib/snippetLogic";
 import { SnippetGuessResult } from "@/entities/Snippet";
 import GuessForm from "@/components/forms/GuessForm";
 import SnippetGameGrid from "@/components/snippet/SnippetGameGrid";
 import SnippetDisplay from "@/components/snippet/SnippetDisplay";
 import ChallengeSection from "@/components/snippet/ChallengeSection";
 import LoadingScreen from "@/components/common/feedback/LoadingScreen";
+import useFullLanguage from "@/hooks/language/useFullLanguage";
 
 export default function SnippetGame() {
   const { languages, loading: languagesLoading } = useLanguages();
-  const { incrementGuessCount } = useGuessCounts();
 
-  const { dailySnippet: todaySnippet } = useDailySnippet();
+  // Initialize yesterday's date and fetch the daily language for it
   const [yesterdayDate] = useState(() => new Date(getYesterdayDateString()));
-  const { dailySnippet: yesterdaySnippet } = useDailySnippet(yesterdayDate);
-
-  const [snippetLanguage, setSnippetLanguage] = useState<Language | null>(null);
+  const { dailySnippet: yesterdaySnippet } = useFullDailySnippet(yesterdayDate);
   const [yesterdaySnippetLanguage, setYesterdaySnippetLanguage] = useState<Language | null>(null);
 
-  const [enableSyntaxHighlighting, setEnableSyntaxHighlighting] = useState(false);
+  // states for user input, guesses, and suggestions
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState<SnippetGuessResult[]>([]);
   const [suggestions, setSuggestions] = useState<Language[]>([]);
@@ -37,8 +34,22 @@ export default function SnippetGame() {
 
   const dayString = getTodayDateString();
 
+  // states for the partial daily snippet
+  const { dailySnippet: partialDailySnippet } = usePartialDailySnippet(new Date(dayString));
+
+  // states for the full daily snippet
+  const [todaySnippetDate, setTodaySnippetDate] = useState<Date | null>(null); // TODO fix repetitive fetchs
+  const { dailySnippet: fullDailySnippet } = useFullDailySnippet(todaySnippetDate);
+  const languageId = fullDailySnippet?.language_id ?? null;
+  const { language: snippetLanguage, loading: languageLoading } = useFullLanguage(languageId);
+
+
+  // Check if the user has won and manage win message visibility
   const hasWon = guesses.some((g) => g.languageMatch);
   const [showWinMessage, setShowWinMessage] = useState(false);
+
+  // Challenge mode states
+  const [enableSyntaxHighlighting, setEnableSyntaxHighlighting] = useState(false);
 
   useEffect(() => {
     if (!languagesLoading) {
@@ -61,19 +72,31 @@ export default function SnippetGame() {
     }
   }, [guesses, dayString]);
 
+  // Submit a guess to the server
+  const submitGuess = useCallback(async () => {
+    if (!guess) return;
+    try {
+      const res = await fetch("/api/guessSnippet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ guessedLanguage: guess })
+      });
+      if (!res.ok) throw new Error("Failed to guess");
+      const result: SnippetGuessResult = await res.json();
+      result.id = Date.now().toString();
+      setGuesses((prev) => [...prev, result]);
+      setGuess("");
+      setShowSuggestions(false);
+    } catch (err) {
+      console.error("Error submitting guess:", err);
+    }
+  }, [guess]);
+
+  // Handle form submission
   const handleSubmit = useCallback((e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    if (guess && todaySnippet) {
-      const result = compareGuess(guess, todaySnippet, languages);
-      if (result) {
-        result.id = Date.now().toString()
-        setGuesses((prev) => [...prev, result]);
-        incrementGuessCount(guess);
-        setGuess("");
-        setShowSuggestions(false);
-      }
-    }
-  }, [guess, todaySnippet, languages, incrementGuessCount]);
+    submitGuess();
+  }, [submitGuess]);
 
   const handleGuessChange = (value: string) => {
     setGuess(value);
@@ -116,18 +139,18 @@ export default function SnippetGame() {
   }, [hasWon]);
 
   useEffect(() => {
-    if (todaySnippet && languages.length > 0) {
-      const foundLanguage = languages.find(lang => lang.id === todaySnippet.language_id);
-      setSnippetLanguage(foundLanguage || null);
-    }
-  }, [todaySnippet, languages]);
-
-  useEffect(() => {
     if (yesterdaySnippet && languages.length > 0) {
       const foundLanguage = languages.find(lang => lang.id === yesterdaySnippet.language_id);
       setYesterdaySnippetLanguage(foundLanguage || null);
     }
   }, [yesterdaySnippet, languages]);
+
+  // Set today's snippet date if the user has won
+  useEffect(() => {
+    if (hasWon && !fullDailySnippet) {
+      setTodaySnippetDate(new Date(getTodayDateString()));
+    }
+  }, [hasWon, fullDailySnippet]);
 
   if (languagesLoading) return <LoadingScreen />;
 
@@ -148,13 +171,13 @@ export default function SnippetGame() {
           placeholder="Enter a language"
         />
       )}
-      {showWinMessage && snippetLanguage && todaySnippet && (
-        <WinMessage language={snippetLanguage} snippet={todaySnippet} />
+      {showWinMessage && fullDailySnippet && snippetLanguage && (
+        <WinMessage language={snippetLanguage} snippet={fullDailySnippet} />
       )}
-      {todaySnippet && (
+      {partialDailySnippet && (
         <SnippetDisplay
-          snippet={todaySnippet}
-          syntaxName={"todo"}
+          snippet={partialDailySnippet}
+          syntaxName={"todo"} // TODO review this because it would leak the language in network tab
           enableSyntaxHighlighting={enableSyntaxHighlighting}
         />
       )}

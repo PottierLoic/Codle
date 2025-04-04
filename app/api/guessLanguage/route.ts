@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import { getTodayDateString } from "@/lib/utils";
 import { LanguageGuessResult, FullLanguage } from "@/entities/Language";
 
 let cachedDailyLanguage: FullLanguage | null = null;
 let cachedDateKey: string | null = null;
 
-async function getDailyLanguage(dateKey: string) {
+async function getDailyLanguage() {
+  const dateKey = getTodayDateString();
+
   if (cachedDailyLanguage && cachedDateKey === dateKey) {
     return cachedDailyLanguage;
   }
@@ -39,11 +42,11 @@ async function getDailyLanguage(dateKey: string) {
 export async function POST(request: Request) {
   try {
     const { guessedLanguage } = await request.json();
-    const dateKey = new Date().toISOString().slice(0, 10);
+    const dateKey = getTodayDateString();
 
     const [guessedRes, dailyLanguageData] = await Promise.all([
       supabase.from("language").select("*").eq("name", guessedLanguage).single(),
-      getDailyLanguage(dateKey)
+      getDailyLanguage()
     ]);
 
     if (guessedRes.error || !guessedRes.data) {

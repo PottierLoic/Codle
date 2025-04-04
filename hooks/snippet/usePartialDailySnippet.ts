@@ -1,47 +1,58 @@
 import { useEffect, useState } from "react";
 import { Snippet } from "@/entities/Snippet";
 import { supabase } from "@/lib/supabase";
-import { getTodayDateString } from "@/lib/utils";
 
-export default function useDailySnippet(inputDate?: Date) {
+export default function usePartialDailySnippet(inputDate?: Date | null) {
   const [dailySnippet, setDailySnippet] = useState<Snippet | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!inputDate) {
+      setLoading(false);
+      return;
+    }
+
+    let isMounted = true;
     const fetchDailySnippet = async () => {
       try {
-        const dateKey = inputDate ? inputDate.toISOString().slice(0, 10) : getTodayDateString();
+        const dateKey = inputDate.toISOString().slice(0, 10);
+
         const { data: answerData, error: answerError } = await supabase
           .from("daily")
           .select("snippet_id")
           .eq("date", dateKey)
           .single();
+
         if (answerError || !answerData) {
-          console.error(`[ERROR] No snippet found in 'answer' for ${dateKey}:`, answerError?.message);
-          setDailySnippet(null);
+          console.error(`[ERROR] No snippet found for ${dateKey}:`, answerError?.message);
           return;
         }
+
         const snippetId = answerData.snippet_id;
         const { data: snippetData, error: snippetError } = await supabase
           .from("snippet")
           .select("*")
           .eq("id", snippetId)
           .single();
+
         if (snippetError || !snippetData) {
-          console.error(`[ERROR] Snippet ID ${snippetId} not found in 'snippet' table:`, snippetError?.message);
-          setDailySnippet(null);
+          console.error(`[ERROR] Snippet ID ${snippetId} not found:`, snippetError?.message);
           return;
         }
-        const formatedData = snippetData as Snippet;
-        setDailySnippet(formatedData);
+
+        if (isMounted) setDailySnippet(snippetData as Snippet);
       } catch (error) {
-        console.error("[ERROR] Unexpected error:", error);
-        setDailySnippet(null);
+        if (isMounted) {
+          console.error("[ERROR] Unexpected error while fetching daily snippet:", error);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
+
     fetchDailySnippet();
+    return () => { isMounted = false; };
   }, [inputDate]);
+
   return { dailySnippet, loading };
 }
