@@ -6,7 +6,6 @@ import GameLayout from "@/components/common/layout/GameLayout";
 import WinMessage from "@/components/snippet/WinMessage";
 import { STORAGE_KEYS } from "@/constants";
 import useLanguages from "@/hooks/language/useLanguages";
-import usePartialDailySnippet from "@/hooks/snippet/usePartialDailySnippet";
 import useFullDailySnippet from "@/hooks/snippet/useFullDailySnippet";
 import { Language } from "@/entities/Language";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
@@ -35,10 +34,11 @@ export default function SnippetGame() {
   const dayString = getTodayDateString();
 
   // states for the partial daily snippet
-  const { dailySnippet: partialDailySnippet } = usePartialDailySnippet(new Date(dayString));
+  const [snippetCode, setSnippetCode] = useState<string | null>(null);
+  const [loadingSnippet, setLoadingSnippet] = useState(true);
 
   // states for the full daily snippet
-  const [todaySnippetDate, setTodaySnippetDate] = useState<Date | null>(null); // TODO fix repetitive fetchs
+  const [todaySnippetDate, setTodaySnippetDate] = useState<Date | null>(null);
   const { dailySnippet: fullDailySnippet } = useFullDailySnippet(todaySnippetDate);
   const languageId = fullDailySnippet?.language_id ?? null;
   const { language: snippetLanguage } = useFullLanguage(languageId);
@@ -50,6 +50,23 @@ export default function SnippetGame() {
 
   // Challenge mode states
   const [enableSyntaxHighlighting, setEnableSyntaxHighlighting] = useState(false);
+
+  // fetch the daily snippet code from the server
+  useEffect(() => {
+    const fetchSnippetCode = async () => {
+      try {
+        const res = await fetch("/api/snippet");
+        if (!res.ok) throw new Error("Failed to load snippet code");
+        const { code } = await res.json();
+        setSnippetCode(code);
+      } catch (err) {
+        console.error("[ERROR] Failed to fetch snippet code:", err);
+      } finally {
+        setLoadingSnippet(false);
+      }
+    };
+    fetchSnippetCode();
+  }, []);
 
   useEffect(() => {
     if (!languagesLoading) {
@@ -152,7 +169,7 @@ export default function SnippetGame() {
     }
   }, [hasWon, fullDailySnippet]);
 
-  if (languagesLoading) return <LoadingScreen />;
+  if (languagesLoading || loadingSnippet) return <LoadingScreen />;
 
   return (
     <GameLayout>
@@ -174,9 +191,9 @@ export default function SnippetGame() {
       {showWinMessage && fullDailySnippet && snippetLanguage && (
         <WinMessage language={snippetLanguage} snippet={fullDailySnippet} />
       )}
-      {partialDailySnippet && (
+      {snippetCode && (
         <SnippetDisplay
-          snippet={partialDailySnippet}
+          snippet={{ code: snippetCode }}
           syntaxName={"todo"} // TODO review this because it would leak the language in network tab
           enableSyntaxHighlighting={enableSyntaxHighlighting}
         />
