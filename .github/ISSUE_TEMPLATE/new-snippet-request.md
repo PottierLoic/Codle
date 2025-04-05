@@ -22,7 +22,7 @@ fn merge_sort(arr: &mut [i32]) {
 }
 ```
 
-### Link (optional)
+### Link
 > Link to documentation or source where this snippet is explained further  
 `[e.g. https://en.wikipedia.org/wiki/Merge_sort]`
 
