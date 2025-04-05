@@ -51,7 +51,7 @@ assignees: ''
 
 ### 🔗 Official Link
 > Official website or a reliable reference (Wikipedia, etc.)  
-`[e.g. https://www.rust-lang.org/]`l or M
+`[e.g. https://www.rust-lang.org/]`
 
 ### 🧑‍💻 Creator(s)
 > List of main creator(s) of the language  
