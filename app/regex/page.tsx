@@ -14,13 +14,15 @@ import { X } from "lucide-react";
 export default function RegexGame() {
   const { dailyRegex, loading } = useDailyRegex();
   const { submitSolution, submitting } = useSubmitRegexSolution();
-  const { solutions, refetch } = useRegexSolutions();
 
   const [regexPattern, setRegexPattern] = useState("");
   const [replacement, setReplacement] = useState("");
+
   const [debouncedPattern, setDebouncedPattern] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
+
+  const { solutions, refetch } = useRegexSolutions({enabled: submitted});
 
   const dayString = getTodayDateString();
 
