@@ -2,7 +2,7 @@
 name: New language request
 about: Submit a new language to be added to the guessing game
 title: 'Add language: [Language Name]'
-labels: ''
+labels: Language request
 assignees: ''
 
 ---
