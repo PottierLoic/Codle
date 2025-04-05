@@ -13,30 +13,22 @@ async function getDailyLanguage() {
     return cachedDailyLanguage;
   }
 
-  const { data: dailyIdData, error: dailyIdError } = await supabase
+  const { data, error } = await supabase
     .from("daily")
-    .select("language_id")
+    .select("language:language_id(*)")
     .eq("date", dateKey)
     .single();
 
-  if (dailyIdError || !dailyIdData) {
-    throw new Error(`Daily ID not found: ${dailyIdError?.message}`);
+  const language = Array.isArray(data?.language) ? data.language[0] : data?.language;
+
+  if (error || !language) {
+    throw new Error(`Failed to fetch daily language: ${error?.message}`);
   }
 
-  const { data: dailyLanguageData, error: dailyLanguageError } = await supabase
-    .from("language")
-    .select("*")
-    .eq("id", dailyIdData.language_id)
-    .single();
-
-  if (dailyLanguageError || !dailyLanguageData) {
-    throw new Error(`Daily language not found: ${dailyLanguageError?.message}`);
-  }
-
-  cachedDailyLanguage = dailyLanguageData;
+  cachedDailyLanguage = language;
   cachedDateKey = dateKey;
 
-  return cachedDailyLanguage;
+  return language;
 }
 
 export async function POST(request: Request) {

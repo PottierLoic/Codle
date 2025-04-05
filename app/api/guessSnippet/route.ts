@@ -14,31 +14,24 @@ async function getDailySnippet(): Promise<FullSnippet> {
     return cachedSnippet;
   }
 
-  const { data: dailyData, error: dailyError } = await supabase
+  const { data, error } = await supabase
     .from("daily")
-    .select("snippet_id")
+    .select("snippet:snippet_id(*)")
     .eq("date", dateKey)
     .single();
 
-  if (dailyError || !dailyData) {
-    throw new Error(`Daily snippet ID not found: ${dailyError?.message}`);
+  const snippet = Array.isArray(data?.snippet) ? data.snippet[0] : data?.snippet;
+
+  if (error || !snippet) {
+    throw new Error(`Failed to fetch daily snippet: ${error?.message}`);
   }
 
-  const { data: snippetData, error: snippetError } = await supabase
-    .from("snippet")
-    .select("*")
-    .eq("id", dailyData.snippet_id)
-    .single();
-
-  if (snippetError || !snippetData) {
-    throw new Error(`Snippet not found: ${snippetError?.message}`);
-  }
-
-  cachedSnippet = snippetData;
+  cachedSnippet = snippet;
   cachedDateKey = dateKey;
 
-  return snippetData;
+  return snippet;
 }
+
 
 export async function POST(request: Request) {
   try {

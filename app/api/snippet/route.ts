@@ -6,33 +6,20 @@ export async function GET() {
   try {
     const dateKey = getTodayDateString();
 
-    // Get the snippet ID for today
-    const { data: dailyData, error: dailyError } = await supabase
+    const { data, error } = await supabase
       .from("daily")
-      .select("snippet_id")
+      .select("snippet:snippet_id(code)")
       .eq("date", dateKey)
       .single();
 
-    if (dailyError || !dailyData) {
-      console.error("[ERROR] Failed to fetch today's snippet_id:", dailyError?.message);
-      return NextResponse.json({ message: "Snippet ID not found" }, { status: 404 });
-    }
+    const snippet = Array.isArray(data?.snippet) ? data.snippet[0] : data?.snippet;
 
-    const snippetId = dailyData.snippet_id;
-
-    // Fetch the code of the snippet
-    const { data: snippetData, error: snippetError } = await supabase
-      .from("snippet")
-      .select("code")
-      .eq("id", snippetId)
-      .single();
-
-    if (snippetError || !snippetData) {
-      console.error("[ERROR] Failed to fetch snippet code:", snippetError?.message);
+    if (error || !snippet?.code) {
+      console.error("[ERROR] Failed to fetch today's snippet code:", error?.message);
       return NextResponse.json({ message: "Snippet code not found" }, { status: 404 });
     }
 
-    return NextResponse.json({ code: snippetData.code });
+    return NextResponse.json({ code: snippet.code });
   } catch (error: unknown) {
     console.error("[ERROR] Unexpected error in /api/snippet:", (error as Error).message);
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
