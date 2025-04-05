@@ -13,13 +13,14 @@ import useDailyLanguage from "@/hooks/language/useDailyLanguage";
 import HintSection from "@/components/language/HintSection";
 import LoadingScreen from "@/components/common/feedback/LoadingScreen";
 import { getTodayDateString, getYesterdayDateString } from "@/lib/utils";
+import { fetchLanguageHint, submitLanguageGuess } from "@/services/languageService";
 
 export default function LanguageGame() {
   const { languages, loading } = useLanguages();
 
   // Initialize yesterday's date and fetch the daily language for it
   const [yesterdayDate] = useState(() => new Date(getYesterdayDateString()));
-  const { dailyLanguage: yesterdayLanguage } = useDailyLanguage(yesterdayDate);
+  const { dailyLanguage: yesterdayLanguage } = useDailyLanguage({date: yesterdayDate, enabled: true});
 
   // State for user input, guesses, and suggestions
   const [guess, setGuess] = useState("");
@@ -38,8 +39,8 @@ export default function LanguageGame() {
   const [creators, setCreators] = useState<string[] | null>(null);
 
   // State for today's language
-  const [todayLanguageDate, setTodayLanguageDate] = useState<Date | null>(null);
-  const { dailyLanguage: todayLanguage } = useDailyLanguage(todayLanguageDate);
+  const [todayDate] = useState(() => new Date(getTodayDateString()));
+  const { dailyLanguage: todayLanguage } = useDailyLanguage({date: todayDate, enabled: hasWon});
 
   // Load progress from storage when the component mounts
   useEffect(() => {
@@ -68,13 +69,7 @@ export default function LanguageGame() {
   const submitGuess = useCallback(async () => {
     if (!guess) return;
     try {
-      const res = await fetch("/api/guessLanguage", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ guessedLanguage: guess })
-      });
-      if (!res.ok) throw new Error("Failed to guess");
-      const result: LanguageGuessResult = await res.json();
+      const result = await submitLanguageGuess(guess);
       result.id = Date.now().toString();
       setGuesses((prev) => [...prev, result]);
       setGuess("");
@@ -90,7 +85,7 @@ export default function LanguageGame() {
     submitGuess();
   }, [submitGuess]);
 
-  // Handle changes to the guess input and update suggestions
+  // Handle guess input changes and update suggestions
   const handleGuessChange = (value: string) => {
     setGuess(value);
     if (value.length > 0) {
@@ -108,19 +103,12 @@ export default function LanguageGame() {
     }
   };
 
-  // Automatically submit the guess if suggestions are not shown
-  useEffect(() => {
-    if (guess && !showSuggestions) {
-      handleSubmit();
-    }
-  }, [guess, showSuggestions, handleSubmit]);
-
   // Handle selecting a suggestion from the dropdown
-  const handleSelectSuggestion = (name: string) => {
+  const handleSelectSuggestion = useCallback((name: string) => {
     setGuess(name);
     setSuggestions([]);
     setShowSuggestions(false);
-  };
+  }, []);
 
   // Show the win message after a delay if the user has won
   useEffect(() => {
@@ -136,27 +124,18 @@ export default function LanguageGame() {
 
   // Fetch hints based on the number of incorrect guesses
   useEffect(() => {
-    async function fetchHint(hintType: string) {
-      const res = await fetch(`/api/hint?hintType=${hintType}`);
-      if (!res.ok) return null;
-      return await res.json();
+    async function fetchHint() {
+      if (guesses.length >= 3 && !nameLength) {
+        const data = await fetchLanguageHint("nameLength");
+        setNameLength(data?.nameLength ?? null);
+      }
+      if (guesses.length >= 5 && !creators) {
+        const data = await fetchLanguageHint("creators");
+        setCreators(data?.creators ?? null);
+      }
     }
-
-    if (guesses.length >= 3 && nameLength === null) {
-      fetchHint('nameLength').then(data => setNameLength(data?.nameLength));
-    }
-
-    if (guesses.length >= 6 && creators === null) {
-      fetchHint('creators').then(data => setCreators(data?.creators));
-    }
+    fetchHint();
   }, [guesses, nameLength, creators]);
-
-  // Set today's language date if the user has won
-  useEffect(() => {
-    if (hasWon && !todayLanguage) {
-      setTodayLanguageDate(new Date(getTodayDateString()));
-    }
-  }, [hasWon, todayLanguage]);
 
   if (loading) return <LoadingScreen />;
 

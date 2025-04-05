@@ -2,43 +2,41 @@ import { useEffect, useState } from "react";
 import { FullLanguage } from "@/entities/Language";
 import { supabase } from "@/lib/supabase";
 
+interface UseDailyLanguageProps {
+  date: Date;
+  enabled: boolean;
+}
+
 // Used to fetch full data on the daily language from the db
-export default function useDailyLanguage(inputDate?: Date | null) {
+export default function useDailyLanguage({ date, enabled }: UseDailyLanguageProps) {
   const [dailyLanguage, setDailyLanguage] = useState<FullLanguage | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!inputDate) {
-      setLoading(false);
-      return;
-    }
-
+    if (!enabled) { return; }
+    setLoading(true);
     let isMounted = true;
+
     const fetchData = async () => {
       try {
-        let dateObj = inputDate || new Date();
-        const dateKey = dateObj.toISOString().slice(0, 10);
-        const { data: answerData, error: answerError } = await supabase
+        const dateKey = date.toISOString().slice(0, 10);
+
+        const { data, error } = await supabase
           .from("daily")
-          .select("language_id")
+          .select("language:language_id(*)")
           .eq("date", dateKey)
           .single();
 
-        if (answerError || !answerData) {
-          console.error(`[ERROR] No language found for ${dateKey}:`, answerError?.message);
+        if (error || !data?.language) {
+          console.error(`[ERROR] Failed to fetch full language for ${dateKey}:`, error?.message);
           return;
         }
-        const languageId = answerData.language_id;
-        const { data: langData, error: langError } = await supabase
-          .from("language")
-          .select("*")
-          .eq("id", languageId)
-          .single();
-        if (langError || !langData) {
-          console.error(`[ERROR] Language ID ${languageId} not found in 'language' table:`, langError?.message);
-          return;
+
+        const lang = Array.isArray(data.language) ? data.language[0] : data.language;
+
+        if (isMounted && lang) {
+          setDailyLanguage(lang as FullLanguage);
         }
-        if (isMounted) setDailyLanguage(langData as FullLanguage);
       } catch (err) {
         if (isMounted) {
           console.error("Error fetching daily language:", err);
@@ -49,7 +47,7 @@ export default function useDailyLanguage(inputDate?: Date | null) {
     };
     fetchData();
     return () => { isMounted = false; };
-  }, [inputDate]);
+  }, [date, enabled]);
 
   return { dailyLanguage, loading };
 }

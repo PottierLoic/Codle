@@ -20,6 +20,10 @@ serviceAccountKey.json at root should contain firebase api keys to be able to us
 
 suggestions
 - [x] Add cursor pointer to the buttons
-- [ ] move the logic to server, and do not expose the data / solutions in the client
+- [almost] move the logic to server, and do not expose the data / solutions in the client
 - [ ] animate the cat ???
 - [x] include the cat in the codle link in header
+
+- [ ] remove regex solutions fetch  on the start of regex game page
+- [ ] Remove auto submit when clicking a suggestion in guessForm (clicking a suggestion only fill the input, not submit it)
+- [ ] ensure only 1 fetch is done when win

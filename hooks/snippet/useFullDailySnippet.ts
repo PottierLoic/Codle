@@ -2,45 +2,41 @@ import { useEffect, useState } from "react";
 import { FullSnippet } from "@/entities/Snippet";
 import { supabase } from "@/lib/supabase";
 
-export default function useFullDailySnippet(inputDate?: Date | null) {
+interface UseFullDailySnippetProps {
+  date: Date;
+  enabled: boolean;
+}
+
+export default function useFullDailySnippet({date, enabled}: UseFullDailySnippetProps) {
   const [dailySnippet, setDailySnippet] = useState<FullSnippet | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!inputDate) {
-      setLoading(false);
-      return;
-    }
-
+    if (!enabled) { return; }
+    setLoading(true);
     let isMounted = true;
-    const fetchDailySnippet = async () => {
-      try {
-        const dateKey = inputDate.toISOString().slice(0, 10);
 
-        const { data: answerData, error: answerError } = await supabase
+    const fetchData = async () => {
+      try {
+        const dateKey = date.toISOString().slice(0, 10);
+
+        const { data, error } = await supabase
           .from("daily")
-          .select("snippet_id")
+          .select("snippet:snippet_id(*)")
           .eq("date", dateKey)
           .single();
 
-        if (answerError || !answerData) {
-          console.error(`[ERROR] No snippet found for ${dateKey}:`, answerError?.message);
+        if (error || !data?.snippet) {
+          console.error(`[ERROR] Failed to fetch full snippet for ${dateKey}:`, error?.message);
           return;
         }
 
-        const snippetId = answerData.snippet_id;
-        const { data: snippetData, error: snippetError } = await supabase
-          .from("snippet")
-          .select("*")
-          .eq("id", snippetId)
-          .single();
-
-        if (snippetError || !snippetData) {
-          console.error(`[ERROR] Snippet ID ${snippetId} not found:`, snippetError?.message);
-          return;
+        if (isMounted) {
+          const snippet = Array.isArray(data.snippet) ? data.snippet[0] : data.snippet;
+          if (snippet) {
+            setDailySnippet(snippet as FullSnippet);
+          }
         }
-
-        if (isMounted) setDailySnippet(snippetData as FullSnippet);
       } catch (error) {
         if (isMounted) {
           console.error("[ERROR] Unexpected error while fetching daily snippet:", error);
@@ -49,10 +45,9 @@ export default function useFullDailySnippet(inputDate?: Date | null) {
         if (isMounted) setLoading(false);
       }
     };
-
-    fetchDailySnippet();
+    fetchData();
     return () => { isMounted = false; };
-  }, [inputDate]);
+  }, [date, enabled]);
 
   return { dailySnippet, loading };
 }

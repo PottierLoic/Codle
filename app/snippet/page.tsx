@@ -16,13 +16,14 @@ import SnippetDisplay from "@/components/snippet/SnippetDisplay";
 import ChallengeSection from "@/components/snippet/ChallengeSection";
 import LoadingScreen from "@/components/common/feedback/LoadingScreen";
 import useFullLanguage from "@/hooks/language/useFullLanguage";
+import { fetchSnippetCode, submitSnippetGuess } from "@/services/snippetService";
 
 export default function SnippetGame() {
   const { languages, loading: languagesLoading } = useLanguages();
 
   // Initialize yesterday's date and fetch the daily language for it
   const [yesterdayDate] = useState(() => new Date(getYesterdayDateString()));
-  const { dailySnippet: yesterdaySnippet } = useFullDailySnippet(yesterdayDate);
+  const { dailySnippet: yesterdaySnippet } = useFullDailySnippet({date: yesterdayDate, enabled: true});
   const [yesterdaySnippetLanguage, setYesterdaySnippetLanguage] = useState<Language | null>(null);
 
   // states for user input, guesses, and suggestions
@@ -37,27 +38,24 @@ export default function SnippetGame() {
   const [snippetCode, setSnippetCode] = useState<string | null>(null);
   const [loadingSnippet, setLoadingSnippet] = useState(true);
 
-  // states for the full daily snippet
-  const [todaySnippetDate, setTodaySnippetDate] = useState<Date | null>(null);
-  const { dailySnippet: fullDailySnippet } = useFullDailySnippet(todaySnippetDate);
-  const languageId = fullDailySnippet?.language_id ?? null;
-  const { language: snippetLanguage } = useFullLanguage(languageId);
-
-
   // Check if the user has won and manage win message visibility
   const hasWon = guesses.some((g) => g.languageMatch);
   const [showWinMessage, setShowWinMessage] = useState(false);
+
+  // states for the full daily snippet
+  const [todayDate] = useState(() => new Date(getTodayDateString()));
+  const { dailySnippet: fullDailySnippet } = useFullDailySnippet({date: todayDate, enabled: hasWon});
+  const languageId = fullDailySnippet?.language_id ?? null;
+  const { language: snippetLanguage } = useFullLanguage(languageId);
 
   // Challenge mode states
   const [enableSyntaxHighlighting, setEnableSyntaxHighlighting] = useState(false);
 
   // fetch the daily snippet code from the server
   useEffect(() => {
-    const fetchSnippetCode = async () => {
+    const fetchCode = async () => {
       try {
-        const res = await fetch("/api/snippet");
-        if (!res.ok) throw new Error("Failed to load snippet code");
-        const { code } = await res.json();
+        const { code } = await fetchSnippetCode();
         setSnippetCode(code);
       } catch (err) {
         console.error("[ERROR] Failed to fetch snippet code:", err);
@@ -65,9 +63,10 @@ export default function SnippetGame() {
         setLoadingSnippet(false);
       }
     };
-    fetchSnippetCode();
+    fetchCode();
   }, []);
 
+  // Load progress from storage when the component mounts
   useEffect(() => {
     if (!languagesLoading) {
       const storedGuesses = loadProgress<SnippetGuessResult[]>(STORAGE_KEYS.SNIPPET_GUESSES, dayString);
@@ -83,6 +82,7 @@ export default function SnippetGame() {
     }
   }, [languagesLoading, dayString]);
 
+  // Save progress to storage whenever guesses change
   useEffect(() => {
     if (guesses.length > 0) {
       saveProgress<SnippetGuessResult[]>(STORAGE_KEYS.SNIPPET_GUESSES, dayString, guesses);
@@ -93,13 +93,7 @@ export default function SnippetGame() {
   const submitGuess = useCallback(async () => {
     if (!guess) return;
     try {
-      const res = await fetch("/api/guessSnippet", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ guessedLanguage: guess })
-      });
-      if (!res.ok) throw new Error("Failed to guess");
-      const result: SnippetGuessResult = await res.json();
+      const result = await submitSnippetGuess(guess);
       result.id = Date.now().toString();
       setGuesses((prev) => [...prev, result]);
       setGuess("");
@@ -115,7 +109,8 @@ export default function SnippetGame() {
     submitGuess();
   }, [submitGuess]);
 
-  const handleGuessChange = (value: string) => {
+  // Handle guess input changes and update suggestions
+  const handleGuessChange = useCallback((value: string) => {
     setGuess(value);
     if (value.length > 0) {
       const filtered = languages.filter((lang) =>
@@ -130,20 +125,16 @@ export default function SnippetGame() {
       setSuggestions([]);
       setShowSuggestions(false);
     }
-  };
+  }, [languages, guesses]);
 
-  useEffect(() => {
-    if (guess && !showSuggestions) {
-      handleSubmit();
-    }
-  }, [guess, showSuggestions, handleSubmit]);
-
+  // Handle selecting a suggestion from the dropdown
   const handleSelectSuggestion = (name: string) => {
     setGuess(name);
     setSuggestions([]);
     setShowSuggestions(false);
   };
 
+  // Show the win message after a delay if the user has won
   useEffect(() => {
     if (hasWon) {
       const timer = setTimeout(() => {
@@ -155,19 +146,13 @@ export default function SnippetGame() {
     }
   }, [hasWon]);
 
+  // Set yesterday's snippet language if it exists and languages are loaded
   useEffect(() => {
     if (yesterdaySnippet && languages.length > 0) {
       const foundLanguage = languages.find(lang => lang.id === yesterdaySnippet.language_id);
       setYesterdaySnippetLanguage(foundLanguage || null);
     }
   }, [yesterdaySnippet, languages]);
-
-  // Set today's snippet date if the user has won
-  useEffect(() => {
-    if (hasWon && !fullDailySnippet) {
-      setTodaySnippetDate(new Date(getTodayDateString()));
-    }
-  }, [hasWon, fullDailySnippet]);
 
   if (languagesLoading || loadingSnippet) return <LoadingScreen />;
 
