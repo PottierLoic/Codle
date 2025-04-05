@@ -3,7 +3,7 @@ name: New language request
 about: Submit a new language to be added to the guessing game
 title: 'Add language: [Language Name]'
 labels: Language request
-assignees: ''
+assignees: PottierLoic
 
 ---
 
@@ -64,6 +64,26 @@ assignees: ''
 Tell us why this language is interesting, relevant, or educational for the game!
 
 ---
+
+## 🧩 Optional: Add a Code Snippet
+
+Would you like to include a short, interesting code snippet for this language? It will be used in the snippet game.
+
+### 💡 Description
+> What does the snippet demonstrate? (e.g. a classic algorithm, clever use of language features, etc.)  
+`[e.g. Merge sort using pattern matching and recursion]`
+
+### 🧾 Code
+> Paste the code snippet here (keep it concise and idiomatic)  
+```[your-language-here]
+// Example:
+fn merge_sort(arr: &mut [i32]) {
+  // ...
+}
+
+### Link (optional)
+> Link to documentation or source where this snippet is explained further
+`[e.g. https://en.wikipedia.org/wiki/Merge_sort]`
 
 ## ✅ Checklist
 
