@@ -80,9 +80,10 @@ Would you like to include a short, interesting code snippet for this language? I
 fn merge_sort(arr: &mut [i32]) {
   // ...
 }
+```
 
 ### Link (optional)
-> Link to documentation or source where this snippet is explained further
+> Link to documentation or source where this snippet is explained further  
 `[e.g. https://en.wikipedia.org/wiki/Merge_sort]`
 
 ## ✅ Checklist
