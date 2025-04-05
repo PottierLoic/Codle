@@ -12,6 +12,7 @@ type GuessFormProps = {
   onSubmit: (e?: React.FormEvent) => void;
   onSelectSuggestion: (name: string) => void;
   placeholder?: string;
+  disabled?: boolean;
 };
 
 export default function GuessForm({
@@ -22,6 +23,7 @@ export default function GuessForm({
   onSubmit,
   onSelectSuggestion,
   placeholder = "Enter your guess",
+  disabled = false,
 }: GuessFormProps) {
   return (
     <form onSubmit={onSubmit} className="m-3 flex flex-row gap-2 relative">
@@ -54,7 +56,12 @@ export default function GuessForm({
       )}
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+        className={`px-4 py-2 rounded-lg transition ${
+          disabled
+            ? "bg-gray-500 cursor-not-allowed"
+            : "bg-blue-500 hover:bg-blue-600"
+        } text-white`}
+        disabled={disabled}
       >
         Submit
       </button>

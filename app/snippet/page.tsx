@@ -51,6 +51,10 @@ export default function SnippetGame() {
   // Challenge mode states
   const [enableSyntaxHighlighting, setEnableSyntaxHighlighting] = useState(false);
 
+  // States to disable the button during submissions animation
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const revealDuration = 500;
+
   // fetch the daily snippet code from the server
   useEffect(() => {
     const fetchCode = async () => {
@@ -91,7 +95,8 @@ export default function SnippetGame() {
 
   // Submit a guess to the server
   const submitGuess = useCallback(async () => {
-    if (!guess) return;
+    if (!guess || isSubmitting) return;
+    setIsSubmitting(true);
     try {
       const result = await submitSnippetGuess(guess);
       result.id = Date.now().toString();
@@ -100,8 +105,10 @@ export default function SnippetGame() {
       setShowSuggestions(false);
     } catch (err) {
       console.error("Error submitting guess:", err);
+    } finally {
+      setTimeout(() => setIsSubmitting(false), revealDuration);
     }
-  }, [guess]);
+  }, [guess, isSubmitting]);
 
   // Handle form submission
   const handleSubmit = useCallback((e?: React.FormEvent) => {
@@ -171,6 +178,7 @@ export default function SnippetGame() {
           onSubmit={handleSubmit}
           onSelectSuggestion={handleSelectSuggestion}
           placeholder="Enter a language"
+          disabled={isSubmitting}
         />
       )}
       {showWinMessage && fullDailySnippet && snippetLanguage && (

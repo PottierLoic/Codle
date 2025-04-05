@@ -42,6 +42,10 @@ export default function LanguageGame() {
   const [todayDate] = useState(() => new Date(getTodayDateString()));
   const { dailyLanguage: todayLanguage } = useDailyLanguage({date: todayDate, enabled: hasWon});
 
+  // States to disable the button during submissions animation
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const revealDuration = 3500;
+
   // Load progress from storage when the component mounts
   useEffect(() => {
     if (!loading && languages.length > 0) {
@@ -67,7 +71,8 @@ export default function LanguageGame() {
 
   // Submit a guess to the server
   const submitGuess = useCallback(async () => {
-    if (!guess) return;
+    if (!guess || isSubmitting) return;
+    setIsSubmitting(true);
     try {
       const result = await submitLanguageGuess(guess);
       result.id = Date.now().toString();
@@ -76,8 +81,10 @@ export default function LanguageGame() {
       setShowSuggestions(false);
     } catch (err) {
       console.error("Error submitting guess:", err);
+    } finally {
+      setTimeout(() => setIsSubmitting(false), revealDuration);
     }
-  }, [guess]);
+  }, [guess, isSubmitting]);
 
   // Handle form submission
   const handleSubmit = useCallback((e?: React.FormEvent) => {
@@ -115,7 +122,7 @@ export default function LanguageGame() {
     if (hasWon) {
       const timer = setTimeout(() => {
         setShowWinMessage(true);
-      }, 3500);
+      }, revealDuration);
       return () => clearTimeout(timer);
     } else {
       setShowWinMessage(false);
@@ -158,6 +165,7 @@ export default function LanguageGame() {
           onSubmit={handleSubmit}
           onSelectSuggestion={handleSelectSuggestion}
           placeholder="Enter a language"
+          disabled={isSubmitting}
         />
       )}
       {showWinMessage && todayLanguage && (
