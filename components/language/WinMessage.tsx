@@ -28,6 +28,18 @@ export default function WinMessage({ language }: WinMessageProps) {
         <p className="mb-2">{language.description}</p>
       )}
       <Timer />
+      <p className="mt-4 text-sm text-gray-400">
+        Want to submit a new language?{" "}
+        <a
+          href="https://github.com/PottierLoic/Codle/issues/new?template=new-language-request.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 underline"
+        >
+          Open an issue
+        </a>
+        .
+      </p>
     </div>
   );
 }

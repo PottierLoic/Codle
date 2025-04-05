@@ -50,8 +50,19 @@ export default function WinMessage({ language, snippet }: WinMessageProps) {
           </p>
         </div>
       )}
-
       <Timer />
+      <p className="mt-4 text-sm text-gray-400">
+        Want to submit a new snippet?{" "}
+        <a
+          href="https://github.com/PottierLoic/Codle/issues/new?template=new-snippet-request.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 underline"
+        >
+          Open an issue
+        </a>
+        .
+      </p>
     </div>
   );
 }
