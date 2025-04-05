@@ -1,0 +1,76 @@
+---
+name: New language request
+about: Submit a new language to be added to the guessing game
+title: 'Add language: [Language Name]'
+labels: ''
+assignees: ''
+
+---
+
+## 📌 Language Details
+
+### 🧾 Name
+> Full name of the language  
+`[e.g. Rust]`
+
+### 🧠 Paradigms
+> List of programming paradigms this language supports  
+`[e.g. functional, imperative, concurrent]`
+
+### 📆 Year of Creation
+> The year the language was created or first appeared  
+`[e.g. 2010]`
+
+### ✍️ Typing Discipline
+> How is the typing handled?  
+`[e.g. static, dynamic]`
+
+### ⚙️ Execution Model
+> How is the code executed?  
+`[e.g. compiled, interpreted, hybrid]`
+
+### ♻️ Garbage Collected
+> Does this language use garbage collection?  
+`[true / false]`
+
+### 🌐 Domains of Use
+> Main areas where this language is commonly used  
+`[e.g. web development, systems programming, data science, embedded systems]`
+
+### 🔣 Symbol
+> A short 2–3 letter symbol used in the language
+`[e.g. ; -> () =>]`
+
+### 🖼️ Icon
+> A direct link (URL) to an image/icon that represents the language  
+`[e.g. https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg]`
+
+### 📚 Description
+> A short description (1–2 sentences) of the language and its key characteristics  
+`[e.g. A versatile, high-level language known for its readability and extensive libraries, widely used in web development, data science, and AI.]`
+
+### 🔗 Official Link
+> Official website or a reliable reference (Wikipedia, etc.)  
+`[e.g. https://www.rust-lang.org/]`l or M
+
+### 🧑‍💻 Creator(s)
+> List of main creator(s) of the language  
+`[e.g. Graydon Hoare]`
+
+---
+
+## 🧠 Why should this language be included?
+
+Tell us why this language is interesting, relevant, or educational for the game!
+
+---
+
+## ✅ Checklist
+
+- [ ] I’ve verified this language is **not already in the game**
+- [ ] The information above is **accurate and sourced**
+- [ ] All required fields are filled
+
+---
+
+> Thank you for contributing! 🚀
