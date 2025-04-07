@@ -10,7 +10,7 @@ export async function submitLanguageGuess(guessedLanguage: string): Promise<Lang
   return res.json();
 }
 
-export async function fetchLanguageHint(hintType: string): Promise<{ nameLength?: number; creators?: string[] }> {
+export async function fetchLanguageHint(hintType: string): Promise<{ nameLength?: number; creators?: string[]; code?: string }> {
   const res = await fetch(`/api/hint?hintType=${hintType}`);
   if (!res.ok) throw new Error(`Failed to fetch ${hintType} hint`);
   return res.json();

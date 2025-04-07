@@ -32,7 +32,6 @@ export async function GET(request: NextRequest) {
           .single();
 
         if (error || !data) throw new Error("Language name not found");
-
         return NextResponse.json({ nameLength: data.name.length });
       }
 
@@ -44,8 +43,19 @@ export async function GET(request: NextRequest) {
           .single();
 
         if (error || !data) throw new Error("Language creators not found");
-
         return NextResponse.json({ creators: data.creators });
+      }
+
+      case "snippet": {
+        const { data, error } = await supabase
+        .from("snippet")
+        .select("code")
+        .eq("language_id", languageId)
+        .limit(1)
+        .single();
+
+        if (error || !data) throw new Error("Snippet code not found");
+        return NextResponse.json({ code: data.code });
       }
 
       default:

@@ -1,20 +1,23 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GUESS_THRESHOLDS } from "@/constants";
+import { Snippet } from "@/entities/Snippet";
+import SnippetDisplay from "@/components/snippet/SnippetDisplay";
 
 interface HintSectionProps {
   incorrectGuesses: number;
   letters: number;
   creators: string[];
+  code: string;
 }
 
-export default function HintSection({ incorrectGuesses, letters, creators }: HintSectionProps) {
+export default function HintSection({ incorrectGuesses, letters, creators, code }: HintSectionProps) {
   const [revealedHintIndex, setRevealedHintIndex] = useState<number | null>(null);
 
   const hints = [
     `This language name has ${letters} letters.`,
     `This language was created by ${creators.join(", ")}.`,
-    `This hint is not available yet.`,
+    code,
   ];
   const hintLabels = ["Letters", "Creator(s)", "Snippet"];
 
@@ -58,7 +61,15 @@ export default function HintSection({ incorrectGuesses, letters, creators }: Hin
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
           >
-            {hints[revealedHintIndex]}
+            {revealedHintIndex === 2 ? (
+              <SnippetDisplay
+                snippet={{ code: hints[2] } as Snippet}
+                syntaxName="todo"
+                enableSyntaxHighlighting={false}
+              />
+            ) : (
+              hints[revealedHintIndex]
+            )}
           </motion.div>
         )}
       </AnimatePresence>

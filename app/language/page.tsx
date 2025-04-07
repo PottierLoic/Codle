@@ -37,6 +37,7 @@ export default function LanguageGame() {
   // State for hints
   const [nameLength, setNameLength] = useState<number | null>(null);
   const [creators, setCreators] = useState<string[] | null>(null);
+  const [codeSnippet, setCodeSnippet] = useState<string | null>(null);
 
   // State for today's language
   const [todayDate] = useState(() => new Date(getTodayDateString()));
@@ -136,13 +137,16 @@ export default function LanguageGame() {
         const data = await fetchLanguageHint("nameLength");
         setNameLength(data?.nameLength ?? null);
       }
-      if (guesses.length >= 5 && !creators) {
+      if (guesses.length >= 6 && !creators) {
         const data = await fetchLanguageHint("creators");
         setCreators(data?.creators ?? null);
       }
+      if (guesses.length >= 9 && !codeSnippet) {
+        const data = await fetchLanguageHint("snippet");
+        setCodeSnippet(data?.code ?? null);}
     }
     fetchHint();
-  }, [guesses, nameLength, creators]);
+  }, [guesses, nameLength, creators, codeSnippet]);
 
   if (loading) return <LoadingScreen />;
 
@@ -155,6 +159,7 @@ export default function LanguageGame() {
         incorrectGuesses={hasWon ? 9 : guesses.length}
         letters={nameLength ? nameLength : 0}
         creators={creators ? creators : ["John Smith"]}
+        code={codeSnippet ? codeSnippet : ""}
       />
       {!showWinMessage && (
         <GuessForm
