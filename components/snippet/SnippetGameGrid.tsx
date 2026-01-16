@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { SnippetGuessResult } from "@/entities/Snippet";
+import { easeOut } from "framer-motion";
 
 interface SnippetGameGridProps {
   guesses: SnippetGuessResult[];
@@ -12,7 +13,7 @@ export default function SnippetGameGrid({ guesses }: SnippetGameGridProps) {
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.5, duration: 0.5, ease: "easeOut" },
+      transition: { delay: i * 0.5, duration: 0.5, ease: easeOut },
     }),
   };
 
