@@ -130,23 +130,29 @@ export default function LanguageGame() {
     }
   }, [hasWon]);
 
-  // Fetch hints based on the number of incorrect guesses
+  // Fetch name length once guesses >= 3
   useEffect(() => {
-    async function fetchHint() {
-      if (guesses.length >= 3 && !nameLength) {
-        const data = await fetchLanguageHint("nameLength");
-        setNameLength(data?.nameLength ?? null);
-      }
-      if (guesses.length >= 6 && !creators) {
-        const data = await fetchLanguageHint("creators");
-        setCreators(data?.creators ?? null);
-      }
-      if (guesses.length >= 9 && !codeSnippet) {
-        const data = await fetchLanguageHint("snippet");
-        setCodeSnippet(data?.code ?? null);}
+    if ((guesses.length >= 3 || hasWon) && nameLength === null) {
+      fetchLanguageHint("nameLength")
+        .then(data => setNameLength(data?.nameLength ?? null))
     }
-    fetchHint();
-  }, [guesses, nameLength, creators, codeSnippet]);
+  }, [guesses, hasWon, nameLength])
+
+  // Fetch creators once guesses >= 6
+  useEffect(() => {
+    if ((guesses.length >= 6 || hasWon) && creators === null) {
+      fetchLanguageHint("creators")
+        .then(data => setCreators(data?.creators ?? []))
+    }
+  }, [guesses, hasWon, creators])
+
+  // Fetch snippet once guesses >= 9
+  useEffect(() => {
+    if ((guesses.length >= 9 || hasWon) && codeSnippet === null) {
+      fetchLanguageHint("snippet")
+        .then(data => setCodeSnippet(data?.code ?? ""))
+    }
+  }, [guesses, hasWon, codeSnippet])
 
   if (loading) return <LoadingScreen />;
 
