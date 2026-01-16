@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { LanguageGuessResult } from "@/entities/Language";
 import Image from "next/image";
+import { easeOut } from "framer-motion";
 
 interface LanguageGameGridProps {
   guesses: LanguageGuessResult[];
@@ -16,7 +17,7 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.5, duration: 0.5, ease: "easeOut" },
+      transition: { delay: i * 0.5, duration: 0.5, ease: easeOut },
     }),
   };
 
