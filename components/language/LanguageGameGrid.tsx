@@ -26,24 +26,33 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
     { label: "Paradigms", tooltip: "Main programming paradigms" },
     { label: "Year", tooltip: "Initial release/birth year" },
     { label: "Typing", tooltip: "Typing discipline (Dynamic, Static)" },
-    { label: "Execution", tooltip: "Execution model (Compiled, Interpreted, Hybrid)" },
+    {
+      label: "Execution",
+      tooltip: "Execution model (Compiled, Interpreted, Hybrid)",
+    },
     { label: "GC", tooltip: "Whether the language uses garbage collection" },
-    { label: "Scope", tooltip: "Domains in which the language is used (Mathematics, AI, ...)" },
+    {
+      label: "Scope",
+      tooltip:
+        "Domains in which the language is used (Mathematics, AI, ...)",
+    },
     { label: "Symbol", tooltip: "Key character or token used in the language" },
   ];
 
   return (
-    <div className="w-full max-w-5xl bg-gray-900 text-white p-4 rounded-lg shadow-lg">
+    <div className="w-full max-w-5xl glass p-3 sm:p-4">
       <div className="overflow-x-auto">
         <div className="min-w-[800px]">
-          <div className="grid grid-cols-8 gap-1 text-center font-semibold text-gray-300 bg-gray-800 p-2 rounded-t-lg">
+          <div className="grid grid-cols-8 gap-1 text-center font-semibold text-white/80 bg-white/5 p-2 rounded-t-xl border border-white/10">
             {columns.map((col) => (
               <div
                 key={col.label}
                 className="relative flex items-center justify-center"
                 onMouseEnter={() => setHoveredCol(col.label)}
                 onMouseLeave={() => setHoveredCol(null)}
-                onMouseMove={(e) => setTooltipPos({ x: e.clientX, y: e.clientY })}
+                onMouseMove={(e) =>
+                  setTooltipPos({ x: e.clientX, y: e.clientY })
+                }
               >
                 <span>{col.label}</span>
               </div>
@@ -53,7 +62,7 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
           {[...guesses].reverse().map((g) => (
             <div
               key={g.id}
-              className="grid grid-cols-8 gap-1 text-center text-white bg-gray-700 p-1 rounded-md mb-1"
+              className="grid grid-cols-8 gap-1 text-center text-white bg-white/5 p-1 rounded-xl mb-2 border border-white/10"
             >
               {[
                 { value: g.name, match: g.nameMatch, icon: g.icon },
@@ -76,14 +85,14 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
               ].map((item, colIndex) => (
                 <motion.div
                   key={colIndex}
-                  className={`p-2 border border-black rounded flex items-center justify-center gap-2 ${
+                  className={`p-2 border border-black/20 rounded-lg flex items-center justify-center gap-2 ${
                     colIndex === 0
-                      ? "relative bg-gray-800 text-white min-h-[96px]"
+                      ? "relative bg-white/6 text-white min-h-[96px]"
                       : item.match === true || item.match === "full"
-                      ? "bg-green-800 text-white"
+                      ? "bg-green-600/35 text-white border border-white/10"
                       : item.match === "partial"
-                      ? "bg-yellow-800 text-white"
-                      : "bg-red-800 text-white"
+                      ? "bg-amber-500/30 text-white border border-white/10"
+                      : "bg-red-500/30 text-white border border-white/10"
                   }`}
                   variants={revealVariants}
                   initial={g.isFromStorage ? "visible" : "hidden"}
@@ -92,7 +101,7 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
                 >
                   {colIndex === 0 && item.icon ? (
                     <div className="relative w-[64px] h-[64px] flex items-center justify-center">
-                      <div className="absolute top-0 left-0 right-0 bg-gray-900/80 text-xs text-center py-1 truncate">
+                      <div className="absolute top-0 left-0 right-0 bg-black/40 text-xs text-center py-1 truncate">
                         {item.value}
                       </div>
                       <Image
@@ -102,7 +111,7 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
                         height={64}
                         className="rounded-md object-contain w-full h-full"
                       />
-                      <span className="absolute bottom-1 right-1 border border-gray-600 bg-gray-900 text-xs px-1 py-0.5 rounded">
+                      <span className="absolute bottom-1 right-1 border border-white/10 bg-black/40 text-xs px-1 py-0.5 rounded">
                         {g.guessCount ?? 0}
                       </span>
                     </div>
@@ -118,7 +127,7 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
 
       {hoveredCol && (
         <div
-          className="pointer-events-none fixed bg-gray-700 text-white rounded px-2 py-1 text-xs whitespace-nowrap z-50"
+          className="pointer-events-none fixed glass px-2 py-1 text-xs whitespace-nowrap z-50"
           style={{
             top: tooltipPos.y + 10,
             left: tooltipPos.x + 10,

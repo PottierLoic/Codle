@@ -2,42 +2,62 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Header from "@/components/common/layout/Header";
+import Footer from "@/components/common/layout/Footer";
 
 export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-6">
-      <Image
-        src="/codle-icon-512x512.png"
-        alt="Codle Icon"
-        width={256}
-        height={256}
-        className="mb-6"
-      />
-      <h1 className="text-4xl font-bold mb-6">Welcome to Codle!</h1>
-      <p className="text-lg text-gray-300 mb-8">Choose a game mode:</p>
-      <div className="flex flex-col gap-4">
-        <button
-          onClick={() => router.push("/language")}
-          className="bg-blue-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-600 transition"
-        >
-          Guess the programming language
-        </button>
-        <button
-          onClick={() => router.push("/snippet")}
-          className="bg-green-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-green-600 transition"
-        >
-          Guess the language based on a code snippet
-        </button>
-        <button
-          onClick={() => router.push("/regex")}
-          className="bg-purple-500 text-white px-6 py-3 rounded-lg text-xl hover:bg-purple-600 transition"
-        >
-          <span><big> 🥳 New : </big></span>
-          Find a regex pattern for specific instructions
-        </button>
-      </div>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        <div className="app-container">
+          <div className="glass glass-strong p-6 sm:p-10">
+            <div className="flex flex-col items-center text-center gap-6">
+              <Image
+                src="/codle-icon-512x512.png"
+                alt="Codle Icon"
+                width={160}
+                height={160}
+                className="select-none"
+                priority
+              />
+
+              <div className="space-y-2">
+                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                  Codle
+                </h1>
+                <p className="muted text-base sm:text-lg">
+                  Daily coding challenges. Minimal UI. Maximum signal.
+                </p>
+              </div>
+
+              <div className="w-full max-w-md grid gap-3">
+                <button
+                  onClick={() => router.push("/language")}
+                  className="btn btn-primary focus-ring w-full px-5 py-3 text-base sm:text-lg"
+                >
+                  Guess the programming language
+                </button>
+                <button
+                  onClick={() => router.push("/snippet")}
+                  className="btn focus-ring w-full px-5 py-3 text-base sm:text-lg"
+                >
+                  Guess from a code snippet
+                </button>
+                <button
+                  onClick={() => router.push("/regex")}
+                  className="btn focus-ring w-full px-5 py-3 text-base sm:text-lg"
+                >
+                  Regex challenge <span className="muted">(new)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }

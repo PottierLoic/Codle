@@ -26,45 +26,61 @@ export default function GuessForm({
   disabled = false,
 }: GuessFormProps) {
   return (
-    <form onSubmit={onSubmit} className="m-3 flex flex-row gap-2 relative">
-      <input
-        type="text"
-        value={guess}
-        onChange={(e) => onGuessChange(e.target.value)}
-        className="border-2 border-gray-600 bg-gray-800 text-white rounded-lg p-2 w-64 focus:outline-none focus:border-blue-400 transition"
-        placeholder={placeholder}
-      />
-      {showSuggestions && suggestions.length > 0 && (
-        <ul className="absolute top-12 left-0 w-64 bg-gray-800 border border-gray-600 rounded-lg shadow-lg z-10">
-          {suggestions.map((lang) => (
-            <li
-              key={lang.name}
-              className="p-2 hover:bg-gray-700 cursor-pointer text-white flex items-center gap-2"
-              onClick={() => onSelectSuggestion(lang.name)}
-            >
-              <Image
-                src={lang.icon}
-                alt={lang.name}
-                width={24}
-                height={24}
-                className="rounded-md"
-              />
-              {lang.name}
-            </li>
-          ))}
-        </ul>
-      )}
-      <button
-        type="submit"
-        className={`px-4 py-2 rounded-lg transition ${
-          disabled
-            ? "bg-gray-500 cursor-not-allowed"
-            : "bg-blue-500 hover:bg-blue-600"
-        } text-white`}
-        disabled={disabled}
-      >
-        Submit
-      </button>
+    <form onSubmit={onSubmit} className="w-full max-w-lg m-3 relative">
+      <div className="flex gap-2">
+        <input
+          type="text"
+          value={guess}
+          onChange={(e) => onGuessChange(e.target.value)}
+          className="flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm sm:text-base focus-ring transition placeholder:text-white/40"
+          placeholder={placeholder}
+        />
+        {showSuggestions && suggestions.length > 0 && (
+          <ul className="absolute left-0 right-0 top-[48px] z-50 max-h-64 overflow-auto rounded-xl border border-white/15 bg-black/85 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+            {suggestions.map((lang) => (
+              <li
+                key={lang.name}
+                className="
+                  flex items-center gap-2 px-3 py-2 text-sm sm:text-base
+                  cursor-pointer
+                  hover:bg-white/8
+                  border-b border-white/5 last:border-b-0
+                "
+                onClick={() => onSelectSuggestion(lang.name)}
+              >
+                <div
+                  className="
+                    flex items-center justify-center
+                    w-7 h-7
+                    rounded-md
+                    bg-white/90
+                    border border-black/10
+                    shrink-0
+                  "
+                >
+                  <Image
+                    src={lang.icon}
+                    alt={lang.name}
+                    width={18}
+                    height={18}
+                    className="object-contain"
+                  />
+                </div>
+                <span className="text-white/95">{lang.name}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        <button
+          type="submit"
+          className={`btn btn-primary focus-ring px-4 py-2 text-sm sm:text-base ${
+            disabled ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          disabled={disabled}
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 }

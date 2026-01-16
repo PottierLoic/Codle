@@ -8,17 +8,23 @@ interface SnippetDisplayProps {
   enableSyntaxHighlighting?: boolean;
 }
 
-export default function SnippetDisplay({ snippet, syntaxName, enableSyntaxHighlighting = true }: SnippetDisplayProps) {
+export default function SnippetDisplay({
+  snippet,
+  syntaxName,
+  enableSyntaxHighlighting = true,
+}: SnippetDisplayProps) {
   return (
-    <div className="w-full max-w-screen-lg bg-gray-800 text-white p-4 rounded-lg shadow-lg m-3">
-      <SyntaxHighlighter
-        language={enableSyntaxHighlighting ? syntaxName : "plaintext"}
-        style={tomorrow}
-        className="rounded overflow-x-auto !bg-gray-700"
-        wrapLongLines={true}
-      >
-        {snippet.code}
-      </SyntaxHighlighter>
+    <div className="w-full max-w-screen-lg glass p-3 sm:p-4 m-3">
+      <div className="rounded-xl overflow-hidden border border-white/10 bg-black/30">
+        <SyntaxHighlighter
+          language={enableSyntaxHighlighting ? syntaxName : "plaintext"}
+          style={tomorrow}
+          className="!bg-transparent !m-0 text-sm sm:text-base"
+          wrapLongLines={true}
+        >
+          {snippet.code}
+        </SyntaxHighlighter>
+      </div>
     </div>
   );
 }

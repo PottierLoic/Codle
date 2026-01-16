@@ -18,16 +18,16 @@ export default function SnippetGameGrid({ guesses }: SnippetGameGridProps) {
   };
 
   return (
-    <div className="w-full max-w-md bg-gray-900 text-white p-4 rounded-lg shadow-lg">
-      <div className="text-center font-semibold text-gray-300 bg-gray-800 p-2 rounded-t-lg">
+    <div className="w-full max-w-md glass p-3 sm:p-4">
+      <div className="text-center font-semibold text-white/80 bg-white/5 p-2 rounded-t-xl border border-white/10">
         Language Guesses
       </div>
 
       {[...guesses].reverse().map((g, index) => (
         <motion.div
           key={g.id}
-          className={`relative flex items-center justify-center p-2 border border-black rounded ${
-            g.languageMatch ? "bg-green-800" : "bg-red-800"
+          className={`relative flex items-center justify-center p-2 rounded-xl border border-white/10 ${
+            g.languageMatch ? "bg-green-600/35" : "bg-red-500/30"
           }`}
           variants={revealVariants}
           initial={g.isFromStorage ? "visible" : "hidden"}
@@ -35,7 +35,7 @@ export default function SnippetGameGrid({ guesses }: SnippetGameGridProps) {
           custom={index}
         >
           <div className="relative w-[96px] h-[96px] flex items-center justify-center">
-            <div className="absolute top-0 inset-x-0 bg-gray-900/80 text-xs text-center py-1 z-10">
+            <div className="absolute top-0 inset-x-0 bg-black/40 text-xs text-center py-1 z-10">
               {g.language}
             </div>
             {g.icon ? (
@@ -47,11 +47,11 @@ export default function SnippetGameGrid({ guesses }: SnippetGameGridProps) {
                 className="rounded-md object-contain w-full h-full"
               />
             ) : (
-              <div className="flex items-center justify-center w-full h-full bg-gray-800 rounded-md">
+              <div className="flex items-center justify-center w-full h-full bg-black/25 rounded-md border border-white/10">
                 <span className="text-white text-lg">{g.language}</span>
               </div>
             )}
-            <span className="absolute bottom-1 right-1 border border-gray-500 bg-gray-800 text-xs px-2 py-1 rounded">
+            <span className="absolute bottom-1 right-1 border border-white/10 bg-black/40 text-xs px-2 py-1 rounded">
               {g.guessCount ?? 0}
             </span>
           </div>

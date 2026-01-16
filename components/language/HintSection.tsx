@@ -11,8 +11,15 @@ interface HintSectionProps {
   code: string;
 }
 
-export default function HintSection({ incorrectGuesses, letters, creators, code }: HintSectionProps) {
-  const [revealedHintIndex, setRevealedHintIndex] = useState<number | null>(null);
+export default function HintSection({
+  incorrectGuesses,
+  letters,
+  creators,
+  code,
+}: HintSectionProps) {
+  const [revealedHintIndex, setRevealedHintIndex] = useState<number | null>(
+    null
+  );
 
   const hints = [
     `This language name has ${letters} letters.`,
@@ -27,24 +34,26 @@ export default function HintSection({ incorrectGuesses, letters, creators, code 
     }
   };
 
-  const nextUnlock = GUESS_THRESHOLDS.find((threshold) => incorrectGuesses < threshold);
+  const nextUnlock = GUESS_THRESHOLDS.find(
+    (threshold) => incorrectGuesses < threshold
+  );
   const guessesRemaining = nextUnlock ? nextUnlock - incorrectGuesses : 0;
 
   return (
-    <div className="m-3 w-full max-w-lg bg-gray-800 p-4 rounded-lg shadow-md text-center">
-      <h3 className="text-lg font-semibold text-white mb-3">Hints</h3>
+    <div className="m-3 w-full max-w-lg glass p-4 sm:p-5 text-center">
+      <h3 className="text-base sm:text-lg font-semibold mb-3">Hints</h3>
 
-      <div className="flex justify-center gap-4 mb-3">
+      <div className="flex flex-wrap justify-center gap-2 mb-3">
         {hintLabels.map((label, index) => (
           <button
             key={index}
             onClick={() => handleHintClick(index)}
             disabled={incorrectGuesses < GUESS_THRESHOLDS[index]}
-            className={`px-4 py-2 rounded-md font-semibold transition-all ${
+            className={`btn focus-ring px-3 py-2 text-sm font-semibold transition-all ${
               incorrectGuesses >= GUESS_THRESHOLDS[index]
-                ? "bg-blue-500 hover:bg-blue-600 text-white"
-                : "bg-gray-600 text-gray-400 cursor-not-allowed"
-            } ${revealedHintIndex === index ? "ring-2 ring-blue-300" : ""}`}
+                ? "hover:bg-white/10"
+                : "opacity-40 cursor-not-allowed"
+            } ${revealedHintIndex === index ? "border-white/20 bg-white/10" : ""}`}
           >
             {label}
           </button>
@@ -55,7 +64,7 @@ export default function HintSection({ incorrectGuesses, letters, creators, code 
         {revealedHintIndex !== null && (
           <motion.div
             key={revealedHintIndex}
-            className="mt-2 rounded-md text-white whitespace-pre-line"
+            className="mt-2 rounded-md whitespace-pre-line"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -73,9 +82,11 @@ export default function HintSection({ incorrectGuesses, letters, creators, code 
           </motion.div>
         )}
       </AnimatePresence>
-      <p className="mt-4 text-sm text-gray-400">
+      <p className="mt-4 text-sm muted">
         {nextUnlock
-          ? `${guessesRemaining} more incorrect guess${guessesRemaining > 1 ? "es" : ""} needed to unlock the next hint.`
+          ? `${guessesRemaining} more incorrect guess${
+              guessesRemaining > 1 ? "es" : ""
+            } needed to unlock the next hint.`
           : "All hints are unlocked!"}
       </p>
     </div>

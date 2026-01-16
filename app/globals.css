@@ -1,30 +1,98 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Monochrome "glass" theme */
+  --bg: #0b0e14;
+  --bg-2: #070a0f;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.10);
+  --border-2: rgba(255, 255, 255, 0.14);
+  --shadow: rgba(0, 0, 0, 0.45);
+  --focus: rgba(255, 255, 255, 0.22);
+  --danger: #ef4444;
+  --success: #22c55e;
+  --warn: #f59e0b;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(1200px 800px at 15% 10%, rgba(255, 255, 255, 0.06), transparent 55%),
+    radial-gradient(900px 600px at 85% 20%, rgba(255, 255, 255, 0.04), transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  min-height: 100vh;
 }
 
 button {
   cursor: pointer;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Reusable utility classes (keeps JSX className readable) */
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.glass-strong {
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+}
+
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.btn {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 10px 14px;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus);
 }
