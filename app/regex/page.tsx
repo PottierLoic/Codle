@@ -10,6 +10,7 @@ import { getTodayDateString } from "@/lib/utils";
 import { STORAGE_KEYS } from "@/constants";
 import React from "react";
 import { X } from "lucide-react";
+import RegexCheatSheet from "@/components/regex/RegexCheatSheet";
 
 export default function RegexGame() {
   const { dailyRegex, loading } = useDailyRegex();
@@ -21,6 +22,7 @@ export default function RegexGame() {
   const [debouncedPattern, setDebouncedPattern] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
+  const [showCheatSheet, setShowCheatSheet] = useState(false);
 
   const { solutions, refetch } = useRegexSolutions({ enabled: submitted });
 
@@ -180,6 +182,16 @@ export default function RegexGame() {
             Find a regex (and optional replacement) that follows the instruction.
           </p>
 
+          <div className="mt-4 flex justify-center">
+            <button
+              type="button"
+              className="btn focus-ring px-4 py-2 text-sm sm:text-base"
+              onClick={() => setShowCheatSheet(true)}
+            >
+              Regex cheat sheet
+            </button>
+          </div>
+
           <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4">
             <p className="text-sm sm:text-base whitespace-pre-wrap">
               {dailyRegex.instruction}
@@ -317,6 +329,10 @@ export default function RegexGame() {
           </div>
         </div>
       )}
+      <RegexCheatSheet
+        open={showCheatSheet}
+        onClose={() => setShowCheatSheet(false)}
+      />
     </GameLayout>
   );
 }
