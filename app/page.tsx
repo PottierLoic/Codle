@@ -50,7 +50,13 @@ export default function Home() {
                   onClick={() => router.push("/regex")}
                   className="btn focus-ring w-full px-5 py-3 text-base sm:text-lg"
                 >
-                  Regex challenge <span className="muted">(new)</span>
+                  Regex challenge
+                </button>
+                <button
+                  onClick={() => router.push("/complexity")}
+                  className="btn focus-ring w-full px-5 py-3 text-base sm:text-lg"
+                >
+                  Guess program complexity <span className="muted">(new)</span>
                 </button>
               </div>
             </div>
