@@ -8,6 +8,8 @@ import useFullDailyComplexity from "@/hooks/complexity/useFullDailyComplexity";
 import { getTodayDateString } from "@/lib/utils";
 import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import type { ComplexityGuessResult } from "@/entities/Complexity";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 type ComplexityOption =
   | "O(1)"
@@ -152,9 +154,23 @@ export default function ComplexityGame() {
         </div>
 
         <div className="glass p-5 sm:p-6">
-          <pre className="rounded-xl border border-white/10 bg-black/30 p-4 whitespace-pre-wrap break-words text-sm sm:text-base text-white font-mono leading-relaxed overflow-auto">
+          <SyntaxHighlighter
+            language={dailyComplexity.language.toLowerCase()}
+            style={oneDark}
+            customStyle={{
+              background: "transparent",
+              padding: "0",
+              margin: "0",
+              fontSize: "0.9rem",
+            }}
+            codeTagProps={{
+              style: {
+                fontFamily: "monospace",
+              },
+            }}
+          >
             {dailyComplexity.snippet}
-          </pre>
+          </SyntaxHighlighter>
         </div>
 
         <div className="glass p-5 sm:p-6">
