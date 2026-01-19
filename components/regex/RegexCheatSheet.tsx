@@ -109,13 +109,12 @@ export default function RegexCheatSheet({ open, onClose }: Props) {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="app-container py-6">
-        <div className="max-w-6xl w-full mx-auto bg-[#0b0f14] rounded-md shadow-xl relative border border-white/10 max-h-[80vh] flex flex-col overflow-hidden"> 
-          <div className="sticky top-0 bg-[#0b0f14] border-b border-white/10 z-10">
+      <div className="app-container w-full py-6">
+        <div className="max-w-6xl w-full mx-auto bg-[#0b0f14] rounded-md shadow-xl relative border border-white/10">
+
+          <div className="bg-[#0b0f14] border-b border-white/10">
             <div className="flex items-center justify-between p-3 sm:p-4">
-              <span className="text-white/90 font-semibold">
-                Regex cheat sheet
-              </span>
+              <span className="text-white/90 font-semibold">Regex cheat sheet</span>
 
               <div className="flex items-center gap-2">
                 <span className="text-xs text-white/60 hidden sm:block">
