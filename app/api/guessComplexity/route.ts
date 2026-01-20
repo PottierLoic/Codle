@@ -3,15 +3,8 @@ import { supabase } from "@/lib/supabase";
 import { getTodayDateString } from "@/lib/utils";
 import type { FullComplexity, ComplexityGuessResult } from "@/entities/Complexity";
 
-let cachedDailyComplexity: FullComplexity | null = null;
-let cachedDateKey: string | null = null;
-
 async function getDailyComplexity(): Promise<FullComplexity> {
   const dateKey = getTodayDateString();
-
-  if (cachedDailyComplexity && cachedDateKey === dateKey) {
-    return cachedDailyComplexity;
-  }
 
   const { data, error } = await supabase
     .from("daily")
@@ -25,10 +18,7 @@ async function getDailyComplexity(): Promise<FullComplexity> {
     throw new Error(`Failed to fetch daily complexity: ${error?.message}`);
   }
 
-  cachedDailyComplexity = complexity as FullComplexity;
-  cachedDateKey = dateKey;
-
-  return cachedDailyComplexity;
+  return complexity as FullComplexity;
 }
 
 const COMPLEXITY_RANK: Record<string, number> = {
