@@ -165,10 +165,10 @@ export default function SnippetGame() {
 
   return (
     <GameLayout>
-      <ChallengeSection
+      {/* <ChallengeSection
         enableSyntaxHighlighting={enableSyntaxHighlighting}
         setEnableSyntaxHighlighting={setEnableSyntaxHighlighting}
-      />
+      /> */}
       {!showWinMessage && (
         <GuessForm
           guess={guess}
