@@ -1,8 +1,7 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { LanguageGuessResult } from "@/entities/Language";
+import { motion, easeOut } from "framer-motion";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { easeOut } from "framer-motion";
+import { LanguageGuessResult } from "@/entities/Language";
 
 interface LanguageGameGridProps {
   guesses: LanguageGuessResult[];
@@ -11,6 +10,10 @@ interface LanguageGameGridProps {
 export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
   const [hoveredCol, setHoveredCol] = useState<string | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const tooltipRef = useRef<HTMLDivElement | null>(null);
 
   const revealVariants = {
     hidden: { opacity: 0, y: -10 },
@@ -33,15 +36,46 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
     { label: "GC", tooltip: "Whether the language uses garbage collection" },
     {
       label: "Scope",
-      tooltip:
-        "Domains in which the language is used (Mathematics, AI, ...)",
+      tooltip: "Domains in which the language is used (Mathematics, AI, ...)",
     },
     { label: "Symbol", tooltip: "Key character or token used in the language" },
   ];
 
+  const handleHeaderMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const containerEl = containerRef.current;
+    const scrollEl = scrollRef.current;
+    if (!containerEl || !scrollEl) return;
+
+    const containerRect = containerEl.getBoundingClientRect();
+
+    let x = e.clientX - containerRect.left + scrollEl.scrollLeft;
+    let y = e.clientY - containerRect.top;
+
+    const offset = 12;
+    x += offset;
+    y += offset;
+
+    const tipW = tooltipRef.current?.offsetWidth ?? 0;
+    const tipH = tooltipRef.current?.offsetHeight ?? 0;
+
+    const containerW = containerEl.clientWidth + scrollEl.scrollLeft;
+    const containerH = containerEl.clientHeight;
+
+    if (x + tipW + 8 > containerW) x = x - tipW - offset * 2;
+    if (y + tipH + 8 > containerH) y = y - tipH - offset * 2;
+
+    x = Math.max(8, x);
+    y = Math.max(8, y);
+
+    setTooltipPos({ x, y });
+  };
+
   return (
-    <div className="w-full max-w-5xl glass p-3 sm:p-4">
-      <div className="overflow-x-auto">
+    <div
+      ref={containerRef}
+      className="w-full max-w-5xl glass p-3 sm:p-4 overflow-visible"
+    >
+      <div ref={scrollRef} className="overflow-x-auto">
         <div className="min-w-[800px]">
           <div className="grid grid-cols-8 gap-1 text-center font-semibold text-white/80 bg-white/5 p-2 rounded-t-xl border border-white/10">
             {columns.map((col) => (
@@ -50,9 +84,7 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
                 className="relative flex items-center justify-center"
                 onMouseEnter={() => setHoveredCol(col.label)}
                 onMouseLeave={() => setHoveredCol(null)}
-                onMouseMove={(e) =>
-                  setTooltipPos({ x: e.clientX, y: e.clientY })
-                }
+                onMouseMove={handleHeaderMouseMove}
               >
                 <span>{col.label}</span>
               </div>
@@ -127,10 +159,14 @@ export default function LanguageGameGrid({ guesses }: LanguageGameGridProps) {
 
       {hoveredCol && (
         <div
-          className="pointer-events-none fixed glass px-2 py-1 text-xs whitespace-nowrap z-50"
+          ref={tooltipRef}
+          className="pointer-events-none absolute z-50 px-2 py-1 text-xs whitespace-nowrap
+                     bg-zinc-900 text-white
+                     border border-white/10
+                     rounded-md shadow-lg"
           style={{
-            top: tooltipPos.y + 10,
-            left: tooltipPos.x + 10,
+            left: tooltipPos.x,
+            top: tooltipPos.y,
           }}
         >
           {columns.find((c) => c.label === hoveredCol)?.tooltip}
