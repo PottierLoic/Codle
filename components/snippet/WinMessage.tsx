@@ -1,13 +1,15 @@
 import Timer from "@/components/common/ui/Timer";
 import { FullLanguage } from "@/entities/Language";
 import { FullSnippet } from "@/entities/Snippet";
+import ShareSnippetResult from "./ShareSnippetResult";
 
 interface WinMessageProps {
   language: FullLanguage;
   snippet: FullSnippet;
+  dayString: string;
 }
 
-export default function WinMessage({ language, snippet }: WinMessageProps) {
+export default function WinMessage({ language, snippet, dayString }: WinMessageProps) {
   return (
     <div className="mt-4 w-full max-w-2xl glass p-4 sm:p-5">
       <h2 className="text-lg sm:text-xl font-semibold mb-2">
@@ -56,6 +58,8 @@ export default function WinMessage({ language, snippet }: WinMessageProps) {
       )}
 
       <Timer />
+
+      <ShareSnippetResult dayString={dayString} />
 
       <p className="mt-4 text-sm muted">
         Want to submit a new snippet?{" "}

@@ -182,7 +182,7 @@ export default function SnippetGame() {
         />
       )}
       {showWinMessage && fullDailySnippet && snippetLanguage && (
-        <WinMessage language={snippetLanguage} snippet={fullDailySnippet} />
+        <WinMessage language={snippetLanguage} snippet={fullDailySnippet} dayString={dayString} />
       )}
       {snippetCode && (
         <SnippetDisplay

@@ -1,11 +1,13 @@
 import Timer from "@/components/common/ui/Timer";
+import ShareLanguageResult from "@/components/language/ShareLanguageResult";
 import { FullLanguage } from "@/entities/Language";
 
 interface WinMessageProps {
   language: FullLanguage;
+  dayString: string;
 }
 
-export default function WinMessage({ language }: WinMessageProps) {
+export default function WinMessage({ language, dayString }: WinMessageProps) {
   return (
     <div className="mt-4 w-full max-w-2xl glass p-4 sm:p-5">
       <h2 className="text-lg sm:text-xl font-semibold mb-2">
@@ -30,6 +32,8 @@ export default function WinMessage({ language }: WinMessageProps) {
       )}
 
       <Timer />
+
+      <ShareLanguageResult dayString={dayString} />
 
       <p className="mt-4 text-sm muted">
         Want to submit a new language?{" "}

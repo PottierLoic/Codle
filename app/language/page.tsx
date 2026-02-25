@@ -182,6 +182,7 @@ export default function LanguageGame() {
       {showWinMessage && todayLanguage && (
         <WinMessage
           language={todayLanguage}
+          dayString={dayString}
         />
       )}
       <LanguageGameGrid guesses={guesses} />

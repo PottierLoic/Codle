@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { STORAGE_KEYS } from "@/constants";
 import GameLayout from "@/components/common/layout/GameLayout";
 import LoadingScreen from "@/components/common/feedback/LoadingScreen";
 import useDailyComplexity from "@/hooks/complexity/useDailyComplexity";
@@ -10,6 +11,7 @@ import { loadProgress, saveProgress } from "@/lib/saveProgress";
 import type { ComplexityGuessResult } from "@/entities/Complexity";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import ShareComplexityResult from "@/components/complexity/ShareComplexityResult";
 
 type ComplexityOption =
   | "O(1)"
@@ -72,7 +74,7 @@ export default function ComplexityGame() {
   });
 
   useEffect(() => {
-    const stored = loadProgress<StoredState>(STORAGE_KEY, dayString);
+    const stored = loadProgress<StoredState>(STORAGE_KEYS.COMPLEXITY_GUESSES, dayString);
     if (stored) {
       setAttempts(stored.attempts);
       setDisabledOptions(stored.disabledOptions);
@@ -81,7 +83,7 @@ export default function ComplexityGame() {
   }, [dayString]);
 
   useEffect(() => {
-    saveProgress<StoredState>(STORAGE_KEY, dayString, {
+    saveProgress<StoredState>(STORAGE_KEYS.COMPLEXITY_GUESSES, dayString, {
       attempts,
       disabledOptions,
       hasWon,
@@ -224,6 +226,7 @@ export default function ComplexityGame() {
                 {fullDailyComplexity.explanation}
               </p>
             )}
+            <ShareComplexityResult dayString={dayString} />
           </div>
         )}
       </div>
